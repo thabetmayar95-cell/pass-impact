@@ -15,33 +15,35 @@
         extend: {
           colors: {
             medina: {
-              50: '#f0f9ff',
-              100: '#e0f2fe',
-              500: '#0284c7', // Mediterranean Azure
-              600: '#0369a1',
-              700: '#075985',
-              900: '#0c4a6e',
-              950: '#082f49',
+              50: '#eff6ff',
+              100: '#dbeafe',
+              200: '#bfdbfe',
+              500: '#1d4ed8', // Executive Mediterranean Cobalt
+              600: '#1e40af',
+              700: '#1d3557',
+              800: '#1e293b',
+              900: '#0f172a',
+              950: '#080c14',
             },
             terracotta: {
               50: '#fff7ed',
               100: '#ffedd5',
-              400: '#fb923c',
-              500: '#ea580c', // Tunisian Terracotta
-              600: '#c2410c',
-              700: '#9a3412',
+              400: '#ea580c',
+              500: '#c2410c', // Tuscan Sienna & Copper
+              600: '#9a3412',
+              700: '#7c2d12',
             },
             jasmine: {
-              50: '#fefce8',
-              100: '#fef9c3',
-              300: '#fde047',
-              400: '#facc15',
-              500: '#eab308',
+              50: '#fffbeb',
+              100: '#fef3c7',
+              300: '#fcd34d',
+              400: '#f59e0b',
+              500: '#d97706', // Antique Warm Brass & Amber
             },
             emeraldtech: {
               50: '#ecfdf5',
-              500: '#10b981',
-              600: '#059669',
+              500: '#059669', // Forest Emerald
+              600: '#047857',
               950: '#022c22'
             }
           }
@@ -56,16 +58,16 @@
   <!-- Custom Craft Stylesheet -->
   <link rel="stylesheet" href="/css/app.css">
 </head>
-<body class="bg-slate-50 text-slate-800 dark:bg-[#090e17] dark:text-slate-100 min-h-screen flex flex-col antialiased selection:bg-terracotta-500 selection:text-white transition-colors duration-200">
+<body class="bg-slate-50 text-slate-900 dark:bg-[#080c14] dark:text-slate-100 min-h-screen flex flex-col antialiased selection:bg-medina-600 selection:text-white transition-colors duration-200">
 
   <!-- ==================================================== -->
   <!-- 1. SPLASH SCREEN                                     -->
   <!-- ==================================================== -->
-  <div id="splash-screen" class="fixed inset-0 z-50 bg-gradient-to-br from-slate-950 via-medina-950 to-[#060b13] flex flex-col items-center justify-center p-6 text-white transition-opacity duration-700">
+  <div id="splash-screen" class="fixed inset-0 z-50 bg-gradient-to-br from-[#080c14] via-[#0b1329] to-[#070e1f] flex flex-col items-center justify-center p-6 text-white transition-opacity duration-700">
     <div class="max-w-md w-full text-center space-y-6">
       
       <!-- Emblem Logo -->
-      <div class="relative mx-auto w-20 h-20 rounded-2xl bg-slate-950 border-2 border-medina-500 flex flex-col items-center justify-center shadow-2xl shadow-terracotta-500/30">
+      <div class="relative mx-auto w-20 h-20 rounded-2xl bg-[#0b1329] border border-medina-500/40 flex flex-col items-center justify-center shadow-2xl shadow-medina-950">
         <svg class="w-8 h-8 text-jasmine-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M2 12h20M2 12c0 4.418 4.477 8 10 8s10-3.582 10-8M2 12c0-4.418 4.477-8 10-8s10 3.582 10 8"></path>
         </svg>
@@ -75,18 +77,18 @@
       <!-- Titles & Arabic Subtitle -->
       <div class="space-y-1">
         <h1 class="text-3xl font-black tracking-tight">Passe Impact Hammamet</h1>
-        <p class="text-lg font-arabic text-jasmine-300 font-bold">باس أثر الحمامات</p>
-        <p class="text-xs text-slate-300">Tremplin direct pour la jeunesse, les étudiants et les entreprises à Hammamet</p>
+        <p class="text-lg font-arabic text-jasmine-400 font-bold">باس أثر الحمامات</p>
+        <p class="text-xs text-slate-400">Tremplin direct pour la jeunesse, les étudiants et les entreprises à Hammamet</p>
       </div>
 
       <!-- Loading Bar -->
-      <div class="w-full bg-slate-800/80 rounded-full h-2 overflow-hidden border border-white/10">
-        <div id="splash-progress" class="bg-gradient-to-r from-medina-400 via-jasmine-400 to-terracotta-500 h-full w-0 transition-all duration-700"></div>
+      <div class="w-full bg-slate-900/80 rounded-full h-2 overflow-hidden border border-white/10">
+        <div id="splash-progress" class="bg-gradient-to-r from-medina-500 via-jasmine-500 to-terracotta-500 h-full w-0 transition-all duration-700"></div>
       </div>
 
       <!-- Enter CTA -->
       <div class="pt-2">
-        <button id="splash-enter-btn" onclick="window.HubAct.dismissSplash()" class="w-full py-3.5 px-6 rounded-2xl bg-gradient-to-r from-terracotta-500 to-medina-600 hover:from-terracotta-400 hover:to-medina-500 text-white font-bold text-sm shadow-xl shadow-terracotta-500/30 transition transform hover:-translate-y-0.5 active:translate-y-0">
+        <button id="splash-enter-btn" onclick="window.HubAct.dismissSplash()" class="btn-tactile w-full py-3.5 px-6 rounded-2xl bg-medina-600 hover:bg-medina-500 text-white font-bold text-sm shadow-xl shadow-medina-900/40 transition">
           Entrer sur la plateforme ➔
         </button>
         <p class="text-[11px] text-slate-400 mt-2 font-medium">🇹🇳 Résoudre le système fragmenté • Les opportunités vous ciblent</p>
@@ -231,9 +233,9 @@
     <section id="page-intro" class="page-module space-y-8">
       
       <!-- HERO BANNER -->
-      <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-950 via-medina-950 to-[#071324] text-white p-6 sm:p-10 border border-medina-800/40 shadow-xl">
+      <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#080c14] via-[#0b1329] to-[#0c1836] text-white p-6 sm:p-10 border border-medina-700/30 shadow-2xl">
         <div class="relative z-10 max-w-3xl space-y-4">
-          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-jasmine-300 text-xs font-bold">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-medina-900/70 border border-medina-600/40 text-jasmine-300 text-xs font-bold">
             🇹🇳 Révolution de l'Employabilité & Tourisme à Hammamet
           </span>
 
@@ -250,24 +252,24 @@
 
           <!-- Quick Action Buttons -->
           <div class="flex flex-wrap items-center gap-3 pt-2">
-            <button onclick="window.HubAct.startGuidedTour()" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-terracotta-500 to-medina-600 text-white font-bold text-xs shadow-lg flex items-center gap-2 hover:scale-[1.02] transition">
+            <button onclick="window.HubAct.startGuidedTour()" class="btn-tactile px-4 py-2.5 rounded-xl bg-medina-600 hover:bg-medina-500 text-white font-bold text-xs shadow-lg shadow-medina-950 flex items-center gap-2 transition">
               <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
               <span>Lancer la Visite Guidée</span>
             </button>
-            <button onclick="window.HubAct.openModal('modal-register')" class="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-xs transition">
+            <button onclick="window.HubAct.openModal('modal-register')" class="btn-tactile px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 text-white font-bold text-xs transition flex items-center gap-1.5">
               <span>🪪 Créer mon Avatar & Recevoir 2 DT</span>
             </button>
-            <button onclick="window.HubAct.navigateTo('page-events')" class="px-4 py-2.5 rounded-xl bg-medina-500/30 hover:bg-medina-500/50 text-jasmine-200 font-bold text-xs border border-medina-400/30 transition">
+            <button onclick="window.HubAct.navigateTo('page-events')" class="btn-tactile px-4 py-2.5 rounded-xl bg-terracotta-500/20 hover:bg-terracotta-500/30 text-terracotta-200 font-bold text-xs border border-terracotta-500/40 transition flex items-center gap-1.5">
               <span>🌊 Événements Hammamet (+XP & DT)</span>
             </button>
           </div>
         </div>
 
-        <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-medina-500/20 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-medina-500/15 rounded-full blur-3xl pointer-events-none"></div>
       </div>
 
       <!-- VISITOR STATUS / CHECK-IN STRIP -->
-      <div id="visitor-auth-card" class="bg-gradient-to-r from-jasmine-50 to-amber-50 dark:from-slate-800/90 dark:to-slate-800/60 rounded-3xl p-5 sm:p-6 border border-amber-200 dark:border-slate-700 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div id="visitor-auth-card" class="bg-gradient-to-r from-amber-50 to-jasmine-50 dark:from-[#0b1329] dark:to-[#080c14] rounded-3xl p-5 sm:p-6 border border-amber-200/80 dark:border-slate-800 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
         <div class="flex items-center gap-3">
           <span class="text-3xl shrink-0 p-1">👤</span>
           <div>
@@ -276,10 +278,10 @@
           </div>
         </div>
         <div class="flex items-center gap-2 w-full sm:w-auto">
-          <button onclick="window.HubAct.openModal('modal-visitor')" class="w-full sm:w-auto px-4 py-2 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-xs font-bold hover:opacity-90 transition">
+          <button onclick="window.HubAct.openModal('modal-visitor')" class="btn-tactile w-full sm:w-auto px-4 py-2 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-xs font-bold hover:opacity-90 transition">
             Pass Visiteur
           </button>
-          <button onclick="window.HubAct.openModal('modal-register')" class="w-full sm:w-auto px-4 py-2 rounded-xl bg-terracotta-500 text-white text-xs font-bold hover:bg-terracotta-600 transition shadow-sm">
+          <button onclick="window.HubAct.openModal('modal-register')" class="btn-tactile w-full sm:w-auto px-4 py-2 rounded-xl bg-terracotta-500 text-white text-xs font-bold hover:bg-terracotta-600 transition shadow-sm">
             Inscription (5 DT = +2 DT offerts)
           </button>
         </div>
@@ -297,7 +299,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           
           <!-- TRACK A: ÉTUDIANTS / CHERCHEURS DE SAVOIR -->
-          <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 shadow-sm space-y-4 hover:border-medina-400 transition">
+          <div class="bg-white dark:bg-[#0b1329] rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4 hover:border-medina-500/50 transition">
             <div class="flex items-center justify-between">
               <span class="text-2xl">🎓</span>
               <span class="text-[10px] font-black uppercase px-2 py-0.5 rounded-full bg-medina-100 text-medina-700 dark:bg-medina-950 dark:text-medina-300">Étudiants & Chercheurs de Savoir</span>
@@ -320,13 +322,13 @@
               </li>
             </ul>
 
-            <button onclick="window.HubAct.openModal('modal-register')" class="w-full py-2.5 rounded-xl bg-medina-600 hover:bg-medina-500 text-white font-bold text-xs shadow-md transition">
+            <button onclick="window.HubAct.openModal('modal-register')" class="btn-tactile w-full py-2.5 rounded-xl bg-medina-600 hover:bg-medina-500 text-white font-bold text-xs shadow-md transition">
               Créer ma Carte Étudiant & Récupérer 2 DT ➔
             </button>
           </div>
 
           <!-- TRACK B: ENTREPRISES / EMPLOYEURS -->
-          <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 shadow-sm space-y-4 hover:border-terracotta-400 transition">
+          <div class="bg-white dark:bg-[#0b1329] rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4 hover:border-terracotta-500/50 transition">
             <div class="flex items-center justify-between">
               <span class="text-2xl">🏢</span>
               <span class="text-[10px] font-black uppercase px-2 py-0.5 rounded-full bg-terracotta-100 text-terracotta-700 dark:bg-terracotta-950 dark:text-terracotta-300">Entreprises & Employeurs</span>
@@ -349,7 +351,7 @@
               </li>
             </ul>
 
-            <button onclick="window.HubAct.navigateTo('page-company')" class="w-full py-2.5 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 text-white font-bold text-xs shadow-md transition">
+            <button onclick="window.HubAct.navigateTo('page-company')" class="btn-tactile w-full py-2.5 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 text-white font-bold text-xs shadow-md transition">
               Espace Recruteurs & Dépôt de Missions ➔
             </button>
           </div>
@@ -382,36 +384,45 @@
         <!-- 3D FLIPPABLE ID PASS -->
         <div class="flex justify-center">
           <div class="w-full max-w-lg perspective-1000">
-            <div id="user-pass-card" onclick="window.HubAct.flipPassCard()" class="relative w-full min-h-[310px] transition-transform duration-700 transform-style-3d cursor-pointer rounded-3xl shadow-2xl">
+            <div id="user-pass-card" onclick="window.HubAct.flipPassCard()" class="relative w-full min-h-[320px] transition-transform duration-700 transform-style-3d cursor-pointer rounded-3xl shadow-2xl">
               
               <!-- RECTO -->
-              <div class="absolute inset-0 w-full h-full rounded-3xl p-6 sm:p-7 bg-gradient-to-br from-slate-950 via-medina-950 to-slate-900 text-white border border-medina-500/40 backface-hidden flex flex-col justify-between">
+              <div class="card-pass-recto absolute inset-0 w-full h-full rounded-3xl p-6 sm:p-7 text-white border border-medina-500/30 backface-hidden flex flex-col justify-between">
                 <div>
-                  <div class="flex items-center justify-between border-b border-white/10 pb-3 mb-4">
-                    <div class="flex items-center gap-2">
-                      <div class="w-8 h-8 rounded-lg bg-medina-500 flex items-center justify-center font-black text-white text-xs">PI</div>
+                  <div class="flex items-center justify-between border-b border-white/10 pb-3 mb-3">
+                    <div class="flex items-center gap-2.5">
+                      <span class="w-8 h-8 rounded-lg bg-medina-600 flex items-center justify-center font-black text-white text-xs shadow-md">PI</span>
                       <div>
-                        <span class="text-[11px] font-black tracking-widest uppercase">PASSE IMPACT HAMMAMET</span>
-                        <span class="text-[9px] text-slate-400 block -mt-0.5 font-arabic">باس أثر الحمامات</span>
+                        <span class="text-[11px] font-extrabold tracking-widest uppercase text-slate-100">PASSE IMPACT HAMMAMET</span>
+                        <span class="text-[9px] text-jasmine-400 block -mt-0.5 font-arabic font-semibold">باس أثر الحمامات</span>
                       </div>
                     </div>
-                    <div class="text-right">
-                      <span id="pass-target-badge" class="text-[10px] px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/30 animate-pulse">
-                        🎯 Profil Ciblé par les Entreprises
+                    <div class="flex items-center gap-2">
+                      <svg class="w-5 h-5 text-jasmine-400/90 -rotate-90 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 18a10 10 0 0 1 0-12"/><path d="M9.5 15.5a6.5 6.5 0 0 1 0-7"/><path d="M13 13a3 3 0 0 1 0-2"/></svg>
+                      <span id="pass-target-badge" class="inline-flex items-center gap-1.5 text-[10px] px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/30">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                        <span>Ciblé par le marché</span>
                       </span>
                     </div>
                   </div>
 
-                  <div class="flex items-center gap-4">
-                    <div class="w-16 h-16 rounded-2xl bg-slate-900 shadow-inner flex items-center justify-center text-3xl font-black shrink-0" id="pass-avatar-icon">
-                      👨‍💻
+                  <div class="space-y-3">
+                    <div class="flex items-center justify-between">
+                      <div class="chip-emv"></div>
+                      <span class="text-[9px] font-mono tracking-widest text-slate-400 uppercase">RÉPUBLIQUE TUNISIENNE • NABEUL</span>
                     </div>
 
-                    <div class="space-y-1">
-                      <h3 class="text-base sm:text-lg font-black text-white" id="pass-name">Youssef Mansour</h3>
-                      <p class="text-xs text-jasmine-300 font-bold" id="pass-avatar-title">Avatar : Frontend Dev & Tourisme Tech</p>
-                      <p class="text-[11px] text-slate-400" id="pass-school">ISET Nabeul / INSAT • Résidence Hammamet</p>
-                      <span class="text-[9px] font-mono text-slate-500" id="pass-id-number">ID: PI-TN-88421</span>
+                    <div class="flex items-center gap-4">
+                      <span class="w-16 h-16 rounded-2xl bg-slate-900/90 shadow-lg flex items-center justify-center text-3xl font-black shrink-0" id="pass-avatar-icon">
+                        👨‍💻
+                      </span>
+
+                      <div class="space-y-1">
+                        <h3 class="text-base sm:text-lg font-black text-white tracking-tight" id="pass-name">Youssef Mansour</h3>
+                        <p class="text-xs text-jasmine-400 font-bold" id="pass-avatar-title">Avatar : Frontend Dev & Tourisme Tech</p>
+                        <p class="text-[11px] text-slate-300" id="pass-school">ISET Nabeul / INSAT • Résidence Hammamet</p>
+                        <span class="text-[9px] font-mono text-slate-400" id="pass-id-number">ID: PI-TN-88421</span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -419,24 +430,27 @@
                 <div class="pt-3 border-t border-white/10 flex items-center justify-between text-xs">
                   <div>
                     <span class="text-slate-400 text-[10px] block">Points de compétences :</span>
-                    <span class="font-black text-jasmine-300 flex items-center gap-1">⭐ <span id="pass-xp-display">35</span> XP</span>
+                    <span class="font-black text-jasmine-400 flex items-center gap-1">⭐ <span id="pass-xp-display">35</span> XP</span>
                   </div>
                   <div>
                     <span class="text-slate-400 text-[10px] block">Tip Jar Compensatoire :</span>
                     <span class="font-black text-emerald-400 flex items-center gap-1">🏺 <span id="pass-dinars-display">2.000</span> DT</span>
                   </div>
                   <div class="text-right">
-                    <span class="text-[10px] text-medina-300 font-bold">Cliquer pour retourner ↻</span>
+                    <span class="text-[10px] text-medina-300 font-bold hover:text-medina-200">Retourner la carte ↻</span>
                   </div>
                 </div>
               </div>
 
               <!-- VERSO (ANCIEN CV & HISTORIQUE EXTRAIT) -->
-              <div class="absolute inset-0 w-full h-full rounded-3xl p-6 sm:p-7 bg-gradient-to-br from-slate-900 via-slate-950 to-medina-950 text-white border border-medina-500/40 backface-hidden rotate-y-180 flex flex-col justify-between">
+              <div class="card-pass-verso absolute inset-0 w-full h-full rounded-3xl p-6 sm:p-7 text-white border border-medina-500/30 backface-hidden rotate-y-180 flex flex-col justify-between">
                 <div>
+                  <!-- Magnetic Stripe Simulation -->
+                  <div class="w-full h-7 bg-black/90 rounded-md mb-3 shadow-inner"></div>
+
                   <div class="flex items-center justify-between border-b border-white/10 pb-2 mb-3">
                     <span class="text-xs font-black tracking-wider text-slate-300 uppercase">ANCIEN CV & PROJETS EXTRAITS</span>
-                    <span class="text-[10px] text-emerald-400 font-bold">✓ Données Extraites</span>
+                    <span class="text-[10px] text-emerald-400 font-bold">✓ Données Certifiées</span>
                   </div>
 
                   <div class="space-y-2 text-xs">
@@ -450,14 +464,14 @@
                         Projet académique de réservation pour hôtel à Hammamet, JavaScript, HTML/CSS, membre actif de club universitaire.
                       </p>
                     </div>
-                    <p class="p-2.5 rounded-xl bg-white/5 text-[10px] text-jasmine-200 leading-relaxed">
+                    <p class="p-2.5 rounded-xl bg-white/5 text-[10px] text-jasmine-300 leading-relaxed">
                       💡 Votre carte est diffusée aux entreprises partenaires. Vous pouvez recevoir des propositions de stage directement dans votre boîte email.
                     </p>
                   </div>
                 </div>
 
                 <div class="pt-3 border-t border-white/10 flex items-center justify-between text-xs">
-                  <span class="text-[10px] font-mono text-slate-500">HASH: SHA256-PI-HAMMAMET-2026</span>
+                  <span class="text-[10px] font-mono text-slate-400">HASH: SHA256-PI-HAMMAMET-2026</span>
                   <span class="text-xs text-medina-300 font-bold hover:underline">Retourner la carte ↺</span>
                 </div>
               </div>
@@ -474,22 +488,22 @@
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-4 gap-3">
-            <button onclick="window.HubAct.changeAvatarPreset('Frontend Dev & Tourisme Tech', '💻')" class="p-3 rounded-2xl border-2 border-medina-500 bg-medina-50 dark:bg-slate-800 text-left space-y-1">
+            <button onclick="window.HubAct.changeAvatarPreset('Frontend Dev & Tourisme Tech', '💻')" class="btn-tactile p-3 rounded-2xl border-2 border-medina-500 bg-medina-50 dark:bg-[#0b1329] text-left space-y-1">
               <span class="text-xl">💻</span>
               <span class="text-xs font-bold block text-slate-900 dark:text-white">Frontend Web</span>
               <span class="text-[10px] text-slate-500">Tourisme Tech Hammamet</span>
             </button>
-            <button onclick="window.HubAct.changeAvatarPreset('Ingénieur IA & Smart Medina', '🤖')" class="p-3 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-medina-400 bg-white dark:bg-slate-900 text-left space-y-1">
+            <button onclick="window.HubAct.changeAvatarPreset('Ingénieur IA & Smart Medina', '🤖')" class="btn-tactile p-3 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-medina-400 bg-white dark:bg-[#080c14] text-left space-y-1">
               <span class="text-xl">🤖</span>
               <span class="text-xs font-bold block text-slate-900 dark:text-white">IA & Data</span>
               <span class="text-[10px] text-slate-500">Smart Medina & Chatbots</span>
             </button>
-            <button onclick="window.HubAct.changeAvatarPreset('Leader Civic Tech & Ta\'sir', '🤝')" class="p-3 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-medina-400 bg-white dark:bg-slate-900 text-left space-y-1">
+            <button onclick="window.HubAct.changeAvatarPreset('Leader Civic Tech & Ta\'sir', '🤝')" class="btn-tactile p-3 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-medina-400 bg-white dark:bg-[#080c14] text-left space-y-1">
               <span class="text-xl">🤝</span>
               <span class="text-xs font-bold block text-slate-900 dark:text-white">Civic & Ta'sir</span>
               <span class="text-[10px] text-slate-500">Impact Associatif</span>
             </button>
-            <button onclick="window.HubAct.changeAvatarPreset('Tourisme & Hospitality Lead', '🏨')" class="p-3 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-medina-400 bg-white dark:bg-slate-900 text-left space-y-1">
+            <button onclick="window.HubAct.changeAvatarPreset('Tourisme & Hospitality Lead', '🏨')" class="btn-tactile p-3 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-medina-400 bg-white dark:bg-[#080c14] text-left space-y-1">
               <span class="text-xl">🏨</span>
               <span class="text-xs font-bold block text-slate-900 dark:text-white">Hospitality</span>
               <span class="text-[10px] text-slate-500">Expériences Médina</span>
@@ -498,13 +512,13 @@
         </section>
 
         <!-- SCREENSHOT SECTION 1: PROJETS RÉALISÉS -->
-        <div class="bg-[#111927] border border-slate-800 rounded-3xl p-6 sm:p-8 space-y-6 shadow-xl">
+        <div class="bg-[#0b1329] border border-slate-800 rounded-3xl p-6 sm:p-8 space-y-6 shadow-xl">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
               <h3 class="text-lg sm:text-xl font-bold text-white tracking-tight">Projets Réalisés & Travaux Pratiques</h3>
               <p class="text-xs text-slate-400 mt-0.5">Les entreprises examinent ces travaux concrets plutôt que de simples notes universitaires.</p>
             </div>
-            <button onclick="window.HubAct.openModal('modal-add-project')" class="self-start sm:self-auto px-4 py-2 rounded-xl bg-[#1e293b] hover:bg-[#283548] text-medina-400 text-xs font-bold border border-slate-700 flex items-center gap-1.5 transition">
+            <button onclick="window.HubAct.openModal('modal-add-project')" class="btn-tactile self-start sm:self-auto px-4 py-2 rounded-xl bg-medina-600/20 hover:bg-medina-600/30 text-medina-300 text-xs font-bold border border-medina-500/40 flex items-center gap-1.5 transition">
               <span class="text-sm font-black">+</span> Ajouter un projet
             </button>
           </div>
@@ -515,13 +529,13 @@
         </div>
 
         <!-- SCREENSHOT SECTION 2: AVIS & RECOMMANDATIONS -->
-        <div class="bg-[#111927] border border-slate-800 rounded-3xl p-6 sm:p-8 space-y-6 shadow-xl">
+        <div class="bg-[#0b1329] border border-slate-800 rounded-3xl p-6 sm:p-8 space-y-6 shadow-xl">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
               <h3 class="text-lg sm:text-xl font-bold text-white tracking-tight">Avis, Évaluations & Commentaires des Pairs</h3>
               <p class="text-xs text-slate-400 mt-0.5">Retours certifiés de mentors, d'associations partenaires (JCI, Enactus) et de collègues d'équipes.</p>
             </div>
-            <button onclick="window.HubAct.openModal('modal-add-review')" class="self-start sm:self-auto px-4 py-2 rounded-xl bg-gradient-to-r from-terracotta-500 to-terracotta-600 hover:from-terracotta-400 hover:to-terracotta-500 text-white text-xs font-bold shadow-lg shadow-terracotta-500/20 flex items-center gap-1.5 transition">
+            <button onclick="window.HubAct.openModal('modal-add-review')" class="btn-tactile self-start sm:self-auto px-4 py-2 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 text-white text-xs font-bold shadow-lg shadow-terracotta-900/30 flex items-center gap-1.5 transition">
               <span>✍️</span> Laisser un avis / recommandation
             </button>
           </div>
@@ -532,7 +546,7 @@
         </div>
 
         <!-- AUTOMATED RECOMMENDATION ENGINE -->
-        <div id="cibled-recommendations-section" class="bg-gradient-to-br from-slate-900 via-medina-950 to-slate-900 border-2 border-emerald-500/40 rounded-3xl p-6 sm:p-8 space-y-6 shadow-2xl">
+        <div id="cibled-recommendations-section" class="bg-gradient-to-br from-[#080c14] via-[#0b1329] to-[#080c14] border border-emerald-500/40 rounded-3xl p-6 sm:p-8 space-y-6 shadow-2xl">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/10 pb-4">
             <div>
               <span class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[11px] font-bold mb-1">
@@ -548,13 +562,13 @@
 
           <!-- TABS FOR SUGGESTIONS -->
           <div class="flex flex-wrap gap-2 border-b border-white/10 pb-3">
-            <button onclick="window.HubAct.switchRecTab('stages')" id="rec-tab-stages" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-medina-600 text-white shadow transition">
+            <button onclick="window.HubAct.switchRecTab('stages')" id="rec-tab-stages" class="btn-tactile px-3.5 py-1.5 rounded-xl text-xs font-bold bg-medina-600 text-white shadow transition">
               🎓 Stages (PFE & Été)
             </button>
-            <button onclick="window.HubAct.switchRecTab('jobs')" id="rec-tab-jobs" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700 transition">
+            <button onclick="window.HubAct.switchRecTab('jobs')" id="rec-tab-jobs" class="btn-tactile px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-[#0b1329] text-slate-300 hover:text-white hover:bg-slate-800 transition">
               🚀 Offres d'Emploi (Jobs)
             </button>
-            <button onclick="window.HubAct.switchRecTab('formations')" id="rec-tab-formations" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700 transition">
+            <button onclick="window.HubAct.switchRecTab('formations')" id="rec-tab-formations" class="btn-tactile px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-[#0b1329] text-slate-300 hover:text-white hover:bg-slate-800 transition">
               📖 Formations Clés (+XP)
             </button>
           </div>
@@ -600,7 +614,7 @@
     <!-- -------------------------------------------------- -->
     <section id="page-company" class="page-module hidden space-y-8">
       
-      <div class="bg-gradient-to-br from-terracotta-50 to-medina-50 dark:from-slate-800 dark:to-slate-800/80 rounded-3xl p-6 sm:p-8 border border-terracotta-200 dark:border-slate-700 space-y-4">
+      <div class="bg-gradient-to-br from-slate-50 to-medina-50/60 dark:from-[#0b1329] dark:to-[#080c14] rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 space-y-4 shadow-sm">
         <div class="max-w-2xl space-y-2">
           <span class="text-xs font-black uppercase tracking-wider text-terracotta-600 dark:text-terracotta-400">Portail Recrutement & Partenariats</span>
           <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">
@@ -612,11 +626,11 @@
         </div>
 
         <div class="flex flex-wrap items-center gap-3 pt-2">
-          <button onclick="window.HubAct.openModal('modal-offer')" class="px-5 py-2.5 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 text-white font-bold text-xs shadow-md transition flex items-center gap-1.5">
+          <button onclick="window.HubAct.openModal('modal-offer')" class="btn-tactile px-5 py-2.5 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 text-white font-bold text-xs shadow-md transition flex items-center gap-1.5">
             <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
             Publier une Offre de Stage / Emploi
           </button>
-          <button onclick="window.HubAct.openModal('modal-register')" class="px-4 py-2.5 rounded-xl bg-medina-600 hover:bg-medina-500 text-white font-bold text-xs shadow-md transition">
+          <button onclick="window.HubAct.openModal('modal-register')" class="btn-tactile px-4 py-2.5 rounded-xl bg-medina-600 hover:bg-medina-500 text-white font-bold text-xs shadow-md transition">
             Créer un Compte Entreprise
           </button>
         </div>
@@ -632,16 +646,16 @@
           
           <!-- Search input -->
           <div class="w-full sm:w-64">
-            <input type="text" id="candidate-search-input" placeholder="Rechercher par compétence ou nom..." class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white">
+            <input type="text" id="candidate-search-input" placeholder="Rechercher par compétence ou nom..." class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#080c14] text-slate-900 dark:text-white">
           </div>
         </div>
 
         <!-- TALENT TYPE FILTER FOR COMPANIES -->
         <div class="flex flex-wrap items-center gap-2">
-          <button onclick="window.HubAct.filterTalentType('all')" class="talent-filter-btn px-3 py-1 rounded-lg text-xs font-bold bg-medina-600 text-white" data-filter="all">Tous les profils</button>
-          <button onclick="window.HubAct.filterTalentType('student')" class="talent-filter-btn px-3 py-1 rounded-lg text-xs font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700" data-filter="student">🎓 Étudiants (PFE/Stage)</button>
-          <button onclick="window.HubAct.filterTalentType('worker')" class="talent-filter-btn px-3 py-1 rounded-lg text-xs font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700" data-filter="worker">💼 Travailleurs Juniors</button>
-          <button onclick="window.HubAct.filterTalentType('freelancer')" class="talent-filter-btn px-3 py-1 rounded-lg text-xs font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700" data-filter="freelancer">🌍 Freelancers Qualifiés</button>
+          <button onclick="window.HubAct.filterTalentType('all')" class="btn-tactile talent-filter-btn px-3 py-1 rounded-lg text-xs font-bold bg-medina-600 text-white" data-filter="all">Tous les profils</button>
+          <button onclick="window.HubAct.filterTalentType('student')" class="btn-tactile talent-filter-btn px-3 py-1 rounded-lg text-xs font-semibold bg-white dark:bg-[#0b1329] text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800" data-filter="student">🎓 Étudiants (PFE/Stage)</button>
+          <button onclick="window.HubAct.filterTalentType('worker')" class="btn-tactile talent-filter-btn px-3 py-1 rounded-lg text-xs font-semibold bg-white dark:bg-[#0b1329] text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800" data-filter="worker">💼 Travailleurs Juniors</button>
+          <button onclick="window.HubAct.filterTalentType('freelancer')" class="btn-tactile talent-filter-btn px-3 py-1 rounded-lg text-xs font-semibold bg-white dark:bg-[#0b1329] text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800" data-filter="freelancer">🌍 Freelancers Qualifiés</button>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="candidates-pool-grid">
@@ -659,7 +673,7 @@
 
   <!-- MODAL: AJOUTER UN PROJET -->
   <div id="modal-add-project" class="fixed inset-0 z-50 bg-slate-950/75 backdrop-blur-sm hidden flex items-center justify-center p-4">
-    <div class="bg-[#111927] border border-slate-700 rounded-3xl max-w-md w-full p-6 text-white space-y-4 shadow-2xl">
+    <div class="bg-[#0b1329] border border-slate-700/80 rounded-3xl max-w-md w-full p-6 text-white space-y-4 shadow-2xl">
       <div class="flex items-center justify-between border-b border-slate-800 pb-3">
         <h3 class="text-base font-bold">Ajouter un Travail Pratique</h3>
         <button onclick="window.HubAct.closeModal('modal-add-project')" class="text-slate-400 hover:text-white text-lg">✕</button>
@@ -667,23 +681,23 @@
       <form id="form-add-project" class="space-y-3 text-xs">
         <div>
           <label class="block font-bold text-slate-300 mb-1">Titre du Projet</label>
-          <input type="text" id="inp-proj-title" required placeholder="Ex: Portail Touristique 'Hammamet Authentique'" class="w-full p-2.5 rounded-xl border border-slate-700 bg-[#1e293b] text-white">
+          <input type="text" id="inp-proj-title" required placeholder="Ex: Portail Touristique 'Hammamet Authentique'" class="w-full p-2.5 rounded-xl border border-slate-700 bg-[#080c14] text-white">
         </div>
         <div>
           <label class="block font-bold text-slate-300 mb-1">Lien de Démo / GitHub</label>
-          <input type="url" id="inp-proj-url" required placeholder="https://..." class="w-full p-2.5 rounded-xl border border-slate-700 bg-[#1e293b] text-white">
+          <input type="url" id="inp-proj-url" required placeholder="https://..." class="w-full p-2.5 rounded-xl border border-slate-700 bg-[#080c14] text-white">
         </div>
         <div>
           <label class="block font-bold text-slate-300 mb-1">Technologies Utilisées (Séparées par des virgules)</label>
-          <input type="text" id="inp-proj-tags" required placeholder="Ex: React, Tailwind, API Météo & Cartes" class="w-full p-2.5 rounded-xl border border-slate-700 bg-[#1e293b] text-white">
+          <input type="text" id="inp-proj-tags" required placeholder="Ex: React, Tailwind, API Météo & Cartes" class="w-full p-2.5 rounded-xl border border-slate-700 bg-[#080c14] text-white">
         </div>
         <div>
           <label class="block font-bold text-slate-300 mb-1">Description Courte de la Réalisation</label>
-          <textarea id="inp-proj-desc" required rows="2" placeholder="Plateforme interactive répertoriant les artisans céramistes et les maisons d'hôtes..." class="w-full p-2.5 rounded-xl border border-slate-700 bg-[#1e293b] text-white"></textarea>
+          <textarea id="inp-proj-desc" required rows="2" placeholder="Plateforme interactive répertoriant les artisans céramistes et les maisons d'hôtes..." class="w-full p-2.5 rounded-xl border border-slate-700 bg-[#080c14] text-white"></textarea>
         </div>
         <div class="flex justify-end gap-2 pt-2 border-t border-slate-800">
-          <button type="button" onclick="window.HubAct.closeModal('modal-add-project')" class="px-3 py-2 rounded-xl text-slate-400">Annuler</button>
-          <button type="submit" class="px-5 py-2.5 rounded-xl bg-medina-600 hover:bg-medina-500 text-white font-bold shadow-md">+ Enregistrer le projet (+15 XP)</button>
+          <button type="button" onclick="window.HubAct.closeModal('modal-add-project')" class="btn-tactile px-3 py-2 rounded-xl text-slate-400 hover:text-white">Annuler</button>
+          <button type="submit" class="btn-tactile px-5 py-2.5 rounded-xl bg-medina-600 hover:bg-medina-500 text-white font-bold shadow-md">+ Enregistrer le projet (+15 XP)</button>
         </div>
       </form>
     </div>
@@ -691,7 +705,7 @@
 
   <!-- MODAL: LAISSER UN AVIS / RECOMMANDATION -->
   <div id="modal-add-review" class="fixed inset-0 z-50 bg-slate-950/75 backdrop-blur-sm hidden flex items-center justify-center p-4">
-    <div class="bg-[#111927] border border-slate-700 rounded-3xl max-w-md w-full p-6 text-white space-y-4 shadow-2xl">
+    <div class="bg-[#0b1329] border border-slate-700/80 rounded-3xl max-w-md w-full p-6 text-white space-y-4 shadow-2xl">
       <div class="flex items-center justify-between border-b border-slate-800 pb-3">
         <h3 class="text-base font-bold">Laisser un avis / recommandation</h3>
         <button onclick="window.HubAct.closeModal('modal-add-review')" class="text-slate-400 hover:text-white text-lg">✕</button>
@@ -699,19 +713,19 @@
       <form id="form-add-review" class="space-y-3 text-xs">
         <div>
           <label class="block font-bold text-slate-300 mb-1">Votre Nom & Prénom</label>
-          <input type="text" id="inp-rev-author" required placeholder="Ex: Karim Ben Cheikh" class="w-full p-2.5 rounded-xl border border-slate-700 bg-[#1e293b] text-white">
+          <input type="text" id="inp-rev-author" required placeholder="Ex: Karim Ben Cheikh" class="w-full p-2.5 rounded-xl border border-slate-700 bg-[#080c14] text-white">
         </div>
         <div>
           <label class="block font-bold text-slate-300 mb-1">Votre Rôle / Organisation</label>
-          <input type="text" id="inp-rev-role" required placeholder="Ex: CTO @ Startup Hammamet ou Présidente JCI Hammamet" class="w-full p-2.5 rounded-xl border border-slate-700 bg-[#1e293b] text-white">
+          <input type="text" id="inp-rev-role" required placeholder="Ex: CTO @ Startup Hammamet ou Présidente JCI Hammamet" class="w-full p-2.5 rounded-xl border border-slate-700 bg-[#080c14] text-white">
         </div>
         <div>
           <label class="block font-bold text-slate-300 mb-1">Votre Témoignage</label>
-          <textarea id="inp-rev-comment" required rows="3" placeholder="Youssef a fait preuve d'une autonomie remarquable lors du sprint technique..." class="w-full p-2.5 rounded-xl border border-slate-700 bg-[#1e293b] text-white"></textarea>
+          <textarea id="inp-rev-comment" required rows="3" placeholder="Youssef a fait preuve d'une autonomie remarquable lors du sprint technique..." class="w-full p-2.5 rounded-xl border border-slate-700 bg-[#080c14] text-white"></textarea>
         </div>
         <div class="flex justify-end gap-2 pt-2 border-t border-slate-800">
-          <button type="button" onclick="window.HubAct.closeModal('modal-add-review')" class="px-3 py-2 rounded-xl text-slate-400">Annuler</button>
-          <button type="submit" class="px-5 py-2.5 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 text-white font-bold shadow-md">Publier le Témoignage (+10 XP)</button>
+          <button type="button" onclick="window.HubAct.closeModal('modal-add-review')" class="btn-tactile px-3 py-2 rounded-xl text-slate-400 hover:text-white">Annuler</button>
+          <button type="submit" class="btn-tactile px-5 py-2.5 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 text-white font-bold shadow-md">Publier le Témoignage (+10 XP)</button>
         </div>
       </form>
     </div>
@@ -719,7 +733,7 @@
 
   <!-- MODAL: PASS VISITEUR -->
   <div id="modal-visitor" class="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
-    <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-700 space-y-4">
+    <div class="bg-white dark:bg-[#0b1329] rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-800 space-y-4">
       <div class="flex items-center justify-between">
         <div>
           <h3 class="text-base font-black text-slate-900 dark:text-white">Pass Visiteur Invité</h3>
@@ -731,18 +745,18 @@
       <form id="form-visitor" class="space-y-3 text-xs">
         <div>
           <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1">Votre Nom & Prénom</label>
-          <input type="text" id="vis-name" required placeholder="Ex: Mohamed Trabelsi" class="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white">
+          <input type="text" id="vis-name" required placeholder="Ex: Mohamed Trabelsi" class="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-[#080c14] text-slate-900 dark:text-white">
         </div>
         <div>
           <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1">Votre Adresse Email</label>
-          <input type="email" id="vis-email" required placeholder="nom@exemple.tn" class="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white">
+          <input type="email" id="vis-email" required placeholder="nom@exemple.tn" class="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-[#080c14] text-slate-900 dark:text-white">
         </div>
         <div class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-900/60 text-[10px] text-slate-500 leading-relaxed">
           🍪 Conformément à notre politique, les cookies ne mémorisent que votre pass d'entrée, votre email et votre nom.
         </div>
         <div class="flex justify-end gap-2 pt-2">
-          <button type="button" onclick="window.HubAct.closeModal('modal-visitor')" class="px-3 py-2 rounded-xl text-slate-500 font-semibold">Fermer</button>
-          <button type="submit" class="px-5 py-2 rounded-xl bg-medina-600 hover:bg-medina-500 text-white font-bold shadow-md">
+          <button type="button" onclick="window.HubAct.closeModal('modal-visitor')" class="btn-tactile px-3 py-2 rounded-xl text-slate-500 font-semibold">Fermer</button>
+          <button type="submit" class="btn-tactile px-5 py-2 rounded-xl bg-medina-600 hover:bg-medina-500 text-white font-bold shadow-md">
             Générer mon Pass Visiteur
           </button>
         </div>
@@ -752,7 +766,7 @@
 
   <!-- MODAL: INSCRIPTION & CALIBRAGE 5 DT (+2 DT OFFERTS) -->
   <div id="modal-register" class="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
-    <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-700 space-y-4 max-h-[90vh] overflow-y-auto">
+    <div class="bg-white dark:bg-[#0b1329] rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-800 space-y-4 max-h-[90vh] overflow-y-auto">
       <div class="flex items-center justify-between">
         <div>
           <h3 class="text-base font-black text-slate-900 dark:text-white">Créer ma Carte ID & Mon Avatar</h3>
@@ -773,17 +787,17 @@
         <div class="grid grid-cols-2 gap-2">
           <div>
             <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1">Nom & Prénom</label>
-            <input type="text" id="reg-name" required placeholder="Youssef Mansour" class="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white">
+            <input type="text" id="reg-name" required placeholder="Youssef Mansour" class="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-[#080c14] text-slate-900 dark:text-white">
           </div>
           <div>
             <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1">Email</label>
-            <input type="email" id="reg-email" required placeholder="youssef@isetn.tn" class="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white">
+            <input type="email" id="reg-email" required placeholder="youssef@isetn.tn" class="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-[#080c14] text-slate-900 dark:text-white">
           </div>
         </div>
 
         <div>
           <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1">Votre Avatar Cible (Objectif Professionnel)</label>
-          <select id="reg-avatar" class="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white font-semibold">
+          <select id="reg-avatar" class="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-[#080c14] text-slate-900 dark:text-white font-semibold">
             <option value="Frontend Dev & Tourisme Tech">💻 Frontend Dev & Tourisme Tech Hammamet</option>
             <option value="Ingénieur IA & Smart Medina">🤖 Ingénieur IA & Smart Medina</option>
             <option value="Leader Civic Tech & Ta'sir">🤝 Leader Civic Tech & Ta'sir</option>
@@ -793,31 +807,31 @@
 
         <div>
           <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1">Établissement / Université d'origine</label>
-          <input type="text" id="reg-school" required placeholder="Ex: ISET Nabeul, INSAT, Université Virtuelle..." class="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white">
+          <input type="text" id="reg-school" required placeholder="Ex: ISET Nabeul, INSAT, Université Virtuelle..." class="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-[#080c14] text-slate-900 dark:text-white">
         </div>
 
         <div>
           <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1">Ancien CV / Compétences & Projets Antérieurs</label>
-          <textarea id="reg-old-resume" required rows="2" placeholder="Ex: Licence informatique, mini-projets Python/JavaScript, participation à un club universitaire..." class="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white"></textarea>
+          <textarea id="reg-old-resume" required rows="2" placeholder="Ex: Licence informatique, mini-projets Python/JavaScript, participation à un club universitaire..." class="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-[#080c14] text-slate-900 dark:text-white"></textarea>
         </div>
 
         <!-- PAYMENT SELECTOR -->
         <div class="space-y-2 pt-1 border-t border-slate-100 dark:border-slate-700">
           <label class="block font-bold text-slate-700 dark:text-slate-300">Règlement des frais de calibrage (5 DT)</label>
           <div class="grid grid-cols-4 gap-1.5">
-            <label class="p-2 rounded-xl bg-medina-50/70 dark:bg-slate-700 text-center cursor-pointer">
+            <label class="p-2 rounded-xl bg-medina-50/70 dark:bg-[#080c14] text-center cursor-pointer border border-medina-200 dark:border-medina-800">
               <input type="radio" name="reg_pay_method" value="Flouci" checked class="text-medina-600">
               <span class="block text-[10px] font-bold mt-1">Flouci</span>
             </label>
-            <label class="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-center cursor-pointer">
+            <label class="p-2 rounded-xl bg-slate-100 dark:bg-[#080c14] text-center cursor-pointer border border-slate-200 dark:border-slate-800">
               <input type="radio" name="reg_pay_method" value="Konnect" class="text-medina-600">
               <span class="block text-[10px] font-bold mt-1">Konnect</span>
             </label>
-            <label class="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-center cursor-pointer">
+            <label class="p-2 rounded-xl bg-slate-100 dark:bg-[#080c14] text-center cursor-pointer border border-slate-200 dark:border-slate-800">
               <input type="radio" name="reg_pay_method" value="D17" class="text-medina-600">
               <span class="block text-[10px] font-bold mt-1">D17 Poste</span>
             </label>
-            <label class="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-center cursor-pointer">
+            <label class="p-2 rounded-xl bg-slate-100 dark:bg-[#080c14] text-center cursor-pointer border border-slate-200 dark:border-slate-800">
               <input type="radio" name="reg_pay_method" value="Sobflous" class="text-medina-600">
               <span class="block text-[10px] font-bold mt-1">Sobflous</span>
             </label>
@@ -825,8 +839,8 @@
         </div>
 
         <div class="flex justify-end gap-2 pt-2">
-          <button type="button" onclick="window.HubAct.closeModal('modal-register')" class="px-4 py-2 rounded-xl text-slate-500 font-semibold">Annuler</button>
-          <button type="submit" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-terracotta-500 to-medina-600 text-white font-bold shadow-md">
+          <button type="button" onclick="window.HubAct.closeModal('modal-register')" class="btn-tactile px-4 py-2 rounded-xl text-slate-500 font-semibold">Annuler</button>
+          <button type="submit" class="btn-tactile px-5 py-2.5 rounded-xl bg-medina-600 hover:bg-medina-500 text-white font-bold shadow-md">
             Payer 5 DT, Créer ma Carte & Toucher 2 DT
           </button>
         </div>
@@ -836,7 +850,7 @@
 
   <!-- MODAL: VISITE GUIDÉE -->
   <div id="modal-tour" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4">
-    <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-medina-500/40 space-y-6">
+    <div class="bg-white dark:bg-[#0b1329] rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-medina-500/40 space-y-6">
       <div class="flex items-center justify-between text-xs font-bold text-slate-400">
         <span id="tour-step-counter">Étape 1 sur 4</span>
         <button onclick="window.HubAct.closeModal('modal-tour')" class="text-slate-400 hover:text-white text-base">✕</button>
@@ -847,15 +861,15 @@
       </div>
 
       <div class="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-700">
-        <button id="tour-prev-btn" onclick="window.HubAct.prevTourStep()" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-700">Précédent</button>
-        <button id="tour-next-btn" onclick="window.HubAct.nextTourStep()" class="px-5 py-2.5 rounded-xl bg-medina-600 hover:bg-medina-500 text-white font-bold text-xs shadow-md">Suivant ➔</button>
+        <button id="tour-prev-btn" onclick="window.HubAct.prevTourStep()" class="btn-tactile px-4 py-2 rounded-xl text-xs font-semibold text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800">Précédent</button>
+        <button id="tour-next-btn" onclick="window.HubAct.nextTourStep()" class="btn-tactile px-5 py-2.5 rounded-xl bg-medina-600 hover:bg-medina-500 text-white font-bold text-xs shadow-md">Suivant ➔</button>
       </div>
     </div>
   </div>
 
   <!-- MODAL: CAGNOTTE / TIP JAR -->
   <div id="modal-wallet" class="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
-    <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-700 space-y-4 max-h-[90vh] overflow-y-auto">
+    <div class="bg-white dark:bg-[#0b1329] rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-800 space-y-4 max-h-[90vh] overflow-y-auto">
       <div class="flex items-center justify-between">
         <div>
           <h3 class="text-base font-black text-slate-900 dark:text-white">Ma Cagnotte Tip Jar</h3>
@@ -865,9 +879,9 @@
       </div>
 
       <!-- Balance Card -->
-      <div class="p-5 rounded-2xl bg-slate-900 text-white space-y-1">
+      <div class="p-5 rounded-2xl bg-gradient-to-br from-slate-900 to-[#080c14] text-white space-y-1">
         <span class="text-xs text-slate-400">Solde Disponible Réel :</span>
-        <div class="text-2xl font-black text-jasmine-300">
+        <div class="text-2xl font-black text-jasmine-400">
           <span id="wallet-modal-balance">2.000</span> DT
         </div>
         <p class="text-[10px] text-emerald-400">✓ Comprend votre prime de bienvenue de 2 DT + gains de missions</p>
@@ -885,7 +899,7 @@
       <div class="space-y-3 text-xs pt-2 border-t border-slate-100 dark:border-slate-700">
         <div>
           <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1">Passerelle de Paiement</label>
-          <select id="wallet-gateway-select" class="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white font-semibold">
+          <select id="wallet-gateway-select" class="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-[#080c14] text-slate-900 dark:text-white font-semibold">
             <option value="Flouci">Flouci Wallet TN (Instantané)</option>
             <option value="D17">D17 / La Poste Tunisienne (Carte E-Dinar)</option>
             <option value="Konnect">Konnect (Cartes Bancaires)</option>
@@ -896,14 +910,14 @@
 
         <div>
           <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1">Montant (Dinars)</label>
-          <input type="number" id="wallet-amount-input" value="10" min="1" step="0.5" class="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white font-bold">
+          <input type="number" id="wallet-amount-input" value="10" min="1" step="0.5" class="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-[#080c14] text-slate-900 dark:text-white font-bold">
         </div>
 
         <div class="grid grid-cols-2 gap-2 pt-1">
-          <button type="button" id="btn-wallet-recharge" class="py-2.5 rounded-xl bg-medina-600 hover:bg-medina-500 text-white font-bold text-xs shadow-md transition">
+          <button type="button" id="btn-wallet-recharge" class="btn-tactile py-2.5 rounded-xl bg-medina-600 hover:bg-medina-500 text-white font-bold text-xs shadow-md transition">
             ➕ Recharger
           </button>
-          <button type="button" id="btn-wallet-retrait" class="py-2.5 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 text-white font-bold text-xs shadow-md transition">
+          <button type="button" id="btn-wallet-retrait" class="btn-tactile py-2.5 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 text-white font-bold text-xs shadow-md transition">
             💸 Retirer sur Wallet
           </button>
         </div>
@@ -913,7 +927,7 @@
 
   <!-- MODAL: DIFFUSER UNE OFFRE (ENTREPRISE) -->
   <div id="modal-offer" class="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
-    <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-700 space-y-4">
+    <div class="bg-white dark:bg-[#0b1329] rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-800 space-y-4">
       <div class="flex items-center justify-between">
         <h3 class="text-base font-black text-slate-900 dark:text-white">Diffuser une Offre sur Hammamet</h3>
         <button onclick="window.HubAct.closeModal('modal-offer')" class="text-slate-400 hover:text-white text-lg">✕</button>
@@ -921,11 +935,11 @@
       <form id="form-post-offer" class="space-y-3 text-xs">
         <div>
           <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1">Nom de votre Entreprise / Hôtel</label>
-          <input type="text" id="off-company" required placeholder="Ex: Radisson Blu Hammamet, Startup TravelTech" class="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white">
+          <input type="text" id="off-company" required placeholder="Ex: Radisson Blu Hammamet, Startup TravelTech" class="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-[#080c14] text-slate-900 dark:text-white">
         </div>
         <div>
           <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1">Type de Recherche</label>
-          <select id="off-type" class="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white">
+          <select id="off-type" class="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-[#080c14] text-slate-900 dark:text-white">
             <option value="Stage PFE">🎓 Stage PFE (Projet de Fin d'Études)</option>
             <option value="Stage d'été">☀️ Stage d'été / Perfectionnement</option>
             <option value="Premier Emploi">🚀 Premier Emploi / CDI Junior</option>
@@ -934,15 +948,15 @@
         </div>
         <div>
           <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1">Compétence ou Profil Ciblé</label>
-          <input type="text" id="off-skill" required placeholder="Ex: React, Intégration Flouci, UI Design, Tourisme" class="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white">
+          <input type="text" id="off-skill" required placeholder="Ex: React, Intégration Flouci, UI Design, Tourisme" class="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-[#080c14] text-slate-900 dark:text-white">
         </div>
         <div>
           <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1">Détails de la Mission</label>
-          <textarea id="off-desc" rows="2" placeholder="Description courte des missions et avantages..." class="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white"></textarea>
+          <textarea id="off-desc" rows="2" placeholder="Description courte des missions et avantages..." class="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-[#080c14] text-slate-900 dark:text-white"></textarea>
         </div>
         <div class="flex justify-end gap-2 pt-2">
-          <button type="button" onclick="window.HubAct.closeModal('modal-offer')" class="px-4 py-2 rounded-xl text-slate-500 font-semibold">Annuler</button>
-          <button type="submit" class="px-5 py-2 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 text-white font-bold shadow-md">Diffuser l'Offre</button>
+          <button type="button" onclick="window.HubAct.closeModal('modal-offer')" class="btn-tactile px-4 py-2 rounded-xl text-slate-500 font-semibold">Annuler</button>
+          <button type="submit" class="btn-tactile px-5 py-2.5 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 text-white font-bold shadow-md">Diffuser l'Offre</button>
         </div>
       </form>
     </div>
@@ -950,7 +964,7 @@
 
   <!-- MODAL: CIBLER UN CANDIDAT DIRECTEMENT -->
   <div id="modal-target" class="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
-    <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-700 space-y-4">
+    <div class="bg-white dark:bg-[#0b1329] rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-800 space-y-4">
       <div class="flex items-center justify-between">
         <h3 class="text-base font-black text-slate-900 dark:text-white">Proposer une Mission Directe</h3>
         <button onclick="window.HubAct.closeModal('modal-target')" class="text-slate-400 hover:text-white text-lg">✕</button>
@@ -961,11 +975,11 @@
         <input type="hidden" id="target-candidate-id">
         <div>
           <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1">Votre Organisation / Entreprise</label>
-          <input type="text" id="target-company-name" required placeholder="Ex: Radisson Blu Hammamet" class="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white">
+          <input type="text" id="target-company-name" required placeholder="Ex: Radisson Blu Hammamet" class="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-[#080c14] text-slate-900 dark:text-white">
         </div>
         <div>
           <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1">Type d'Opportunité</label>
-          <select id="target-offer-type" class="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white">
+          <select id="target-offer-type" class="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-[#080c14] text-slate-900 dark:text-white">
             <option value="Stage PFE">Stage PFE (Projet de Fin d'Études)</option>
             <option value="Stage d'été">Stage d'été / Pratique</option>
             <option value="Premier Emploi Junior">Premier Emploi Junior</option>
@@ -974,11 +988,11 @@
         </div>
         <div>
           <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1">Message pour le candidat</label>
-          <textarea id="target-message" required rows="2" placeholder="Votre profil pratique et vos projets à Hammamet nous intéressent..." class="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white"></textarea>
+          <textarea id="target-message" required rows="2" placeholder="Votre profil pratique et vos projets à Hammamet nous intéressent..." class="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-[#080c14] text-slate-900 dark:text-white"></textarea>
         </div>
         <div class="flex justify-end gap-2 pt-2">
-          <button type="button" onclick="window.HubAct.closeModal('modal-target')" class="px-4 py-2 rounded-xl text-slate-500 font-semibold">Annuler</button>
-          <button type="submit" class="px-5 py-2 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 text-white font-bold shadow-md">Transmettre la Proposition</button>
+          <button type="button" onclick="window.HubAct.closeModal('modal-target')" class="btn-tactile px-4 py-2 rounded-xl text-slate-500 font-semibold">Annuler</button>
+          <button type="submit" class="btn-tactile px-5 py-2.5 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 text-white font-bold shadow-md">Transmettre la Proposition</button>
         </div>
       </form>
     </div>

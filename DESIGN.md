@@ -2,30 +2,32 @@
 
 ## Visual World & Identity
 - **Name:** Passe Impact Hammamet (باس أثر الحمامات)
-- **Tone:** Professional, energetic, authentic Mediterranean Tunisian civic-tech. Combines maritime coastal freshness with terracotta warmth and artisan precision.
+- **Tone:** Executive, authoritative, polished Mediterranean civic-tech. Combines maritime cobalt authority with warm architectural terracotta and refined brass accents. Avoids cartoonish or toy-like saturation in favor of a sleek, premium product aesthetic (inspired by modern digital credential cards and tier-1 fintech interfaces).
 
-## Color Palette
+## Executive Color Palette
 | Token | Hex | Role |
 |---|---|---|
-| `medina-500` | `#0284c7` | Primary Sea Azure (buttons, active tabs, links) |
-| `medina-700` | `#0369a1` | Deep Mediterranean Blue (hover states, borders) |
-| `medina-950` | `#082f49` | Deep Marina Night |
-| `terracotta-500`| `#ea580c` | Warm Tunisian Terracotta (actions, highlights, secondary CTAs) |
-| `terracotta-600`| `#c2410c` | Terracotta hover & focus ring |
-| `jasmine-400`  | `#facc15` | Hammamet Jasmine (points, stars, monetary values) |
-| `jasmine-50`   | `#fefce8` | Jasmine subtle container background |
-| `emeraldtech-500`| `#10b981`| Target badge, verified stamps, successful balances |
-| `slate-950`    | `#090e17` | Canvas dark background |
+| `medina-500` | `#1d4ed8` | Executive Mediterranean Cobalt (Primary actions, focus states, verified badges) |
+| `medina-600` | `#1e40af` | Deep Maritime Navy (Primary button hover, active states) |
+| `medina-700` | `#1d3557` | Coastal Dark Navy |
+| `medina-950` | `#0a0f1d` | Deep Obsidian Midnight Canvas |
+| `terracotta-500`| `#c2410c` | Warm Tuscan Sienna / Terracotta (Key conversion CTAs, regional accent) |
+| `terracotta-600`| `#9a3412` | Deep Copper hover |
+| `jasmine-500`  | `#d97706` | Refined Warm Brass (Dinars monetary counter, XP points) |
+| `emeraldtech-500`| `#059669`| Verified Status, Security Hash, Successful Transactions |
+| `slate-950`    | `#080c14` | Deep obsidian canvas (Dark mode) |
 | `slate-900`    | `#0f172a` | Card & surface dark background |
-| `slate-50`     | `#f8fafc` | Light mode canvas |
+| `slate-800`    | `#1e293b` | Elevated panels & crisp divider borders |
+| `slate-50`     | `#f8fafc` | Clean ceramic canvas (Light mode) |
 
 ## Typography
-- **Primary Display & Body:** `Plus Jakarta Sans`, sans-serif (Weights: 400, 500, 600, 700, 800)
+- **Primary Display & Body:** `Lexend`, sans-serif (Weights: 400, 500, 600, 700, 800)
 - **Arabic Inscriptions:** `Noto Sans Arabic`, sans-serif (Weights: 600, 700)
-- **Code & IDs:** `ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace`
+- **Monospace Credentials & Numbers:** `ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace`
 
-## Craft Floor Standards (Anti-Slop Directives)
-- **Icons:** Authored SVG icons with consistent 2px stroke, not raw unicode emojis used as layout scaffolding.
-- **Hierarchy:** High contrast headings, generous spacing (more above than below headings), body measure 60-75ch.
-- **Micro-interactions:** Smooth 3D card perspective flip, interactive stepper with state transitions, custom scrollbar themed to the palette, active ring outlines on focus.
-- **Theming:** Full dark mode (Midnight Slate) and light mode (Ceramic & Sea Breeze) with smooth color transitions and persistent state.
+## Craft Floor Standards (Zero Anti-Pattern Directives)
+- **No Overused / AI Slop Fonts:** Lexend brings human-centric, high-legibility typographic distinction.
+- **Zero Gradient Text:** Solid high-contrast text typography only.
+- **Zero Nested Cards:** Single-level card hierarchy with clean hairline dividers.
+- **Consistent Vector Iconography:** Strict 1.5px/2px vector stroke SVGs across all UI components.
+- **Biometric 3D ID Card:** Tactile, physical micro-details including metallic chip badge, contactless wave, and cryptographic verification stamps.

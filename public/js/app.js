@@ -162,7 +162,7 @@ function renderProjects() {
   }
 
   container.innerHTML = state.projects.map(p => `
-    <article class="bg-[#0b121e] border border-slate-800 rounded-2xl p-5 space-y-3 flex flex-col justify-between hover:border-slate-700 transition">
+    <article class="bg-[#0b1329] border border-slate-800 rounded-2xl p-5 space-y-3 flex flex-col justify-between hover:border-slate-700 transition">
       <div class="space-y-1.5">
         <div class="flex items-start justify-between gap-2">
           <h4 class="text-sm font-bold text-white leading-snug">${escapeHtml(p.title)}</h4>
@@ -173,7 +173,7 @@ function renderProjects() {
         </div>
         <p class="text-xs text-slate-400 leading-relaxed">${escapeHtml(p.desc)}</p>
       </div>
-      <div class="p-2 rounded-xl bg-[#132034] border border-[#1e3450] text-[11px] font-mono text-slate-200 truncate">
+      <div class="p-2 rounded-xl bg-[#0f172a] text-[11px] font-mono text-slate-300 truncate">
         ${escapeHtml(p.tags)}
       </div>
     </article>
@@ -187,7 +187,7 @@ function renderReviews() {
 
   if (state.reviews.length === 0) {
     container.innerHTML = `
-      <div class="p-6 rounded-2xl bg-slate-900/50 border border-slate-800 text-center text-slate-400 text-xs">
+      <div class="p-6 rounded-2xl bg-[#0b1329] border border-slate-800 text-center text-slate-400 text-xs">
         Aucune recommandation pour l'instant. Invitez un mentor ou collègue à vous laisser un avis (+10 XP).
       </div>
     `;
@@ -195,13 +195,13 @@ function renderReviews() {
   }
 
   container.innerHTML = state.reviews.map(r => `
-    <article class="bg-[#0b121e] border border-slate-800 rounded-2xl p-5 space-y-2 hover:border-slate-700 transition">
+    <article class="bg-[#0b1329] border border-slate-800 rounded-2xl p-5 space-y-2 hover:border-slate-700 transition">
       <div class="flex items-center justify-between">
         <div>
           <h5 class="text-sm font-bold text-white">${escapeHtml(r.author)}</h5>
           <p class="text-[11px] text-slate-400 font-medium">${escapeHtml(r.role)}</p>
         </div>
-        <div class="text-amber-400 text-sm tracking-wider flex items-center">
+        <div class="text-jasmine-400 text-sm tracking-wider flex items-center">
           ${'★'.repeat(r.rating || 5)}
         </div>
       </div>
@@ -219,78 +219,78 @@ function renderTargetedSuggestions() {
 
   if (state.activeRecTab === 'stages') {
     container.innerHTML = `
-      <div class="bg-slate-900/90 border border-slate-700 p-5 rounded-2xl space-y-3 flex flex-col justify-between">
+      <div class="bg-[#0b1329] border border-slate-800 p-5 rounded-2xl space-y-3 flex flex-col justify-between">
         <div class="space-y-1">
           <span class="text-[10px] font-black uppercase text-emerald-400">PFE Recommandé Spécifique</span>
           <h4 class="text-sm font-bold text-white">Stage PFE : Plateforme Hôtelière & API Flouci</h4>
           <p class="text-xs text-slate-400">Hôtel Hasdrubal Thalassa Hammamet • 450 DT / mois</p>
           <p class="text-[11px] text-slate-300">Concordance à 98% avec vos projets React et API de paiement certifiés sur votre carte.</p>
         </div>
-        <button onclick="window.HubAct.applyToSuggestion('Stage PFE Hasdrubal')" class="w-full py-2 rounded-xl bg-medina-600 hover:bg-medina-500 text-white font-bold text-xs transition">
+        <button onclick="window.HubAct.applyToSuggestion('Stage PFE Hasdrubal')" class="btn-tactile w-full py-2 rounded-xl bg-medina-600 hover:bg-medina-500 text-white font-bold text-xs transition">
           Candidater avec mon Pass ID Ciblé ➔
         </button>
       </div>
 
-      <div class="bg-slate-900/90 border border-slate-700 p-5 rounded-2xl space-y-3 flex flex-col justify-between">
+      <div class="bg-[#0b1329] border border-slate-800 p-5 rounded-2xl space-y-3 flex flex-col justify-between">
         <div class="space-y-1">
-          <span class="text-[10px] font-black uppercase text-amber-400">Stage d'été / Perfectionnement</span>
+          <span class="text-[10px] font-black uppercase text-jasmine-400">Stage d'été / Perfectionnement</span>
           <h4 class="text-sm font-bold text-white">Assistant UI/UX & Numérisation Médina</h4>
           <p class="text-xs text-slate-400">Startup Yallabiz Travel • Hammamet Centre</p>
           <p class="text-[11px] text-slate-300">Participation à la création du catalogue interactif des artisans céramistes.</p>
         </div>
-        <button onclick="window.HubAct.applyToSuggestion('Stage Été Yallabiz')" class="w-full py-2 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 text-white font-bold text-xs transition">
+        <button onclick="window.HubAct.applyToSuggestion('Stage Été Yallabiz')" class="btn-tactile w-full py-2 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 text-white font-bold text-xs transition">
           Candidater avec mon Pass ID Ciblé ➔
         </button>
       </div>
     `;
   } else if (state.activeRecTab === 'jobs') {
     container.innerHTML = `
-      <div class="bg-slate-900/90 border border-slate-700 p-5 rounded-2xl space-y-3 flex flex-col justify-between">
+      <div class="bg-[#0b1329] border border-slate-800 p-5 rounded-2xl space-y-3 flex flex-col justify-between">
         <div class="space-y-1">
-          <span class="text-[10px] font-black uppercase text-jasmine-300">Premier Emploi / CDI Junior</span>
+          <span class="text-[10px] font-black uppercase text-jasmine-400">Premier Emploi / CDI Junior</span>
           <h4 class="text-sm font-bold text-white">Développeur Frontend Web Junior (React/Node)</h4>
           <p class="text-xs text-slate-400">Agence Médina Tech • Hammamet / Télétravail</p>
           <p class="text-[11px] text-slate-300">Rémunération : 1200 - 1500 DT/mois. Vos points XP vous dispensent du test technique initial !</p>
         </div>
-        <button onclick="window.HubAct.applyToSuggestion('Emploi Médina Tech')" class="w-full py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition">
+        <button onclick="window.HubAct.applyToSuggestion('Emploi Médina Tech')" class="btn-tactile w-full py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition">
           Postuler en 1 Clic ➔
         </button>
       </div>
 
-      <div class="bg-slate-900/90 border border-slate-700 p-5 rounded-2xl space-y-3 flex flex-col justify-between">
+      <div class="bg-[#0b1329] border border-slate-800 p-5 rounded-2xl space-y-3 flex flex-col justify-between">
         <div class="space-y-1">
           <span class="text-[10px] font-black uppercase text-medina-400">Mission Freelance Rémunérée</span>
           <h4 class="text-sm font-bold text-white">Widget Météo & Cartes Médina Hammamet</h4>
           <p class="text-xs text-slate-400">Office du Tourisme Nabeul-Hammamet • Durée : 2 semaines</p>
           <p class="text-[11px] text-slate-300">Budget garanti en séquestre : 600 DT versés directement dans votre Tip Jar.</p>
         </div>
-        <button onclick="window.HubAct.applyToSuggestion('Mission Freelance Office Tourisme')" class="w-full py-2 rounded-xl bg-medina-600 hover:bg-medina-500 text-white font-bold text-xs transition">
+        <button onclick="window.HubAct.applyToSuggestion('Mission Freelance Office Tourisme')" class="btn-tactile w-full py-2 rounded-xl bg-medina-600 hover:bg-medina-500 text-white font-bold text-xs transition">
           Accepter la Mission Freelance ➔
         </button>
       </div>
     `;
   } else {
     container.innerHTML = `
-      <div class="bg-slate-900/90 border border-slate-700 p-5 rounded-2xl space-y-3 flex flex-col justify-between">
+      <div class="bg-[#0b1329] border border-slate-800 p-5 rounded-2xl space-y-3 flex flex-col justify-between">
         <div class="space-y-1">
-          <span class="text-[10px] font-black uppercase text-amber-400">+30 XP & Certification</span>
+          <span class="text-[10px] font-black uppercase text-jasmine-400">+30 XP & Certification</span>
           <h4 class="text-sm font-bold text-white">Next.js 15 & E-commerce Touristique</h4>
           <p class="text-xs text-slate-400">HUBACT Lab Hammamet • 10 heures</p>
           <p class="text-[11px] text-slate-300">Renforcez votre Avatar pour débloquer les offres de stages supérieures à 50 XP.</p>
         </div>
-        <button onclick="window.HubAct.participateInEventById('ev-4')" class="w-full py-2 rounded-xl bg-medina-600 hover:bg-medina-500 text-white font-bold text-xs transition">
+        <button onclick="window.HubAct.participateInEventById('ev-4')" class="btn-tactile w-full py-2 rounded-xl bg-medina-600 hover:bg-medina-500 text-white font-bold text-xs transition">
           Démarrer (+30 XP & +4 DT) ➔
         </button>
       </div>
 
-      <div class="bg-slate-900/90 border border-slate-700 p-5 rounded-2xl space-y-3 flex flex-col justify-between">
+      <div class="bg-[#0b1329] border border-slate-800 p-5 rounded-2xl space-y-3 flex flex-col justify-between">
         <div class="space-y-1">
           <span class="text-[10px] font-black uppercase text-emerald-400">+25 XP Pratique</span>
           <h4 class="text-sm font-bold text-white">Sécurité des Webhooks Flouci & Konnect</h4>
           <p class="text-xs text-slate-400">Fintech Tunisia • 6 heures</p>
           <p class="text-[11px] text-slate-300">Idéal pour certifier vos compétences en intégration bancaire tunisienne.</p>
         </div>
-        <button onclick="window.HubAct.participateInEventById('ev-2')" class="w-full py-2 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 text-white font-bold text-xs transition">
+        <button onclick="window.HubAct.participateInEventById('ev-2')" class="btn-tactile w-full py-2 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 text-white font-bold text-xs transition">
           Démarrer (+25 XP & +5 DT) ➔
         </button>
       </div>
@@ -304,17 +304,17 @@ function renderEvents() {
   if (!grid) return;
 
   grid.innerHTML = state.events.map(ev => `
-    <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col justify-between hover:border-medina-400 transition">
+    <div class="bg-white dark:bg-[#0b1329] rounded-3xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between hover:border-medina-500/50 transition">
       <div class="space-y-3">
         <div class="flex items-center justify-between">
-          <span class="text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full bg-medina-100 text-medina-700 dark:bg-medina-950 dark:text-medina-300">${escapeHtml(ev.category)}</span>
-          <span class="text-xs font-black text-amber-500 flex items-center gap-1">
+          <span class="text-[10px] font-bold uppercase px-2.5 py-0.5 rounded-full bg-medina-100 text-medina-700 dark:bg-medina-950 dark:text-medina-300">${escapeHtml(ev.category)}</span>
+          <span class="text-xs font-black text-jasmine-400 flex items-center gap-1">
             <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
             +${ev.xpReward} XP
           </span>
         </div>
         <h4 class="text-base font-black text-slate-900 dark:text-white">${escapeHtml(ev.title)}</h4>
-        <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">${escapeHtml(ev.desc)}</p>
+        <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">${escapeHtml(ev.desc)}</p>
         <div class="text-[11px] text-slate-600 dark:text-slate-300 space-y-1.5 pt-1">
           <div class="flex items-start gap-1.5">
             <span class="text-medina-500 font-bold">📍</span>
@@ -326,8 +326,8 @@ function renderEvents() {
           </div>
         </div>
       </div>
-      <div class="pt-4 border-t border-slate-100 dark:border-slate-700 mt-4">
-        <button onclick="window.HubAct.participateInEventById('${ev.id}')" class="w-full py-2.5 rounded-xl bg-medina-600 hover:bg-medina-500 text-white font-bold text-xs shadow-md transition flex items-center justify-center gap-2">
+      <div class="pt-4 border-t border-slate-100 dark:border-slate-800 mt-4">
+        <button onclick="window.HubAct.participateInEventById('${ev.id}')" class="btn-tactile w-full py-2.5 rounded-xl bg-medina-600 hover:bg-medina-500 text-white font-bold text-xs shadow-md transition flex items-center justify-center gap-2">
           <span>Valider la Mission (+${ev.xpReward} XP & +${ev.dinarsReward.toFixed(3)} DT)</span>
         </button>
       </div>
@@ -350,23 +350,23 @@ function renderRecruiterCandidates() {
   }
 
   grid.innerHTML = state.candidates.map(c => `
-    <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-3 flex flex-col justify-between hover:border-medina-400 transition">
+    <div class="bg-white dark:bg-[#0b1329] p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-3 flex flex-col justify-between hover:border-medina-500/50 transition">
       <div class="space-y-1.5">
         <div class="flex items-center justify-between">
           <span class="text-xs font-black text-slate-900 dark:text-white">${escapeHtml(c.name)}</span>
-          <span class="text-xs font-black text-amber-500">⭐ ${c.xp} XP</span>
+          <span class="text-xs font-black text-jasmine-400">⭐ ${c.xp} XP</span>
         </div>
         <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-medina-100 dark:bg-medina-950 text-medina-700 dark:text-medina-300 inline-block">
           ${c.role === 'student' ? '🎓 Étudiant PFE' : c.role === 'worker' ? '💼 Travailleur Junior' : '🌍 Freelancer Qualifié'}
         </span>
         <p class="text-xs text-medina-600 dark:text-medina-400 font-bold">${escapeHtml(c.avatar)}</p>
         <p class="text-[11px] text-slate-500">${escapeHtml(c.school)}</p>
-        <div class="text-[10px] text-slate-600 dark:text-slate-300 font-mono bg-slate-50 dark:bg-slate-900 p-2 rounded-lg">
+        <div class="text-[10px] text-slate-600 dark:text-slate-300 font-mono bg-slate-50 dark:bg-slate-900/70 p-2 rounded-lg">
           Compétences : ${escapeHtml(c.oldResume || 'React, API, Fullstack')}
         </div>
       </div>
-      <div class="pt-2 border-t border-slate-100 dark:border-slate-700">
-        <button onclick="window.HubAct.openTargetModal('${c.id}', '${escapeHtml(c.name)}')" class="w-full py-2 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 text-white font-bold text-xs transition">
+      <div class="pt-2 border-t border-slate-100 dark:border-slate-800">
+        <button onclick="window.HubAct.openTargetModal('${c.id}', '${escapeHtml(c.name)}')" class="btn-tactile w-full py-2 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 text-white font-bold text-xs transition">
           🎯 Proposer un Stage / Mission ➔
         </button>
       </div>

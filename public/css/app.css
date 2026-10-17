@@ -1,26 +1,29 @@
-/* Passe Impact Hammamet - Custom Craft Stylesheet */
+/* Passe Impact Hammamet - Executive Craft Stylesheet */
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&family=Noto+Sans+Arabic:wght@400;600;700;800&display=swap');
 
 :root {
-  --font-main: 'Lexend', system-ui, -apple-system, sans-serif;
+  --font-main: 'Lexend', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   --font-arabic: 'Noto Sans Arabic', system-ui, sans-serif;
-  --color-medina: #0284c7;
-  --color-terracotta: #ea580c;
-  --color-jasmine: #facc15;
-  --color-emerald: #10b981;
+  --color-medina: #1d4ed8;     /* Executive Cobalt */
+  --color-terracotta: #c2410c; /* Tuscan Sienna */
+  --color-jasmine: #d97706;    /* Warm Brass */
+  --color-emerald: #059669;    /* Forest Emerald */
+  --color-surface-dark: #080c14;
 }
 
 body {
   font-family: var(--font-main);
-  font-size: 1rem;
-  line-height: 1.5;
+  font-size: 0.95rem;
+  line-height: 1.55;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-h1 { font-size: 2.5rem; font-weight: 800; line-height: 1.15; }
-h2 { font-size: 1.85rem; font-weight: 800; line-height: 1.2; }
-h3 { font-size: 1.35rem; font-weight: 700; line-height: 1.3; }
+/* Typographic Scale with strong 1.25x+ steps */
+h1 { font-size: 2.5rem; font-weight: 800; line-height: 1.15; letter-spacing: -0.025em; }
+h2 { font-size: 1.85rem; font-weight: 800; line-height: 1.2; letter-spacing: -0.02em; }
+h3 { font-size: 1.35rem; font-weight: 700; line-height: 1.3; letter-spacing: -0.015em; }
 h4 { font-size: 1.125rem; font-weight: 600; line-height: 1.35; }
 
 .font-arabic {
@@ -45,21 +48,66 @@ h4 { font-size: 1.125rem; font-weight: 600; line-height: 1.35; }
   transform: rotateY(180deg);
 }
 
-/* Glassmorphism Navigation */
+/* Luxury Smart Card Metallic & Hologram Finish */
+.card-pass-recto {
+  background: linear-gradient(135deg, #0b1329 0%, #0f1c3f 50%, #070e1f 100%);
+  color: #ffffff;
+  box-shadow: 0 25px 50px -12px rgba(10, 15, 29, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-pass-recto::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 85% 15%, rgba(29, 78, 216, 0.25) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.card-pass-verso {
+  background: linear-gradient(135deg, #090e1a 0%, #0d1527 50%, #060a12 100%);
+  color: #ffffff;
+  box-shadow: 0 25px 50px -12px rgba(10, 15, 29, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+/* Realistic EMV Smartcard Chip Badge */
+.chip-emv {
+  width: 38px;
+  height: 28px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #fbbf24 0%, #d97706 50%, #b45309 100%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  position: relative;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.4), 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.chip-emv::after {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+}
+
+/* Executive Glassmorphism Navigation */
 .glass-nav {
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .dark .glass-nav {
-  background: rgba(9, 14, 23, 0.92);
+  background: rgba(8, 12, 20, 0.94);
 }
 
-/* Custom Scrollbar - Themed to Mediterranean Palette */
+/* Custom Scrollbar - Themed to Executive Navy */
 ::-webkit-scrollbar {
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -72,7 +120,7 @@ h4 { font-size: 1.125rem; font-weight: 600; line-height: 1.35; }
 }
 
 .dark ::-webkit-scrollbar-thumb {
-  background: #334155;
+  background: #1e293b;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -80,47 +128,38 @@ h4 { font-size: 1.125rem; font-weight: 600; line-height: 1.35; }
 }
 
 .dark ::-webkit-scrollbar-thumb:hover {
-  background: #475569;
+  background: #334155;
 }
 
-/* Card Subtle Radial Highlight */
-.card-glow {
-  position: relative;
-  overflow: hidden;
-}
-
-.card-glow::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(2, 132, 199, 0.08) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-.dark .card-glow::before {
-  background: radial-gradient(circle, rgba(2, 132, 199, 0.12) 0%, transparent 60%);
-}
-
-/* Smooth Focus Ring & Selection */
-::selection {
-  background: rgba(234, 88, 12, 0.25);
-  color: inherit;
-}
-
+/* Focus and Interaction States */
 *:focus-visible {
   outline: 2px solid var(--color-medina);
   outline-offset: 2px;
 }
 
-/* Pulsing Badge Indicator */
-@keyframes subtle-pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.85; transform: scale(1.02); }
+::selection {
+  background: rgba(29, 78, 216, 0.25);
+  color: inherit;
 }
 
-.animate-subtle-pulse {
-  animation: subtle-pulse 3s infinite ease-in-out;
+/* Button Subtle Tactile Feedback */
+.btn-tactile {
+  transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-tactile:hover {
+  transform: translateY(-1px);
+}
+
+.btn-tactile:active {
+  transform: translateY(0);
+}
+
+/* Form Inputs Precision */
+input, select, textarea {
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.15);
 }
