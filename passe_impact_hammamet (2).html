@@ -1,0 +1,1652 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Passe Impact Hammamet | باس أثر الحمامات</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            medina: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              500: '#0284c7', // Hammamet Sea Blue
+              600: '#0369a1',
+              700: '#075985',
+              900: '#0c4a6e',
+            },
+            terracotta: {
+              50: '#fff7ed',
+              100: '#ffedd5',
+              400: '#fb923c',
+              500: '#f97316', // Warm Tunisian Terracotta
+              600: '#ea580c',
+              700: '#c2410c'
+            },
+            jasmine: {
+              50: '#fefce8',
+              100: '#fef9c3',
+              300: '#fde047',
+              400: '#facc15',
+              500: '#eab308',
+            },
+            emeraldtech: {
+              50: '#ecfdf5',
+              500: '#10b981',
+              600: '#059669',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Confetti script for gamified celebrations -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+  
+  <!-- Google Fonts: Plus Jakarta Sans & Noto Sans Arabic -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Noto+Sans+Arabic:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .font-arabic { font-family: 'Noto Sans Arabic', sans-serif; }
+    
+    /* 3D Flip Card Mechanism */
+    .perspective-1000 { perspective: 1000px; }
+    .transform-style-3d { transform-style: preserve-3d; }
+    .backface-hidden { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+    .rotate-y-180 { transform: rotateY(180deg); }
+
+    /* Glassmorphism styling */
+    .glass-nav {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .dark .glass-nav {
+      background: rgba(15, 23, 42, 0.94);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 9999px; }
+    .dark ::-webkit-scrollbar-thumb { background: #334155; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col antialiased selection:bg-terracotta-500 selection:text-white transition-colors duration-200">
+
+  <!-- ==================================================== -->
+  <!-- 1. SCREEN SPLASH                                     -->
+  <!-- ==================================================== -->
+  <div id="splash-screen" class="fixed inset-0 z-50 bg-gradient-to-br from-slate-950 via-medina-950 to-slate-900 flex flex-col items-center justify-center p-6 text-white transition-opacity duration-700">
+    <div class="max-w-md w-full text-center space-y-6">
+      
+      <!-- Emblem Logo -->
+      <div class="relative mx-auto w-24 h-24 rounded-3xl bg-gradient-to-tr from-medina-500 via-terracotta-500 to-jasmine-400 p-1 shadow-2xl shadow-terracotta-500/30 animate-pulse">
+        <div class="w-full h-full bg-slate-950 rounded-[22px] flex flex-col items-center justify-center">
+          <span class="text-3xl">🌊</span>
+          <span class="text-[10px] font-black tracking-widest text-jasmine-300">PASSE</span>
+        </div>
+      </div>
+
+      <!-- Titles & Arabic Subtitle -->
+      <div class="space-y-1">
+        <h1 class="text-3xl font-black tracking-tight">Passe Impact Hammamet</h1>
+        <p class="text-lg font-arabic text-jasmine-300 font-bold">باس أثر الحمامات</p>
+        <p class="text-xs text-slate-300">Tremplin direct pour la jeunesse, les étudiants et les entreprises à Hammamet</p>
+      </div>
+
+      <!-- Loading Bar -->
+      <div class="w-full bg-slate-800/80 rounded-full h-2 overflow-hidden border border-white/10">
+        <div id="splash-progress" class="bg-gradient-to-r from-medina-400 via-jasmine-400 to-terracotta-500 h-full w-0 transition-all duration-700"></div>
+      </div>
+
+      <!-- Enter CTA -->
+      <div class="pt-2">
+        <button id="splash-enter-btn" onclick="dismissSplash()" class="w-full py-3.5 px-6 rounded-2xl bg-gradient-to-r from-terracotta-500 to-medina-600 hover:from-terracotta-400 hover:to-medina-500 text-white font-bold text-sm shadow-xl shadow-terracotta-500/30 transition transform hover:-translate-y-0.5 active:translate-y-0">
+          Entrer sur la plateforme ➔
+        </button>
+        <p class="text-[11px] text-slate-400 mt-2">🇹🇳 Résoudre le système fragmenté • Les opportunités vous ciblent</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================================================== -->
+  <!-- 2. HEADER & WALLET BAR                               -->
+  <!-- ==================================================== -->
+  <header class="sticky top-0 z-40 glass-nav border-b border-slate-200 dark:border-slate-800 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-2">
+      
+      <!-- Brand Logo -->
+      <div class="flex items-center gap-3">
+        <button onclick="navigateTo('page-intro')" class="flex items-center gap-2.5 text-left group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-medina-600 to-terracotta-500 flex items-center justify-center text-white font-black text-lg shadow-md group-hover:scale-105 transition-transform">
+            PI
+          </div>
+          <div>
+            <div class="flex items-center gap-1.5">
+              <span class="text-base sm:text-lg font-black tracking-tight text-slate-900 dark:text-white">Passe Impact</span>
+              <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-terracotta-100 text-terracotta-700 dark:bg-terracotta-950 dark:text-terracotta-300">Hammamet</span>
+            </div>
+            <span class="text-[10px] text-slate-500 dark:text-slate-400 font-medium block -mt-1 font-arabic">باس أثر الحمامات</span>
+          </div>
+        </button>
+      </div>
+
+      <!-- Desktop Nav Navigation -->
+      <nav class="hidden lg:flex items-center gap-1">
+        <button onclick="navigateTo('page-intro')" class="nav-btn px-3 py-1.5 rounded-lg text-xs font-bold text-medina-600 dark:text-medina-400 bg-medina-50 dark:bg-medina-950/60 border border-medina-200 dark:border-medina-800" data-page="page-intro">
+          Présentation
+        </button>
+        <button onclick="startGuidedTour()" class="nav-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-medina-600 hover:bg-slate-100 dark:hover:bg-slate-800" data-page="tour">
+          🧭 Visite Guidée
+        </button>
+        <button onclick="navigateTo('page-profile-card')" class="nav-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-medina-600 hover:bg-slate-100 dark:hover:bg-slate-800" data-page="page-profile-card">
+          🪪 Carte ID & Avatar
+        </button>
+        <button onclick="navigateTo('page-events')" class="nav-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-medina-600 hover:bg-slate-100 dark:hover:bg-slate-800" data-page="page-events">
+          🌊 Hackathons Hammamet
+        </button>
+        <button onclick="openWalletModal()" class="nav-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-medina-600 hover:bg-slate-100 dark:hover:bg-slate-800" data-page="page-wallet">
+          💳 Cagnotte & Paiements
+        </button>
+        <button onclick="navigateTo('page-company')" class="nav-btn px-3 py-1.5 rounded-lg text-xs font-bold text-terracotta-600 dark:text-terracotta-400 hover:bg-terracotta-50 dark:hover:bg-terracotta-950/40" data-page="page-company">
+          🏢 Entreprises & Recruteurs
+        </button>
+      </nav>
+
+      <!-- Right Controls: Tip Jar / Points / Visitor Badge / Theme -->
+      <div class="flex items-center gap-1.5 sm:gap-2.5">
+        
+        <!-- Tip Jar Balance Pill -->
+        <button onclick="openWalletModal()" class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 dark:bg-amber-950/60 border border-amber-300 dark:border-amber-700/60 text-amber-900 dark:text-amber-200 text-xs font-bold shadow-sm hover:scale-105 transition" title="Votre Cagnotte Tip Jar en Dinars">
+          <span>🏺</span>
+          <span id="wallet-dinars-top">2.000</span> <span class="text-[10px] text-slate-500 dark:text-slate-400 font-semibold">DT</span>
+        </button>
+
+        <!-- Points XP Pill -->
+        <button onclick="navigateTo('page-profile-card')" class="hidden sm:flex items-center gap-1 px-2.5 py-1 rounded-full bg-medina-50 dark:bg-slate-800 border border-medina-200 dark:border-slate-700 text-medina-700 dark:text-medina-300 text-xs font-bold" title="Points XP validés">
+          <span>⭐</span>
+          <span id="wallet-xp-top">35</span> <span class="text-[10px] text-slate-400 font-normal">XP</span>
+        </button>
+
+        <!-- Role Badge -->
+        <button onclick="openVisitorModal()" class="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 transition" id="user-role-badge">
+          <span id="badge-icon">👤</span>
+          <span id="badge-label">Visiteur</span>
+        </button>
+
+        <!-- Dark Mode Toggle -->
+        <button id="theme-btn" onclick="toggleTheme()" class="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition" aria-label="Basculer le mode sombre">
+          <span id="theme-icon">🌙</span>
+        </button>
+
+        <!-- Mobile Burger -->
+        <button onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Menu Dropdown -->
+    <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-3 space-y-2 text-xs font-semibold">
+      <button onclick="navigateTo('page-intro')" class="w-full text-left py-2 px-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">Présentation Générale</button>
+      <button onclick="startGuidedTour()" class="w-full text-left py-2 px-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">🧭 Lancer la Visite Guidée</button>
+      <button onclick="navigateTo('page-profile-card')" class="w-full text-left py-2 px-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">🪪 Ma Carte ID, Avatar & CV Ancien</button>
+      <button onclick="navigateTo('page-events')" class="w-full text-left py-2 px-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">🌊 Hackathons Hammamet (+XP & Dinars)</button>
+      <button onclick="openWalletModal()" class="w-full text-left py-2 px-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">💳 Ma Cagnotte (Tip Jar) & Flouci/D17</button>
+      <button onclick="navigateTo('page-company')" class="w-full text-left py-2 px-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-terracotta-600">🏢 Espace Entreprises & Recruteurs</button>
+    </div>
+  </header>
+
+  <!-- ==================================================== -->
+  <!-- 3. COOKIE CONSENT BANNER (STRICT DISCLOSURE)         -->
+  <!-- ==================================================== -->
+  <div id="cookie-banner" class="fixed bottom-4 left-4 right-4 sm:left-auto sm:right-4 sm:max-w-md z-40 bg-white dark:bg-slate-800 border-2 border-medina-500 rounded-3xl p-4 sm:p-5 shadow-2xl space-y-3 transition transform duration-300">
+    <div class="flex items-start gap-3">
+      <span class="text-2xl">🍪</span>
+      <div class="space-y-1">
+        <h4 class="text-xs font-black text-slate-900 dark:text-white uppercase tracking-wider">Cookies de Session Essentiels</h4>
+        <p class="text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed">
+          Ce site utilise des cookies <strong>uniquement pour enregistrer votre pass d'entrée, votre email et votre nom</strong>. Aucune donnée n'est vendue ni utilisée à des fins publicitaires.
+        </p>
+      </div>
+    </div>
+    <div class="flex items-center justify-end gap-2 pt-1 border-t border-slate-100 dark:border-slate-700">
+      <button onclick="acceptMinimalCookies()" class="px-4 py-2 rounded-xl bg-medina-600 hover:bg-medina-500 text-white font-bold text-xs shadow-md transition">
+        J'accepte (Valider mon Pass)
+      </button>
+    </div>
+  </div>
+
+  <!-- ==================================================== -->
+  <!-- 4. MAIN APP CONTENT CONTAINER                        -->
+  <!-- ==================================================== -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-8">
+
+    <!-- -------------------------------------------------- -->
+    <!-- VIEW 1: INTRO & VALUE PRESENTATION                 -->
+    <!-- -------------------------------------------------- -->
+    <section id="page-intro" class="page-module space-y-8">
+      
+      <!-- HERO BANNER -->
+      <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-950 via-medina-950 to-slate-900 text-white p-6 sm:p-10 border border-medina-800/40 shadow-xl">
+        <div class="relative z-10 max-w-3xl space-y-4">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-jasmine-300 text-xs font-bold border border-white/15">
+            <span>🇹🇳 Révolution de l'Employabilité & Tourisme à Hammamet</span>
+          </div>
+
+          <h2 class="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
+            Le Passe Numérique où les <br class="hidden sm:inline"/>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-jasmine-300 via-medina-200 to-terracotta-400">
+              entreprises vous ciblent pour vos compétences réelles.
+            </span>
+          </h2>
+
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            Pour combler le fossé entre le système universitaire tunisien théorique et la demande économique, <strong>Passe Impact Hammamet</strong> valorise vos projets concrets et hackathons locaux. Dès que vous créez votre Avatar et votre Carte ID, votre profil devient <em>"Ciblé"</em> et vous recevez immédiatement <strong>2 Dinars (2 DT)</strong> dans votre Tip Jar.
+          </p>
+
+          <!-- Quick Action Buttons -->
+          <div class="flex flex-wrap items-center gap-3 pt-2">
+            <button onclick="startGuidedTour()" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-terracotta-500 to-medina-600 text-white font-bold text-xs shadow-lg flex items-center gap-2 hover:scale-[1.02] transition">
+              <span>🧭 Lancer la Visite Guidée</span>
+            </button>
+            <button onclick="openRegistrationModal('student')" class="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-xs transition">
+              <span>🪪 Créer mon Avatar & Recevoir 2 DT</span>
+            </button>
+            <button onclick="navigateTo('page-events')" class="px-4 py-2.5 rounded-xl bg-medina-500/30 hover:bg-medina-500/50 text-jasmine-200 font-bold text-xs border border-medina-400/30 transition">
+              <span>🌊 Événements Hammamet (+XP & DT)</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-medina-500/20 rounded-full blur-3xl pointer-events-none"></div>
+      </div>
+
+      <!-- VISITOR STATUS / CHECK-IN STRIP -->
+      <div id="visitor-auth-card" class="bg-gradient-to-r from-jasmine-50 to-amber-50 dark:from-slate-800 dark:to-slate-800/80 rounded-3xl p-5 sm:p-6 border border-amber-200 dark:border-slate-700 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-2xl bg-amber-200 dark:bg-amber-900/60 text-amber-800 dark:text-amber-200 flex items-center justify-center text-2xl font-bold shrink-0">
+            👤
+          </div>
+          <div>
+            <h3 class="text-sm font-black text-slate-900 dark:text-white" id="visitor-card-title">Vous naviguez actuellement en mode Visiteur</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Identifiez votre entrée en 10 secondes ou créez votre compte pour débloquer votre cagnotte de 2 DT et être ciblé par les employeurs.</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 w-full sm:w-auto">
+          <button onclick="openVisitorModal()" class="w-full sm:w-auto px-4 py-2 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-xs font-bold hover:opacity-90 transition">
+            Pass Visiteur
+          </button>
+          <button onclick="openRegistrationModal('student')" class="w-full sm:w-auto px-4 py-2 rounded-xl bg-terracotta-500 text-white text-xs font-bold hover:bg-terracotta-600 transition shadow-sm">
+            Inscription (5 DT = +2 DT offerts)
+          </button>
+        </div>
+      </div>
+
+      <!-- DUAL INFO TRACKS (STUDENTS VS COMPANIES) -->
+      <div class="space-y-4">
+        <div class="border-b border-slate-200 dark:border-slate-700 pb-3 flex items-center justify-between">
+          <div>
+            <h3 class="text-lg font-black text-slate-900 dark:text-white">Présentation Détaillée selon votre Profil</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Comprendre le fonctionnement et la création de carte que vous soyez étudiant ou entreprise.</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          
+          <!-- TRACK A: ÉTUDIANTS / CHERCHEURS DE SAVOIR -->
+          <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 shadow-sm space-y-4 hover:border-medina-400 transition">
+            <div class="flex items-center justify-between">
+              <span class="text-2xl">🎓</span>
+              <span class="text-[10px] font-black uppercase px-2 py-0.5 rounded-full bg-medina-100 text-medina-700 dark:bg-medina-950 dark:text-medina-300">Étudiants & Chercheurs de Savoir</span>
+            </div>
+
+            <h3 class="text-base font-black text-slate-900 dark:text-white">Comment ça marche pour vous ?</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              Pour vous positionner sérieusement face aux recruteurs, une modique contribution d'inscription de **5 DT** calibre le marché. En échange immédiat :
+            </p>
+
+            <div class="space-y-2 text-xs text-slate-600 dark:text-slate-300">
+              <div class="p-3 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-700">
+                <strong>1. Cagnotte de Bienvenue (Tip Jar) :</strong> Vous recevez <strong>2 DT</strong> d'indemnité dès validation de votre passe.
+              </div>
+              <div class="p-3 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-700">
+                <strong>2. Avatar & Carte ID :</strong> Votre carte regroupe vos compétences, vos points passés et votre ancien CV sur le verso.
+              </div>
+              <div class="p-3 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-700">
+                <strong>3. Statut "Ciblé" :</strong> Ce sont les entreprises partenaires de Hammamet qui viennent vous proposer des stages PFE et missions.
+              </div>
+            </div>
+
+            <button onclick="openRegistrationModal('student')" class="w-full py-2.5 rounded-xl bg-medina-600 hover:bg-medina-500 text-white font-bold text-xs shadow-md transition">
+              Créer ma Carte Étudiant & Récupérer 2 DT ➔
+            </button>
+          </div>
+
+          <!-- TRACK B: ENTREPRISES / EMPLOYEURS -->
+          <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 shadow-sm space-y-4 hover:border-terracotta-400 transition">
+            <div class="flex items-center justify-between">
+              <span class="text-2xl">🏢</span>
+              <span class="text-[10px] font-black uppercase px-2 py-0.5 rounded-full bg-terracotta-100 text-terracotta-700 dark:bg-terracotta-950 dark:text-terracotta-300">Entreprises & Employeurs</span>
+            </div>
+
+            <h3 class="text-base font-black text-slate-900 dark:text-white">Comment ça marche pour recruter ?</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              Ne perdez plus des heures avec des diplômes sans preuves concrètes. Passe Impact Hammamet vous donne accès aux profils vérifiés par points de pratique :
+            </p>
+
+            <div class="space-y-2 text-xs text-slate-600 dark:text-slate-300">
+              <div class="p-3 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-700">
+                <strong>1. Ciblage direct par Score XP :</strong> Filtrez les étudiants spécialisés en Tech, Tourisme ou IA.
+              </div>
+              <div class="p-3 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-700">
+                <strong>2. Dépôt de Stages PFE & Jobs :</strong> Diffusez en 1 clic vers les candidats ciblés de la région.
+              </div>
+              <div class="p-3 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-700">
+                <strong>3. Sponsoring & Impact Hammamet :</strong> Récompensez les gagnants des hackathons via leur Tip Jar.
+              </div>
+            </div>
+
+            <button onclick="navigateTo('page-company')" class="w-full py-2.5 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 text-white font-bold text-xs shadow-md transition">
+              Espace Recruteurs & Dépôt de Missions ➔
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- -------------------------------------------------- -->
+    <!-- VIEW 2: CARTE ID, AVATAR & CV ANCIEN               -->
+    <!-- -------------------------------------------------- -->
+    <section id="page-profile-card" class="page-module hidden space-y-8">
+      
+      <div class="max-w-4xl mx-auto space-y-6">
+        
+        <div class="text-center space-y-2">
+          <div class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-medina-100 dark:bg-medina-950 text-medina-700 dark:text-medina-300 text-xs font-bold">
+            <span>🪪 Votre Identité Numérique Reconnue</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">
+            Carte ID Passe Impact & Portfolio Avatar
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 max-w-xl mx-auto">
+            Dès l'enregistrement de votre compte, vous êtes <strong>"Ciblé par le Marché"</strong>. Cliquez sur la carte pour la retourner et consulter vos antécédents et anciens projets.
+          </p>
+        </div>
+
+        <!-- 3D FLIPPABLE ID PASS -->
+        <div class="flex justify-center">
+          <div class="w-full max-w-lg perspective-1000">
+            <div id="user-pass-card" onclick="flipPassCard()" class="relative w-full min-h-[310px] transition-transform duration-700 transform-style-3d cursor-pointer rounded-3xl shadow-2xl">
+              
+              <!-- RECTO -->
+              <div class="absolute inset-0 w-full h-full rounded-3xl p-6 sm:p-7 bg-gradient-to-br from-slate-950 via-medina-950 to-slate-900 text-white border border-medina-500/40 backface-hidden flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between border-b border-white/10 pb-3 mb-4">
+                    <div class="flex items-center gap-2">
+                      <div class="w-8 h-8 rounded-lg bg-medina-500 flex items-center justify-center font-black text-white text-xs">PI</div>
+                      <div>
+                        <span class="text-[11px] font-black tracking-widest uppercase">PASSE IMPACT HAMMAMET</span>
+                        <span class="text-[9px] text-slate-400 block -mt-0.5 font-arabic">باس أثر الحمامات</span>
+                      </div>
+                    </div>
+                    <div class="text-right">
+                      <span id="pass-target-badge" class="text-[10px] px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/30 animate-pulse">
+                        🎯 Profil Ciblé par les Entreprises
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="flex items-center gap-4">
+                    <div class="w-20 h-20 rounded-2xl bg-gradient-to-tr from-jasmine-400 to-terracotta-500 p-0.5 shadow-md shrink-0">
+                      <div class="w-full h-full bg-slate-900 rounded-2xl flex items-center justify-center text-3xl font-black" id="pass-avatar-icon">
+                        👨‍💻
+                      </div>
+                    </div>
+
+                    <div class="space-y-1">
+                      <h3 class="text-base sm:text-lg font-black text-white" id="pass-name">Youssef Mansour</h3>
+                      <p class="text-xs text-jasmine-300 font-bold" id="pass-avatar-title">Avatar : Frontend Dev & Tourisme Tech</p>
+                      <p class="text-[11px] text-slate-400" id="pass-school">ISET Nabeul / INSAT • Résidence Hammamet</p>
+                      <span class="text-[9px] font-mono text-slate-500" id="pass-id-number">ID: PI-TN-88421</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="pt-3 border-t border-white/10 flex items-center justify-between text-xs">
+                  <div>
+                    <span class="text-slate-400 text-[10px] block">Points de compétences :</span>
+                    <span class="font-black text-jasmine-300 flex items-center gap-1">⭐ <span id="pass-xp-display">35</span> XP</span>
+                  </div>
+                  <div>
+                    <span class="text-slate-400 text-[10px] block">Tip Jar Compensatoire :</span>
+                    <span class="font-black text-emerald-400 flex items-center gap-1">🏺 <span id="pass-dinars-display">2.000</span> DT</span>
+                  </div>
+                  <div class="text-right">
+                    <span class="text-[10px] text-medina-300 font-bold">Cliquer pour retourner ↻</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- VERSO (ANCIEN CV & HISTORIQUE EXTRAIT) -->
+              <div class="absolute inset-0 w-full h-full rounded-3xl p-6 sm:p-7 bg-gradient-to-br from-slate-900 via-slate-950 to-medina-950 text-white border border-medina-500/40 backface-hidden rotate-y-180 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between border-b border-white/10 pb-2 mb-3">
+                    <span class="text-xs font-black tracking-wider text-slate-300 uppercase">ANCIEN CV & PROJETS EXTRAITS</span>
+                    <span class="text-[10px] text-emerald-400 font-bold">✓ Données Extraites</span>
+                  </div>
+
+                  <div class="space-y-2 text-xs">
+                    <div>
+                      <span class="text-[10px] text-slate-400 block">Dernier Établissement / Diplôme :</span>
+                      <p class="font-semibold text-slate-200" id="pass-resume-school">Licence appliquée en Technologies du Web</p>
+                    </div>
+                    <div>
+                      <span class="text-[10px] text-slate-400 block">Expériences Passées & Compétences Clés :</span>
+                      <p class="text-slate-300 text-[11px] leading-relaxed" id="pass-resume-skills">
+                        Projet académique de réservation pour hôtel à Hammamet, JavaScript, HTML/CSS, membre actif de club universitaire.
+                      </p>
+                    </div>
+                    <div class="p-2 rounded-xl bg-white/5 border border-white/10 text-[10px] text-jasmine-200">
+                      💡 Votre carte est diffusée aux entreprises partenaires. Vous pouvez recevoir des propositions de stage directement dans votre boîte email.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="pt-3 border-t border-white/10 flex items-center justify-between text-xs">
+                  <span class="text-[10px] font-mono text-slate-500">HASH: SHA256-PI-HAMMAMET-2026</span>
+                  <span class="text-xs text-medina-300 font-bold hover:underline">Retourner la carte ↺</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- AVATAR TARGET CUSTOMIZER -->
+        <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm space-y-4">
+          <div class="flex items-center justify-between">
+            <h3 class="text-base font-black text-slate-900 dark:text-white">Changer mon Avatar Cible</h3>
+            <span class="text-xs font-bold text-medina-600 dark:text-medina-400">+5 XP lors du changement</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-4 gap-3">
+            <button onclick="changeAvatarPreset('Frontend Dev & Tourisme Tech', '💻', 'Développeur Web & Interfaces Hôtelières')" class="p-3 rounded-2xl border-2 border-medina-500 bg-medina-50 dark:bg-slate-700/60 text-left space-y-1">
+              <span class="text-xl">💻</span>
+              <span class="text-xs font-bold block text-slate-900 dark:text-white">Frontend Web</span>
+              <span class="text-[10px] text-slate-500">Tourisme Tech Hammamet</span>
+            </button>
+            <button onclick="changeAvatarPreset('Ingénieur IA & Smart Medina', '🤖', 'Concepteur de solutions intelligentes pour la ville')" class="p-3 rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-medina-400 text-left space-y-1">
+              <span class="text-xl">🤖</span>
+              <span class="text-xs font-bold block text-slate-900 dark:text-white">IA & Data</span>
+              <span class="text-[10px] text-slate-500">Smart Medina & Chatbots</span>
+            </button>
+            <button onclick="changeAvatarPreset('Leader Civic Tech & Ta\'sir', '🤝', 'Gestion de projets associatifs et mobilisation citoyenne')" class="p-3 rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-medina-400 text-left space-y-1">
+              <span class="text-xl">🤝</span>
+              <span class="text-xs font-bold block text-slate-900 dark:text-white">Civic & Ta'sir</span>
+              <span class="text-[10px] text-slate-500">Impact Associatif</span>
+            </button>
+            <button onclick="changeAvatarPreset('Tourisme & Hospitality Lead', '🏨', 'Expériences hôtelières et valorisation culturelle')" class="p-3 rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-medina-400 text-left space-y-1">
+              <span class="text-xl">🏨</span>
+              <span class="text-xs font-bold block text-slate-900 dark:text-white">Hospitality</span>
+              <span class="text-[10px] text-slate-500">Expériences Médina</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- SCREENSHOT SECTION 1: PROJETS RÉALISÉS & TRAVAUX PRATIQUES  -->
+        <!-- ============================================================ -->
+        <div class="bg-[#111927] border border-slate-800 rounded-3xl p-6 sm:p-8 space-y-6 shadow-xl">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <h3 class="text-lg sm:text-xl font-bold text-white tracking-tight">Projets Réalisés & Travaux Pratiques</h3>
+              <p class="text-xs text-slate-400 mt-0.5">Les entreprises examinent ces travaux concrets plutôt que de simples notes universitaires.</p>
+            </div>
+            <button onclick="openModal('modal-add-project')" class="self-start sm:self-auto px-4 py-2 rounded-xl bg-[#1e293b] hover:bg-[#283548] text-medina-400 text-xs font-bold border border-slate-700 flex items-center gap-1.5 transition">
+              <span class="text-sm font-black">+</span> Ajouter un projet
+            </button>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="projects-container">
+            <!-- Rendered via JS matching screenshot layout -->
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- SCREENSHOT SECTION 2: AVIS, ÉVALUATIONS & COMMENTAIRES       -->
+        <!-- ============================================================ -->
+        <div class="bg-[#111927] border border-slate-800 rounded-3xl p-6 sm:p-8 space-y-6 shadow-xl">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <h3 class="text-lg sm:text-xl font-bold text-white tracking-tight">Avis, Évaluations & Commentaires des Pairs</h3>
+              <p class="text-xs text-slate-400 mt-0.5">Retours certifiés de mentors, d'associations partenaires (JCI, Enactus) et de collègues d'équipes.</p>
+            </div>
+            <button onclick="openModal('modal-add-review')" class="self-start sm:self-auto px-4 py-2 rounded-xl bg-gradient-to-r from-terracotta-500 to-terracotta-600 hover:from-terracotta-400 hover:to-terracotta-500 text-white text-xs font-bold shadow-lg shadow-terracotta-500/20 flex items-center gap-1.5 transition">
+              <span>✍️</span> Laisser un avis / recommandation
+            </button>
+          </div>
+
+          <div class="space-y-3.5" id="reviews-container">
+            <!-- Rendered via JS matching screenshot layout -->
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- AUTOMATED RECOMMENDATION ENGINE: SUGGESTIONS POUR PROFIL CIBLÉ-->
+        <!-- ============================================================ -->
+        <div id="cibled-recommendations-section" class="bg-gradient-to-br from-slate-900 via-medina-950 to-slate-900 border-2 border-emerald-500/40 rounded-3xl p-6 sm:p-8 space-y-6 shadow-2xl">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/10 pb-4">
+            <div>
+              <div class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[11px] font-bold border border-emerald-500/30 mb-1">
+                <span>🎯 Statut Ciblé Actif</span>
+              </div>
+              <h3 class="text-lg sm:text-xl font-black text-white">Suggestions Personnalisées pour Vous</h3>
+              <p class="text-xs text-slate-300">Opportunités générées automatiquement selon votre Avatar : <strong class="text-jasmine-300" id="rec-avatar-name">Frontend Dev & Tourisme Tech</strong></p>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-[11px] text-emerald-400 font-semibold bg-emerald-950/60 px-3 py-1 rounded-xl border border-emerald-800">✓ Profil visible par 28 entreprises</span>
+            </div>
+          </div>
+
+          <!-- TABS FOR SUGGESTIONS -->
+          <div class="flex flex-wrap gap-2 border-b border-white/10 pb-3">
+            <button onclick="switchRecTab('stages')" id="rec-tab-stages" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-medina-600 text-white shadow transition">
+              🎓 Stages (PFE & Été)
+            </button>
+            <button onclick="switchRecTab('jobs')" id="rec-tab-jobs" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700 transition">
+              🚀 Offres d'Emploi (Jobs)
+            </button>
+            <button onclick="switchRecTab('formations')" id="rec-tab-formations" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700 transition">
+              📖 Formations Clés (+XP)
+            </button>
+          </div>
+
+          <!-- TAB CONTENT HOLDER -->
+          <div id="rec-tab-content" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Injected by JS -->
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- -------------------------------------------------- -->
+    <!-- VIEW 3: HACKATHONS & COMPENSATIONS HAMMAMET        -->
+    <!-- -------------------------------------------------- -->
+    <section id="page-events" class="page-module hidden space-y-8">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <div class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-terracotta-100 dark:bg-terracotta-950 text-terracotta-800 dark:text-terracotta-300 text-xs font-bold mb-1">
+            <span>🌊 Stimuler le Tourisme & Toucher des Dinars</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">
+            Hackathons & Défis Pratiques à Hammamet
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 max-w-xl">
+            Tous les événements se tiennent dans les lieux emblématiques de Hammamet. En participant, vous accumulez des points d'XP et recevez une compensation financière directe dans votre Tip Jar.
+          </p>
+        </div>
+      </div>
+
+      <!-- EVENTS CARDS GRID -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="events-grid">
+        
+        <!-- EVENT 1 -->
+        <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col justify-between hover:border-medina-400 transition">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] font-black uppercase px-2 py-0.5 rounded bg-medina-100 text-medina-700 dark:bg-medina-950 dark:text-medina-300">Hackathon Phare</span>
+              <span class="text-xs font-black text-amber-500">+45 XP</span>
+            </div>
+            <h4 class="text-base font-black text-slate-900 dark:text-white">Hackathon 'Smart Médina & Artisans'</h4>
+            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              48h immersives pour concevoir des applications de valorisation des poteries, du jasmin et des galeries de la vieille Médina.
+            </p>
+            <div class="text-[11px] text-slate-600 dark:text-slate-300 space-y-1">
+              <div>📍 <strong>Lieu :</strong> Centre Culturel Dar Sebastian Hammamet</div>
+              <div>💰 <strong>Compensation :</strong> 10.000 DT dans votre Tip Jar + Primes de victoire</div>
+            </div>
+          </div>
+          <div class="pt-4 border-t border-slate-100 dark:border-slate-700 mt-4">
+            <button onclick="participateInEvent('Hackathon Smart Médina', 45, 10.000)" class="w-full py-2.5 rounded-xl bg-medina-600 hover:bg-medina-500 text-white font-bold text-xs shadow-md transition">
+              Valider la Mission (+45 XP & +10 DT)
+            </button>
+          </div>
+        </div>
+
+        <!-- EVENT 2 -->
+        <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col justify-between hover:border-medina-400 transition">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] font-black uppercase px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">Atelier Fintech</span>
+              <span class="text-xs font-black text-amber-500">+25 XP</span>
+            </div>
+            <h4 class="text-base font-black text-slate-900 dark:text-white">Bootcamp API Flouci & Konnect</h4>
+            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              Intégration technique des moyens de paiement tunisiens (Flouci, D17) pour booster les réservations hôtelières en ligne.
+            </p>
+            <div class="text-[11px] text-slate-600 dark:text-slate-300 space-y-1">
+              <div>📍 <strong>Lieu :</strong> Marina Yasmine Hammamet</div>
+              <div>💰 <strong>Compensation :</strong> 5.000 DT dans votre Tip Jar</div>
+            </div>
+          </div>
+          <div class="pt-4 border-t border-slate-100 dark:border-slate-700 mt-4">
+            <button onclick="participateInEvent('Bootcamp API Flouci', 25, 5.000)" class="w-full py-2.5 rounded-xl bg-emeraldtech-600 hover:bg-emeraldtech-500 text-white font-bold text-xs shadow-md transition">
+              Valider la Mission (+25 XP & +5 DT)
+            </button>
+          </div>
+        </div>
+
+        <!-- EVENT 3 -->
+        <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col justify-between hover:border-medina-400 transition">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] font-black uppercase px-2 py-0.5 rounded bg-terracotta-100 text-terracotta-800 dark:bg-terracotta-950 dark:text-terracotta-300">Défi Éco-Civique</span>
+              <span class="text-xs font-black text-amber-500">+35 XP</span>
+            </div>
+            <h4 class="text-base font-black text-slate-900 dark:text-white">Sprint Ta'sir : Tourisme Zéro Déchet</h4>
+            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              Prototypage d'une carte citoyenne pour la gestion intelligente des plages et la propreté urbaine avec la JCI Hammamet.
+            </p>
+            <div class="text-[11px] text-slate-600 dark:text-slate-300 space-y-1">
+              <div>📍 <strong>Lieu :</strong> Fort Historique de Hammamet</div>
+              <div>💰 <strong>Compensation :</strong> 8.000 DT dans votre Tip Jar</div>
+            </div>
+          </div>
+          <div class="pt-4 border-t border-slate-100 dark:border-slate-700 mt-4">
+            <button onclick="participateInEvent('Sprint Ta\'sir', 35, 8.000)" class="w-full py-2.5 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 text-white font-bold text-xs shadow-md transition">
+              Valider la Mission (+35 XP & +8 DT)
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- -------------------------------------------------- -->
+    <!-- VIEW 4: ESPACE ENTREPRISES & OFFRES                -->
+    <!-- -------------------------------------------------- -->
+    <section id="page-company" class="page-module hidden space-y-8">
+      
+      <div class="bg-gradient-to-br from-terracotta-50 to-medina-50 dark:from-slate-800 dark:to-slate-800/80 rounded-3xl p-6 sm:p-8 border border-terracotta-200 dark:border-slate-700 space-y-4">
+        <div class="max-w-2xl space-y-2">
+          <span class="text-xs font-black uppercase tracking-wider text-terracotta-600 dark:text-terracotta-400">Portail Recrutement & Partenariats</span>
+          <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">
+            "Les Employeurs Ciblent les Compétences Pratiques"
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+            Recherchez parmi les candidats certifiés par Passe Impact Hammamet. Filtrez les profils ayant validé des hackathons réels et proposez-leur directement des stages PFE, CDD/CDI ou contrats d'été.
+          </p>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-3 pt-2">
+          <button onclick="openPostOfferModal()" class="px-5 py-2.5 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 text-white font-bold text-xs shadow-md transition">
+            ➕ Publier une Offre de Stage / Emploi
+          </button>
+          <button onclick="openRegistrationModal('company')" class="px-4 py-2.5 rounded-xl bg-white dark:bg-slate-700 border border-slate-300 dark:border-slate-600 text-slate-800 dark:text-white font-bold text-xs">
+            🏢 Créer un Compte Entreprise
+          </button>
+        </div>
+      </div>
+
+      <!-- ACTIVE CANDIDATES CIBLÉS -->
+      <div class="space-y-4">
+        <div class="flex items-center justify-between">
+          <div>
+            <h3 class="text-base font-black text-slate-900 dark:text-white">Talents Recommandés pour les Recruteurs</h3>
+            <p class="text-xs text-slate-500">Étudiants, travailleurs juniors & freelancers disponibles immédiatement à Hammamet & Tunisie</p>
+          </div>
+          <span class="text-xs text-slate-400 font-medium">Triés par compétences pratiques</span>
+        </div>
+
+        <!-- TALENT TYPE FILTER FOR COMPANIES -->
+        <div class="flex items-center gap-2">
+          <button onclick="filterTalentType('all')" class="talent-filter-btn px-3 py-1 rounded-lg text-xs font-bold bg-medina-600 text-white" data-filter="all">Tous les profils</button>
+          <button onclick="filterTalentType('student')" class="talent-filter-btn px-3 py-1 rounded-lg text-xs font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700" data-filter="student">🎓 Étudiants (PFE/Stage)</button>
+          <button onclick="filterTalentType('worker')" class="talent-filter-btn px-3 py-1 rounded-lg text-xs font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700" data-filter="worker">💼 Travailleurs Juniors</button>
+          <button onclick="filterTalentType('freelancer')" class="talent-filter-btn px-3 py-1 rounded-lg text-xs font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700" data-filter="freelancer">🌍 Freelancers Qualifiés</button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="candidates-pool-grid">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ==================================================== -->
+  <!-- 5. MODALS ENGINE                                     -->
+  <!-- ==================================================== -->
+
+  <!-- MODAL: AJOUTER UN PROJET (SCREENSHOT SPEC) -->
+  <div id="modal-add-project" class="fixed inset-0 z-50 bg-slate-950/75 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-[#111927] border border-slate-700 rounded-3xl max-w-md w-full p-6 text-white space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <h3 class="text-base font-bold">Ajouter un Travail Pratique</h3>
+        <button onclick="closeModal('modal-add-project')" class="text-slate-400 hover:text-white text-lg">✕</button>
+      </div>
+      <form onsubmit="handleAddProjectSubmit(event)" class="space-y-3 text-xs">
+        <div>
+          <label class="block font-bold text-slate-300 mb-1">Titre du Projet</label>
+          <input type="text" id="inp-proj-title" required placeholder="Ex: Portail Touristique 'Hammamet Authentique'" class="w-full p-2.5 rounded-xl border border-slate-700 bg-[#1e293b] text-white">
+        </div>
+        <div>
+          <label class="block font-bold text-slate-300 mb-1">Lien de Démo / GitHub</label>
+          <input type="url" id="inp-proj-url" required placeholder="https://..." class="w-full p-2.5 rounded-xl border border-slate-700 bg-[#1e293b] text-white">
+        </div>
+        <div>
+          <label class="block font-bold text-slate-300 mb-1">Technologies Utilisées (Séparées par des virgules)</label>
+          <input type="text" id="inp-proj-tags" required placeholder="Ex: React, Tailwind, API Météo & Cartes" class="w-full p-2.5 rounded-xl border border-slate-700 bg-[#1e293b] text-white">
+        </div>
+        <div>
+          <label class="block font-bold text-slate-300 mb-1">Description Courte de la Réalisation</label>
+          <textarea id="inp-proj-desc" required rows="2" placeholder="Plateforme interactive répertoriant les artisans céramistes et les maisons d'hôtes..." class="w-full p-2.5 rounded-xl border border-slate-700 bg-[#1e293b] text-white"></textarea>
+        </div>
+        <div class="flex justify-end gap-2 pt-2 border-t border-slate-800">
+          <button type="button" onclick="closeModal('modal-add-project')" class="px-3 py-2 rounded-xl text-slate-400">Annuler</button>
+          <button type="submit" class="px-5 py-2.5 rounded-xl bg-medina-600 hover:bg-medina-500 text-white font-bold shadow-md">+ Enregistrer le projet (+15 XP)</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: LAISSER UN AVIS / RECOMMANDATION (SCREENSHOT SPEC) -->
+  <div id="modal-add-review" class="fixed inset-0 z-50 bg-slate-950/75 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-[#111927] border border-slate-700 rounded-3xl max-w-md w-full p-6 text-white space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <h3 class="text-base font-bold">Laisser un avis / recommandation</h3>
+        <button onclick="closeModal('modal-add-review')" class="text-slate-400 hover:text-white text-lg">✕</button>
+      </div>
+      <form onsubmit="handleAddReviewSubmit(event)" class="space-y-3 text-xs">
+        <div>
+          <label class="block font-bold text-slate-300 mb-1">Votre Nom & Prénom</label>
+          <input type="text" id="inp-rev-author" required placeholder="Ex: Karim Ben Cheikh" class="w-full p-2.5 rounded-xl border border-slate-700 bg-[#1e293b] text-white">
+        </div>
+        <div>
+          <label class="block font-bold text-slate-300 mb-1">Votre Rôle / Organisation</label>
+          <input type="text" id="inp-rev-role" required placeholder="Ex: CTO @ Startup Hammamet ou Présidente JCI Hammamet" class="w-full p-2.5 rounded-xl border border-slate-700 bg-[#1e293b] text-white">
+        </div>
+        <div>
+          <label class="block font-bold text-slate-300 mb-1">Votre Témoignage</label>
+          <textarea id="inp-rev-comment" required rows="3" placeholder="Youssef a fait preuve d'une autonomie remarquable lors du sprint technique..." class="w-full p-2.5 rounded-xl border border-slate-700 bg-[#1e293b] text-white"></textarea>
+        </div>
+        <div class="flex justify-end gap-2 pt-2 border-t border-slate-800">
+          <button type="button" onclick="closeModal('modal-add-review')" class="px-3 py-2 rounded-xl text-slate-400">Annuler</button>
+          <button type="submit" class="px-5 py-2.5 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 text-white font-bold shadow-md">Publier le Témoignage (+10 XP)</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL A: VISITOR IDENTIFICATION (NOM & EMAIL) -->
+  <div id="modal-visitor" class="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-700 space-y-4">
+      <div class="flex items-center justify-between">
+        <div>
+          <h3 class="text-base font-black text-slate-900 dark:text-white">Pass Visiteur Invité</h3>
+          <p class="text-[11px] text-slate-500">Identification rapide pour naviguer</p>
+        </div>
+        <button onclick="closeModal('modal-visitor')" class="text-slate-400 hover:text-white text-lg">✕</button>
+      </div>
+
+      <form onsubmit="handleVisitorCheckIn(event)" class="space-y-3 text-xs">
+        <div>
+          <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1">Votre Nom & Prénom</label>
+          <input type="text" id="vis-name" required placeholder="Ex: Mohamed Trabelsi" class="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white">
+        </div>
+        <div>
+          <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1">Votre Adresse Email</label>
+          <input type="email" id="vis-email" required placeholder="nom@exemple.tn" class="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white">
+        </div>
+        <div class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-900/60 text-[10px] text-slate-500 leading-relaxed">
+          🍪 Conformément à notre politique, les cookies ne mémorisent que votre pass d'entrée, votre email et votre nom.
+        </div>
+        <div class="flex justify-end gap-2 pt-2">
+          <button type="button" onclick="closeModal('modal-visitor')" class="px-3 py-2 rounded-xl text-slate-500 font-semibold">Fermer</button>
+          <button type="submit" class="px-5 py-2 rounded-xl bg-medina-600 hover:bg-medina-500 text-white font-bold shadow-md">
+            Générer mon Pass Visiteur
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL B: COMPLETE REGISTRATION (STUDENT / COMPANY) WITH CALIBRATION FEE & 2 DT BONUS -->
+  <div id="modal-register" class="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-700 space-y-4 max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between">
+        <div>
+          <h3 class="text-base font-black text-slate-900 dark:text-white" id="reg-modal-title">Créer ma Carte ID & Mon Avatar</h3>
+          <p class="text-[11px] text-slate-500 font-arabic">التسجيل واستلام منحة البداية 2 دنانير</p>
+        </div>
+        <button onclick="closeModal('modal-register')" class="text-slate-400 hover:text-white text-lg">✕</button>
+      </div>
+
+      <!-- Incentive Notice -->
+      <div class="p-3.5 rounded-2xl bg-gradient-to-r from-amber-50 to-jasmine-50 dark:from-amber-950/40 dark:to-slate-700 border border-amber-300 dark:border-amber-700 text-xs text-amber-900 dark:text-amber-200 space-y-1">
+        <p class="font-black flex items-center gap-1">🏺 Compensation d'inscription garantie !</p>
+        <p class="text-[11px] leading-relaxed">
+          Pour calibrer votre sérieux envers le marché, des frais de départ de <strong>5.000 DT</strong> sont requis. Dès paiement validé, vous recevez automatiquement <strong>2 Dinars (2 DT)</strong> dans votre Tip Jar et votre profil devient <em>"Ciblé"</em>.
+        </p>
+      </div>
+
+      <form onsubmit="handleRegistrationSubmit(event)" class="space-y-3 text-xs">
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1">Nom & Prénom</label>
+            <input type="text" id="reg-name" required placeholder="Youssef Mansour" class="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white">
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1">Email</label>
+            <input type="email" id="reg-email" required placeholder="youssef@isetn.tn" class="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white">
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1">Votre Avatar Cible (Objectif Professionnel)</label>
+          <select id="reg-avatar" class="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white font-semibold">
+            <option value="Frontend Dev & Tourisme Tech">💻 Frontend Dev & Tourisme Tech Hammamet</option>
+            <option value="Ingénieur IA & Smart Medina">🤖 Ingénieur IA & Smart Medina</option>
+            <option value="Leader Civic Tech & Ta'sir">🤝 Leader Civic Tech & Ta'sir</option>
+            <option value="Tourisme & Hospitality Lead">🏨 Tourisme & Hospitality Lead</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1">Établissement / Université d'origine</label>
+          <input type="text" id="reg-school" required placeholder="Ex: ISET Nabeul, INSAT, Université Virtuelle..." class="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white">
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1">Ancien CV / Compétences & Projets Antérieurs</label>
+          <textarea id="reg-old-resume" required rows="2" placeholder="Ex: Licence informatique, mini-projets Python/JavaScript, participation à un club universitaire..." class="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white"></textarea>
+        </div>
+
+        <!-- PAYMENT SELECTOR FOR CALIBRATION FEE -->
+        <div class="space-y-2 pt-1 border-t border-slate-100 dark:border-slate-700">
+          <label class="block font-bold text-slate-700 dark:text-slate-300">Règlement des frais de calibrage (5 DT)</label>
+          <div class="grid grid-cols-4 gap-1.5">
+            <label class="p-2 rounded-xl border border-medina-500 bg-medina-50/50 dark:bg-slate-700 text-center cursor-pointer">
+              <input type="radio" name="reg_pay_method" value="Flouci" checked class="text-medina-600">
+              <span class="block text-[10px] font-bold mt-1">Flouci</span>
+            </label>
+            <label class="p-2 rounded-xl border border-slate-200 dark:border-slate-700 text-center cursor-pointer">
+              <input type="radio" name="reg_pay_method" value="Konnect" class="text-medina-600">
+              <span class="block text-[10px] font-bold mt-1">Konnect</span>
+            </label>
+            <label class="p-2 rounded-xl border border-slate-200 dark:border-slate-700 text-center cursor-pointer">
+              <input type="radio" name="reg_pay_method" value="D17" class="text-medina-600">
+              <span class="block text-[10px] font-bold mt-1">D17 Poste</span>
+            </label>
+            <label class="p-2 rounded-xl border border-slate-200 dark:border-slate-700 text-center cursor-pointer">
+              <input type="radio" name="reg_pay_method" value="Sobflous" class="text-medina-600">
+              <span class="block text-[10px] font-bold mt-1">Sobflous</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="flex justify-end gap-2 pt-2">
+          <button type="button" onclick="closeModal('modal-register')" class="px-4 py-2 rounded-xl text-slate-500 font-semibold">Annuler</button>
+          <button type="submit" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-terracotta-500 to-medina-600 text-white font-bold shadow-md">
+            Payer 5 DT, Créer ma Carte & Toucher 2 DT
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL C: GUIDED TOUR STEPPER (VISITE GUIDÉE) -->
+  <div id="modal-tour" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-medina-500/40 space-y-6">
+      
+      <!-- Stepper Top Bar -->
+      <div class="flex items-center justify-between text-xs font-bold text-slate-400">
+        <span id="tour-step-counter">Étape 1 sur 4</span>
+        <button onclick="closeModal('modal-tour')" class="text-slate-400 hover:text-white text-base">✕</button>
+      </div>
+
+      <!-- Step Content Area -->
+      <div id="tour-step-content" class="space-y-3">
+        <!-- Rendered by JS -->
+      </div>
+
+      <!-- Stepper Navigation -->
+      <div class="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-700">
+        <button id="tour-prev-btn" onclick="prevTourStep()" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-700">Précédent</button>
+        <button id="tour-next-btn" onclick="nextTourStep()" class="px-5 py-2.5 rounded-xl bg-medina-600 hover:bg-medina-500 text-white font-bold text-xs shadow-md">Suivant ➔</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL D: TIP JAR / WALLET & PAYMENT GATEWAYS -->
+  <div id="modal-wallet" class="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-700 space-y-4">
+      <div class="flex items-center justify-between">
+        <div>
+          <h3 class="text-base font-black text-slate-900 dark:text-white">Ma Cagnotte Tip Jar</h3>
+          <p class="text-[11px] text-slate-500">Compensations reçues & Gestion financière</p>
+        </div>
+        <button onclick="closeModal('modal-wallet')" class="text-slate-400 hover:text-white text-lg">✕</button>
+      </div>
+
+      <!-- Balance Card -->
+      <div class="p-5 rounded-2xl bg-gradient-to-r from-slate-900 to-medina-950 text-white space-y-1">
+        <span class="text-xs text-slate-400">Solde Disponible Réel :</span>
+        <div class="text-2xl font-black text-jasmine-300">
+          <span id="wallet-modal-balance">2.000</span> DT
+        </div>
+        <p class="text-[10px] text-emerald-400">✓ Comprend votre prime de bienvenue de 2 DT + gains de missions</p>
+      </div>
+
+      <!-- Top up / Withdraw forms -->
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1">Moyen de Retrait / Rechargement</label>
+          <select id="wallet-gateway-select" class="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white font-semibold">
+            <option value="Flouci">Flouci Wallet TN (Instantané)</option>
+            <option value="D17">D17 / La Poste Tunisienne (Carte E-Dinar)</option>
+            <option value="Konnect">Konnect (Cartes Bancaires)</option>
+            <option value="Sobflous">Sobflous Express</option>
+            <option value="Stripe">Stripe / Carte Internationale (Visa / Mastercard)</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1">Montant (Dinars)</label>
+          <input type="number" id="wallet-amount-input" value="10" min="1" class="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white font-bold">
+        </div>
+
+        <div class="grid grid-cols-2 gap-2 pt-1">
+          <button onclick="simulateWalletAction('recharge')" class="py-2.5 rounded-xl bg-medina-600 hover:bg-medina-500 text-white font-bold text-xs shadow-md transition">
+            ➕ Recharger
+          </button>
+          <button onclick="simulateWalletAction('retrait')" class="py-2.5 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 text-white font-bold text-xs shadow-md transition">
+            💸 Retirer sur Wallet
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL E: POST OFFER (COMPANY) -->
+  <div id="modal-offer" class="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-700 space-y-4">
+      <div class="flex items-center justify-between">
+        <h3 class="text-base font-black text-slate-900 dark:text-white">Diffuser une Offre sur Hammamet</h3>
+        <button onclick="closeModal('modal-offer')" class="text-slate-400 hover:text-white text-lg">✕</button>
+      </div>
+      <form onsubmit="handlePostOfferSubmit(event)" class="space-y-3 text-xs">
+        <div>
+          <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1">Nom de votre Entreprise / Hôtel</label>
+          <input type="text" id="off-company" required placeholder="Ex: Radisson Blu Hammamet, Startup TravelTech" class="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white">
+        </div>
+        <div>
+          <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1">Type de Recherche</label>
+          <select id="off-type" class="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white">
+            <option value="Stage PFE">🎓 Stage PFE (Projet de Fin d'Études)</option>
+            <option value="Stage d'été">☀️ Stage d'été / Perfectionnement</option>
+            <option value="Premier Emploi">🚀 Premier Emploi / CDI Junior</option>
+          </select>
+        </div>
+        <div>
+          <label class="block font-bold text-slate-700 dark:text-slate-300 mb-1">Compétence ou Profil Ciblé</label>
+          <input type="text" id="off-skill" required placeholder="Ex: React, Intégration Flouci, UI Design, Tourisme" class="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white">
+        </div>
+        <div class="flex justify-end gap-2 pt-2">
+          <button type="button" onclick="closeModal('modal-offer')" class="px-4 py-2 rounded-xl text-slate-500 font-semibold">Annuler</button>
+          <button type="submit" class="px-5 py-2 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 text-white font-bold shadow-md">Diffuser l'Offre</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATIONS CONTAINER -->
+  <div id="toast-wrapper" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- ==================================================== -->
+  <!-- 6. APPLICATION LOGIC & JAVASCRIPT                    -->
+  <!-- ==================================================== -->
+  <script>
+    const STORAGE_KEY = "passe_impact_hammamet_v4";
+
+    const defaultState = {
+      isVisitor: true,
+      hasAcceptedCookies: false,
+      user: {
+        name: "Youssef Mansour",
+        email: "youssef@isetn.tn",
+        avatar: "Frontend Dev & Tourisme Tech",
+        avatarIcon: "👨‍💻",
+        school: "ISET Nabeul / INSAT • Résidence Hammamet",
+        oldResume: "Licence appliquée en Technologies du Web. Projets scolaires en JavaScript et participation à un club d'éco-citoyenneté.",
+        xp: 35,
+        dinarsJar: 2.000,
+        isTargeted: true
+      },
+      projects: [
+        {
+          id: "p1",
+          title: "Portail Touristique 'Hammamet Authentique'",
+          url: "https://demo.hubact.tn/hammamet-tourisme",
+          desc: "Plateforme interactive répertoriant les artisans céramistes et les maisons d'hôtes de la vieille Médina.",
+          tags: "React, Tailwind, API Météo & Cartes"
+        },
+        {
+          id: "p2",
+          title: "Intégrateur Flouci pour Boutiques Locales",
+          url: "https://github.com/hubact/flouci-micro-gateway",
+          desc: "Module open-source permettant aux artisans de Nabeul et Hammamet d'accepter les paiements instantanés.",
+          tags: "Node.js, Webhooks, Flouci SDK"
+        }
+      ],
+      reviews: [
+        {
+          id: "r1",
+          author: "Karim Ben Cheikh",
+          role: "CTO @ Startup Hammamet • Il y a 3 jours",
+          comment: "Youssef a fait preuve d'une autonomie remarquable lors du sprint technique. Son code React est propre et bien documenté."
+        },
+        {
+          id: "r2",
+          author: "Mouna Belhadj",
+          role: "Présidente JCI Hammamet • Il y a 2 semaines",
+          comment: "Excellente énergie sur les projets Ta'sir. Toujours ponctuel et force de proposition pour valoriser les jeunes locaux."
+        }
+      ],
+      offers: [
+        { company: "Hôtel Radisson Blu Hammamet", type: "Stage PFE", skill: "Refonte du portail client & Intégration Flouci" },
+        { company: "Médina Smart Tourisme", type: "Premier Emploi", skill: "Développeur React/Node & Cartes Interactives" },
+        { company: "Association Sauvegarde Hammamet", type: "Stage d'été", skill: "Coordination Civic Tech & Écologie Côtière" }
+      ]
+    };
+
+    let state = loadState();
+
+    function loadState() {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored) {
+        try { return JSON.parse(stored); } catch(e) { return defaultState; }
+      }
+      return defaultState;
+    }
+
+    function saveState() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      renderUI();
+    }
+
+    // --- NAVIGATION CONTROLLER ---
+    function navigateTo(pageId) {
+      document.querySelectorAll('.page-module').forEach(el => el.classList.add('hidden'));
+      const target = document.getElementById(pageId);
+      if (target) {
+        target.classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        if (btn.getAttribute('data-page') === pageId) {
+          btn.className = "nav-btn px-3 py-1.5 rounded-lg text-xs font-bold text-medina-600 dark:text-medina-400 bg-medina-50 dark:bg-medina-950/60 border border-medina-200 dark:border-medina-800";
+        } else {
+          btn.className = "nav-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-medina-600 hover:bg-slate-100 dark:hover:bg-slate-800";
+        }
+      });
+
+      document.getElementById('mobile-menu').classList.add('hidden');
+    }
+
+    function toggleMobileMenu() {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    }
+
+    // --- SPLASH SCREEN & COOKIES ---
+    function initSplashScreen() {
+      const bar = document.getElementById('splash-progress');
+      if (bar) setTimeout(() => { bar.style.width = '100%'; }, 200);
+    }
+
+    function dismissSplash() {
+      const splash = document.getElementById('splash-screen');
+      splash.style.opacity = '0';
+      setTimeout(() => {
+        splash.style.display = 'none';
+        if (!state.hasAcceptedCookies) {
+          document.getElementById('cookie-banner').classList.remove('hidden');
+        } else {
+          document.getElementById('cookie-banner').classList.add('hidden');
+        }
+      }, 700);
+    }
+
+    function acceptMinimalCookies() {
+      state.hasAcceptedCookies = true;
+      saveState();
+      document.getElementById('cookie-banner').classList.add('hidden');
+      showToast("✓ Cookies d'entrée enregistrés : Pass ID, email et nom.");
+    }
+
+    // --- UI RENDERING & SYNC ---
+    function renderUI() {
+      // Top bars
+      document.getElementById('wallet-dinars-top').innerText = state.user.dinarsJar.toFixed(3);
+      document.getElementById('wallet-xp-top').innerText = state.user.xp;
+      document.getElementById('wallet-modal-balance').innerText = state.user.dinarsJar.toFixed(3);
+
+      // Badge role
+      const badgeIcon = document.getElementById('badge-icon');
+      const badgeLabel = document.getElementById('badge-label');
+      if (state.isVisitor) {
+        badgeIcon.innerText = "👤";
+        badgeLabel.innerText = "Visiteur";
+      } else {
+        badgeIcon.innerText = "🎓";
+        badgeLabel.innerText = "Membre Ciblé";
+      }
+
+      // Pass ID card
+      document.getElementById('pass-name').innerText = state.user.name;
+      document.getElementById('pass-avatar-title').innerText = `Avatar : ${state.user.avatar}`;
+      document.getElementById('pass-avatar-icon').innerText = state.user.avatarIcon;
+      document.getElementById('pass-school').innerText = state.user.school;
+      document.getElementById('pass-xp-display').innerText = state.user.xp;
+      document.getElementById('pass-dinars-display').innerText = state.user.dinarsJar.toFixed(3);
+      document.getElementById('pass-resume-school').innerText = state.user.school;
+      document.getElementById('pass-resume-skills').innerText = state.user.oldResume;
+
+      // Active target indicator
+      const recAvatarName = document.getElementById('rec-avatar-name');
+      if (recAvatarName) recAvatarName.innerText = state.user.avatar;
+
+      renderProjects();
+      renderReviews();
+      renderTargetedSuggestions();
+      renderCandidatesPool();
+    }
+
+    // --- RENDER SCREENSHOT SECTION 1: PROJETS ---
+    function renderProjects() {
+      const container = document.getElementById('projects-container');
+      if (!container) return;
+
+      container.innerHTML = state.projects.map(p => `
+        <div class="bg-[#0b121e] border border-slate-800 rounded-2xl p-5 space-y-3 flex flex-col justify-between hover:border-slate-700 transition">
+          <div class="space-y-1.5">
+            <div class="flex items-start justify-between gap-2">
+              <h4 class="text-sm font-bold text-white leading-snug">${p.title}</h4>
+              <a href="${p.url}" target="_blank" class="text-xs font-semibold text-medina-400 hover:text-medina-300 flex items-center gap-1 shrink-0">
+                Démo ↗
+              </a>
+            </div>
+            <p class="text-xs text-slate-400 leading-relaxed">${p.desc}</p>
+          </div>
+          <div class="p-2 rounded-xl bg-[#132034] border border-[#1e3450] text-[11px] font-mono text-slate-200 truncate">
+            ${p.tags}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // --- RENDER SCREENSHOT SECTION 2: AVIS & REVIEWS ---
+    function renderReviews() {
+      const container = document.getElementById('reviews-container');
+      if (!container) return;
+
+      container.innerHTML = state.reviews.map(r => `
+        <div class="bg-[#0b121e] border border-slate-800 rounded-2xl p-5 space-y-2 hover:border-slate-700 transition">
+          <div class="flex items-center justify-between">
+            <div>
+              <h5 class="text-sm font-bold text-white">${r.author}</h5>
+              <p class="text-[11px] text-slate-400 font-medium">${r.role}</p>
+            </div>
+            <div class="text-amber-400 text-sm tracking-widest flex items-center">
+              ★★★★★
+            </div>
+          </div>
+          <p class="text-xs text-slate-300 italic leading-relaxed pt-1">
+            "${r.comment}"
+          </p>
+        </div>
+      `).join('');
+    }
+
+    // --- AUTOMATED RECOMMENDATIONS FOR CIBLED PROFILES ---
+    let currentRecTab = 'stages';
+    function switchRecTab(tab) {
+      currentRecTab = tab;
+      ['stages', 'jobs', 'formations'].forEach(t => {
+        const btn = document.getElementById(`rec-tab-${t}`);
+        if (t === tab) {
+          btn.className = "px-3.5 py-1.5 rounded-xl text-xs font-bold bg-medina-600 text-white shadow transition";
+        } else {
+          btn.className = "px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700 transition";
+        }
+      });
+      renderTargetedSuggestions();
+    }
+
+    function renderTargetedSuggestions() {
+      const container = document.getElementById('rec-tab-content');
+      if (!container) return;
+
+      if (currentRecTab === 'stages') {
+        container.innerHTML = `
+          <div class="bg-slate-900/90 border border-slate-700 p-5 rounded-2xl space-y-3 flex flex-col justify-between">
+            <div class="space-y-1">
+              <span class="text-[10px] font-black uppercase text-emerald-400">PFE Recommandé Spécifique</span>
+              <h4 class="text-sm font-bold text-white">Stage PFE : Plateforme de Réservation Hôtelière & API Flouci</h4>
+              <p class="text-xs text-slate-400">Hôtel Hasdrubal Thalassa Hammamet • 450 DT / mois</p>
+              <p class="text-[11px] text-slate-300">Concordance à 98% avec vos projets React et API Flouci répertoriés sur votre carte.</p>
+            </div>
+            <button onclick="applyToSuggestion('Stage PFE Hasdrubal')" class="w-full py-2 rounded-xl bg-medina-600 hover:bg-medina-500 text-white font-bold text-xs transition">
+              Candidater avec mon Pass ID Ciblé ➔
+            </button>
+          </div>
+
+          <div class="bg-slate-900/90 border border-slate-700 p-5 rounded-2xl space-y-3 flex flex-col justify-between">
+            <div class="space-y-1">
+              <span class="text-[10px] font-black uppercase text-amber-400">Stage d'été / Perfectionnement</span>
+              <h4 class="text-sm font-bold text-white">Assistant UI/UX & Numérisation Médina</h4>
+              <p class="text-xs text-slate-400">Startup Yallabiz Travel • Hammamet Centre</p>
+              <p class="text-[11px] text-slate-300">Participation à la création du catalogue interactif des artisans céramistes.</p>
+            </div>
+            <button onclick="applyToSuggestion('Stage Été Yallabiz')" class="w-full py-2 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 text-white font-bold text-xs transition">
+              Candidater avec mon Pass ID Ciblé ➔
+            </button>
+          </div>
+        `;
+      } else if (currentRecTab === 'jobs') {
+        container.innerHTML = `
+          <div class="bg-slate-900/90 border border-slate-700 p-5 rounded-2xl space-y-3 flex flex-col justify-between">
+            <div class="space-y-1">
+              <span class="text-[10px] font-black uppercase text-jasmine-300">Premier Emploi / CDI Junior</span>
+              <h4 class="text-sm font-bold text-white">Développeur Frontend Web Junior (React)</h4>
+              <p class="text-xs text-slate-400">Agence Médina Tech • Hammamet / Télétravail</p>
+              <p class="text-[11px] text-slate-300">Rémunération : 1200 - 1500 DT/mois. Vos 35 XP vous dispensent du test technique initial !</p>
+            </div>
+            <button onclick="applyToSuggestion('Emploi Médina Tech')" class="w-full py-2 rounded-xl bg-emeraldtech-600 hover:bg-emeraldtech-500 text-white font-bold text-xs transition">
+              Postuler en 1 Clic ➔
+            </button>
+          </div>
+
+          <div class="bg-slate-900/90 border border-slate-700 p-5 rounded-2xl space-y-3 flex flex-col justify-between">
+            <div class="space-y-1">
+              <span class="text-[10px] font-black uppercase text-medina-400">Mission Freelance Rémunérée</span>
+              <h4 class="text-sm font-bold text-white">Intégration d'un Widget Météo & Cartes Médina</h4>
+              <p class="text-xs text-slate-400">Office du Tourisme Nabeul-Hammamet • Durée : 2 semaines</p>
+              <p class="text-[11px] text-slate-300">Budget garanti déposé en séquestre : 600 DT versés directement dans votre Tip Jar.</p>
+            </div>
+            <button onclick="applyToSuggestion('Mission Freelance Office Tourisme')" class="w-full py-2 rounded-xl bg-medina-600 hover:bg-medina-500 text-white font-bold text-xs transition">
+              Accepter la Mission Freelance ➔
+            </button>
+          </div>
+        `;
+      } else {
+        container.innerHTML = `
+          <div class="bg-slate-900/90 border border-slate-700 p-5 rounded-2xl space-y-3 flex flex-col justify-between">
+            <div class="space-y-1">
+              <span class="text-[10px] font-black uppercase text-amber-400">+30 XP & Certification</span>
+              <h4 class="text-sm font-bold text-white">Next.js 15 & Architecture E-commerce Touristique</h4>
+              <p class="text-xs text-slate-400">HUBACT Lab Hammamet • 10 heures</p>
+              <p class="text-[11px] text-slate-300">Renforcez votre Avatar pour débloquer les offres de stages supérieures à 50 XP.</p>
+            </div>
+            <button onclick="participateInEvent('Formation Next.js 15', 30, 4.000)" class="w-full py-2 rounded-xl bg-medina-600 hover:bg-medina-500 text-white font-bold text-xs transition">
+              Démarrer (+30 XP & +4 DT) ➔
+            </button>
+          </div>
+
+          <div class="bg-slate-900/90 border border-slate-700 p-5 rounded-2xl space-y-3 flex flex-col justify-between">
+            <div class="space-y-1">
+              <span class="text-[10px] font-black uppercase text-emerald-400">+25 XP Pratique</span>
+              <h4 class="text-sm font-bold text-white">Sécurité des Webhooks Flouci & Konnect en Production</h4>
+              <p class="text-xs text-slate-400">Fintech Tunisia • 6 heures</p>
+              <p class="text-[11px] text-slate-300">Idéal pour certifier vos compétences en intégration bancaire tunisienne.</p>
+            </div>
+            <button onclick="participateInEvent('Formation Fintech Sécurité', 25, 3.000)" class="w-full py-2 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 text-white font-bold text-xs transition">
+              Démarrer (+25 XP & +3 DT) ➔
+            </button>
+          </div>
+        `;
+      }
+    }
+
+    function applyToSuggestion(title) {
+      triggerConfetti();
+      showToast(`Candidature transmise à : ${title} ! L'employeur consulte actuellement votre carte flippable.`);
+    }
+
+    // --- RECRUITERS: RECOMMENDED TALENT FILTER ---
+    let currentTalentFilter = 'all';
+    function filterTalentType(type) {
+      currentTalentFilter = type;
+      document.querySelectorAll('.talent-filter-btn').forEach(btn => {
+        if (btn.getAttribute('data-filter') === type) {
+          btn.className = "talent-filter-btn px-3 py-1 rounded-lg text-xs font-bold bg-medina-600 text-white";
+        } else {
+          btn.className = "talent-filter-btn px-3 py-1 rounded-lg text-xs font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700";
+        }
+      });
+      renderCandidatesPool();
+    }
+
+    function renderCandidatesPool() {
+      const grid = document.getElementById('candidates-pool-grid');
+      if (!grid) return;
+
+      const pool = [
+        { name: state.user.name, type: "student", typeLabel: "🎓 Étudiant PFE", avatar: state.user.avatar, xp: state.user.xp, jar: state.user.dinarsJar, school: state.user.school, topSkill: "React, Tailwind, Flouci SDK" },
+        { name: "Sarra Trabelsi", type: "worker", typeLabel: "💼 Travailleur Junior", avatar: "Ingénieur IA & Smart Medina", xp: 65, jar: 14.000, school: "Diplômée ENIT Tunis / Hammamet Sud", topSkill: "Python, LLM, Vision par Ordinateur" },
+        { name: "Amine Bouazizi", type: "freelancer", typeLabel: "🌍 Freelancer Qualifié", avatar: "Leader Civic Tech & Ta'sir", xp: 45, jar: 9.500, school: "Freelance ISET Nabeul", topSkill: "Gestion de Projet, UI Design, Mobilisation" },
+        { name: "Nourhene Khelifi", type: "student", typeLabel: "🎓 Étudiante Stage d'été", avatar: "Développeuse Mobile Flutter", xp: 40, jar: 7.000, school: "ESPRIT / Résidence Nabeul", topSkill: "Flutter, Firebase, D17 API" }
+      ];
+
+      const filtered = currentTalentFilter === 'all' ? pool : pool.filter(p => p.type === currentTalentFilter);
+
+      grid.innerHTML = filtered.map(c => `
+        <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-3 flex flex-col justify-between hover:border-medina-400 transition">
+          <div class="space-y-1.5">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-black text-slate-900 dark:text-white">${c.name}</span>
+              <span class="text-xs font-black text-amber-500">⭐ ${c.xp} XP</span>
+            </div>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-medina-100 dark:bg-medina-950 text-medina-700 dark:text-medina-300 inline-block">${c.typeLabel}</span>
+            <p class="text-xs text-medina-600 dark:text-medina-400 font-bold">${c.avatar}</p>
+            <p class="text-[11px] text-slate-500">${c.school}</p>
+            <div class="text-[10px] text-slate-600 dark:text-slate-300 font-mono bg-slate-50 dark:bg-slate-900 p-1.5 rounded-lg">
+              Compétences : ${c.topSkill}
+            </div>
+          </div>
+          <div class="pt-2 border-t border-slate-100 dark:border-slate-700">
+            <button onclick="targetCandidate('${c.name}')" class="w-full py-1.5 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 text-white font-bold text-xs transition">
+              🎯 Proposer un Stage / Mission ➔
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function targetCandidate(name) {
+      triggerConfetti();
+      showToast(`Offre transmise à ${name} ! La demande apparaît sur son tableau de bord avec vos coordonnées.`);
+    }
+
+    // --- FORM SUBMIT HANDLERS FOR SCREENSHOT MODALS ---
+    function handleAddProjectSubmit(e) {
+      e.preventDefault();
+      const title = document.getElementById('inp-proj-title').value;
+      const url = document.getElementById('inp-proj-url').value;
+      const tags = document.getElementById('inp-proj-tags').value;
+      const desc = document.getElementById('inp-proj-desc').value;
+
+      state.projects.unshift({ id: "p-" + Date.now(), title, url, tags, desc });
+      state.user.xp += 15;
+      saveState();
+      closeModal('modal-add-project');
+      triggerConfetti();
+      showToast("Projet ajouté à votre profil avec succès (+15 XP) !");
+      e.target.reset();
+    }
+
+    function handleAddReviewSubmit(e) {
+      e.preventDefault();
+      const author = document.getElementById('inp-rev-author').value;
+      const role = document.getElementById('inp-rev-role').value;
+      const comment = document.getElementById('inp-rev-comment').value;
+
+      state.reviews.unshift({ id: "r-" + Date.now(), author, role: `${role} • Récemment`, comment });
+      state.user.xp += 10;
+      saveState();
+      closeModal('modal-add-review');
+      triggerConfetti();
+      showToast("Recommandation publiée ! Elle renforce la confiance des recruteurs (+10 XP).");
+      e.target.reset();
+    }
+
+    // --- 3D CARD FLIP ---
+    function flipPassCard() {
+      document.getElementById('user-pass-card').classList.toggle('rotate-y-180');
+    }
+
+    // --- AVATAR PRESET UPDATE ---
+    function changeAvatarPreset(title, icon, details) {
+      state.user.avatar = title;
+      state.user.avatarIcon = icon;
+      state.user.xp += 5;
+      saveState();
+      triggerConfetti();
+      showToast(`Avatar actualisé : ${title} (+5 XP) ! Suggestions recalculées.`);
+    }
+
+    // --- EVENTS PARTICIPATION & COMPENSATIONS ---
+    function participateInEvent(name, xpPoints, dinarsReward) {
+      state.user.xp += xpPoints;
+      state.user.dinarsJar += dinarsReward;
+      saveState();
+      triggerConfetti();
+      showToast(`Mission accomplie : ${name} ! +${xpPoints} XP et +${dinarsReward.toFixed(3)} DT crédités dans votre Tip Jar.`);
+    }
+
+    // --- WALLET RECHARGE & RETRAIT ---
+    function simulateWalletAction(action) {
+      const amount = parseFloat(document.getElementById('wallet-amount-input').value) || 5;
+      const gateway = document.getElementById('wallet-gateway-select').value;
+
+      if (action === 'retrait') {
+        if (state.user.dinarsJar < amount) {
+          showToast("⚠️ Solde insuffisant pour ce montant de retrait.");
+          return;
+        }
+        state.user.dinarsJar -= amount;
+        saveState();
+        showToast(`Retrait de ${amount.toFixed(3)} DT vers votre compte ${gateway} effectué avec succès !`);
+      } else {
+        state.user.dinarsJar += amount;
+        state.user.xp += 10;
+        saveState();
+        triggerConfetti();
+        showToast(`Recharge de ${amount.toFixed(3)} DT réussie via ${gateway} (+10 XP) !`);
+      }
+      closeModal('modal-wallet');
+    }
+
+    // --- FORMS SUBMIT HANDLERS ---
+    function handleVisitorCheckIn(e) {
+      e.preventDefault();
+      const name = document.getElementById('vis-name').value;
+      const email = document.getElementById('vis-email').value;
+
+      state.isVisitor = true;
+      state.user.name = name;
+      state.user.email = email;
+      state.hasAcceptedCookies = true;
+      saveState();
+
+      closeModal('modal-visitor');
+      showToast(`Pass Visiteur généré pour ${name}.`);
+      document.getElementById('visitor-card-title').innerText = `Pass Visiteur Actif : ${name}`;
+    }
+
+    function handleRegistrationSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('reg-name').value;
+      const email = document.getElementById('reg-email').value;
+      const avatar = document.getElementById('reg-avatar').value;
+      const school = document.getElementById('reg-school').value;
+      const oldResume = document.getElementById('reg-old-resume').value;
+      const payMethod = document.querySelector('input[name="reg_pay_method"]:checked')?.value || "Flouci";
+
+      state.isVisitor = false;
+      state.user.name = name;
+      state.user.email = email;
+      state.user.avatar = avatar;
+      state.user.school = school;
+      state.user.oldResume = oldResume;
+      state.user.isTargeted = true;
+
+      // Welcome Compensation: 2 Dinars (2 DT) deposited!
+      state.user.dinarsJar += 2.000;
+      state.user.xp += 15;
+      saveState();
+
+      closeModal('modal-register');
+      triggerConfetti();
+      showToast(`Paiement de 5 DT validé via ${payMethod} ! Votre carte est prête et 2 Dinars ont été versés dans votre Tip Jar.`);
+      navigateTo('page-profile-card');
+    }
+
+    function handlePostOfferSubmit(e) {
+      e.preventDefault();
+      const company = document.getElementById('off-company').value;
+      const type = document.getElementById('off-type').value;
+      const skill = document.getElementById('off-skill').value;
+
+      state.offers.unshift({ company, type, skill });
+      saveState();
+      closeModal('modal-offer');
+      triggerConfetti();
+      showToast(`Offre publiée avec succès ! Les candidats ciblés de Hammamet sont prévenus.`);
+    }
+
+    // --- GUIDED TOUR STEPPER (VISITE GUIDÉE) ---
+    let currentTourStep = 0;
+    const tourSteps = [
+      {
+        badge: "1. Mission & Vision",
+        title: "Résoudre la fragmentation de l'enseignement en Tunisie",
+        desc: "Les diplômes universitaires classiques sont souvent déconnectés des compétences demandées par le marché. Passe Impact Hammamet valorise les compétences pratiques et stimule le tourisme côtier à travers des hackathons et défis réels."
+      },
+      {
+        badge: "2. Fonctionnement & Avatar",
+        title: "L'Avatar Portfolio et la Carte ID Numérique",
+        desc: "Chaque membre définit son Avatar cible (Frontend, IA, Tourisme Tech, Civic Ta'sir). Vos réalisations et hackathons accumulent des points de compétences (XP) et enrichissent votre carte flippable."
+      },
+      {
+        badge: "3. Pourquoi s'inscrire & Prime de 2 DT",
+        title: "Frais de calibrage & Compensation immédiate",
+        desc: "Une modique participation (5 DT) prouve votre sérieux envers les employeurs. En retour, vous recevez automatiquement 2 Dinars (2 DT) dans votre Tip Jar et votre profil devient immédiatement 'Ciblé' par les entreprises."
+      },
+      {
+        badge: "4. Facilités de Paiement Tunisiennes",
+        title: "Inclusion financière avec Flouci, D17 et Konnect",
+        desc: "Réglez vos inscriptions ou retirez vos compensations sans carte internationale grâce à nos passerelles : Flouci Wallet, Cartes E-Dinar de La Poste Tunisienne (D17), Konnect et Sobflous."
+      }
+    ];
+
+    function startGuidedTour() {
+      currentTourStep = 0;
+      renderTourStep();
+      document.getElementById('modal-tour').classList.remove('hidden');
+    }
+
+    function renderTourStep() {
+      const step = tourSteps[currentTourStep];
+      document.getElementById('tour-step-counter').innerText = `Étape ${currentTourStep + 1} sur ${tourSteps.length}`;
+      document.getElementById('tour-step-content').innerHTML = `
+        <span class="text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full bg-medina-100 text-medina-700 dark:bg-medina-950 dark:text-medina-300">${step.badge}</span>
+        <h3 class="text-base font-black text-slate-900 dark:text-white pt-1">${step.title}</h3>
+        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">${step.desc}</p>
+      `;
+
+      document.getElementById('tour-prev-btn').style.visibility = currentTourStep === 0 ? 'hidden' : 'visible';
+      document.getElementById('tour-next-btn').innerText = currentTourStep === tourSteps.length - 1 ? 'Terminer la visite ✓' : 'Suivant ➔';
+    }
+
+    function nextTourStep() {
+      if (currentTourStep < tourSteps.length - 1) {
+        currentTourStep++;
+        renderTourStep();
+      } else {
+        closeModal('modal-tour');
+        showToast("Visite terminée ! Vous pouvez maintenant créer votre carte.");
+      }
+    }
+
+    function prevTourStep() {
+      if (currentTourStep > 0) {
+        currentTourStep--;
+        renderTourStep();
+      }
+    }
+
+    // --- MODALS TOGGLING ---
+    function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
+    function openVisitorModal() { document.getElementById('modal-visitor').classList.remove('hidden'); }
+    function openRegistrationModal(type = 'student') { 
+      document.getElementById('modal-register').classList.remove('hidden'); 
+    }
+    function openWalletModal() { document.getElementById('modal-wallet').classList.remove('hidden'); }
+    function openPostOfferModal() { document.getElementById('modal-offer').classList.remove('hidden'); }
+    function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+
+    // --- TOAST NOTIFICATIONS HELPER ---
+    function showToast(msg) {
+      const container = document.getElementById('toast-wrapper');
+      const toast = document.createElement('div');
+      toast.className = 'pointer-events-auto bg-slate-950/95 dark:bg-white text-white dark:text-slate-900 px-4 py-2.5 rounded-2xl shadow-2xl text-xs font-semibold flex items-center gap-2 border border-slate-700 dark:border-slate-200 transform transition-all duration-300 translate-y-2 opacity-0 max-w-sm';
+      toast.innerHTML = `<span>✨</span><span>${msg}</span>`;
+      container.appendChild(toast);
+
+      setTimeout(() => toast.classList.remove('translate-y-2', 'opacity-0'), 10);
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-2');
+        setTimeout(() => toast.remove(), 300);
+      }, 4000);
+    }
+
+    function triggerConfetti() {
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 50,
+          spread: 60,
+          origin: { y: 0.8 },
+          colors: ['#0284c7', '#f97316', '#facc15', '#10b981']
+        });
+      }
+    }
+
+    // --- THEME ENGINE ---
+    function toggleTheme() {
+      const isDark = document.documentElement.classList.toggle('dark');
+      localStorage.setItem('pi_theme', isDark ? 'dark' : 'light');
+      document.getElementById('theme-icon').innerText = isDark ? '☀️' : '🌙';
+    }
+
+    function initTheme() {
+      const savedTheme = localStorage.getItem('pi_theme');
+      if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+        document.getElementById('theme-icon').innerText = '☀️';
+      } else {
+        document.documentElement.classList.remove('dark');
+        document.getElementById('theme-icon').innerText = '🌙';
+      }
+    }
+
+    // --- INITIALIZE ON LOAD ---
+    window.onload = function() {
+      initTheme();
+      initSplashScreen();
+      renderUI();
+    };
+  </script>
+</body>
+</html>

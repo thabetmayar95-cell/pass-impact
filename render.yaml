@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: passe-impact-hammamet
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: 24.2.0
+      - key: PORT
+        value: 3000

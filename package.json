@@ -1,0 +1,28 @@
+{
+  "name": "hubact-passe-impact-hammamet",
+  "version": "1.0.0",
+  "description": "Plateforme fullstack Passe Impact Hammamet - Emploi ciblé, Hackathons & Tip Jar",
+  "type": "module",
+  "main": "src/server/index.js",
+  "scripts": {
+    "start": "node src/server/index.js",
+    "dev": "node --watch src/server/index.js",
+    "test": "node src/test/self-check.js"
+  },
+  "keywords": [
+    "hammamet",
+    "tunisie",
+    "fullstack",
+    "passe-impact",
+    "hubact",
+    "hackathons",
+    "flouci",
+    "d17"
+  ],
+  "author": "HubAct Hammamet",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2"
+  }
+}

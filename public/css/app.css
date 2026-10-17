@@ -1,0 +1,126 @@
+/* Passe Impact Hammamet - Custom Craft Stylesheet */
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&family=Noto+Sans+Arabic:wght@400;600;700;800&display=swap');
+
+:root {
+  --font-main: 'Lexend', system-ui, -apple-system, sans-serif;
+  --font-arabic: 'Noto Sans Arabic', system-ui, sans-serif;
+  --color-medina: #0284c7;
+  --color-terracotta: #ea580c;
+  --color-jasmine: #facc15;
+  --color-emerald: #10b981;
+}
+
+body {
+  font-family: var(--font-main);
+  font-size: 1rem;
+  line-height: 1.5;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 { font-size: 2.5rem; font-weight: 800; line-height: 1.15; }
+h2 { font-size: 1.85rem; font-weight: 800; line-height: 1.2; }
+h3 { font-size: 1.35rem; font-weight: 700; line-height: 1.3; }
+h4 { font-size: 1.125rem; font-weight: 600; line-height: 1.35; }
+
+.font-arabic {
+  font-family: var(--font-arabic);
+}
+
+/* 3D Flip Card Architecture */
+.perspective-1000 {
+  perspective: 1200px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+/* Glassmorphism Navigation */
+.glass-nav {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.dark .glass-nav {
+  background: rgba(9, 14, 23, 0.92);
+}
+
+/* Custom Scrollbar - Themed to Mediterranean Palette */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #334155;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* Card Subtle Radial Highlight */
+.card-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-glow::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(2, 132, 199, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.dark .card-glow::before {
+  background: radial-gradient(circle, rgba(2, 132, 199, 0.12) 0%, transparent 60%);
+}
+
+/* Smooth Focus Ring & Selection */
+::selection {
+  background: rgba(234, 88, 12, 0.25);
+  color: inherit;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--color-medina);
+  outline-offset: 2px;
+}
+
+/* Pulsing Badge Indicator */
+@keyframes subtle-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.02); }
+}
+
+.animate-subtle-pulse {
+  animation: subtle-pulse 3s infinite ease-in-out;
+}
