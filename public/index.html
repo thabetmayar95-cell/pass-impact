@@ -114,7 +114,7 @@
       <!-- Brand Logo -->
       <div class="flex items-center gap-1.5 sm:gap-3 shrink-0">
         <button onclick="window.HubAct.navigateTo('page-intro')" class="flex items-center gap-2 sm:gap-2.5 text-left group">
-          <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl overflow-hidden shadow-md group-hover:scale-105 transition-transform shrink-0 flex items-center justify-center bg-[#0b1329] border border-medina-500/30 p-0.5 sm:p-1">
+          <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl overflow-hidden shadow-sm group-hover:scale-105 transition-transform shrink-0 flex items-center justify-center bg-white dark:bg-[#0b1329] border border-slate-200 dark:border-medina-500/30 p-0.5 sm:p-1">
             <img src="/logo.svg" alt="Passe Impact Hammamet" class="w-full h-full object-contain">
           </div>
           <div>
@@ -314,41 +314,41 @@
     <section id="page-intro" class="page-module space-y-8">
       
       <!-- HERO BANNER -->
-      <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#080c14] via-[#0b1329] to-[#0c1836] text-white p-6 sm:p-10 border border-medina-700/30 shadow-2xl">
+      <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-white via-medina-50/40 to-slate-100 dark:from-[#080c14] dark:via-[#0b1329] dark:to-[#0c1836] text-slate-900 dark:text-white p-6 sm:p-10 border border-slate-200/90 dark:border-medina-700/30 shadow-xl dark:shadow-2xl">
         <div class="z-10 max-w-3xl space-y-4">
-          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-medina-900/70 border border-medina-600/40 text-terracotta-300 text-xs font-bold">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-medina-100 dark:bg-medina-900/70 border border-medina-200 dark:border-medina-600/40 text-medina-800 dark:text-terracotta-300 text-xs font-bold">
             🇹🇳 Révolution de l'Employabilité & Tourisme à Hammamet
           </span>
 
-          <h2 class="text-3xl sm:text-5xl font-black tracking-tight leading-tight text-white">
+          <h2 class="text-3xl sm:text-5xl font-black tracking-tight leading-tight text-slate-900 dark:text-white">
             Le Passe Numérique où les <br class="hidden sm:inline"/>
-            <span class="text-terracotta-400">
+            <span class="text-terracotta-600 dark:text-terracotta-400">
               entreprises vous ciblent pour vos compétences réelles.
             </span>
           </h2>
 
-          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
             Pour combler le fossé entre le système universitaire tunisien théorique et la demande économique, <strong>Passe Impact Hammamet</strong> valorise vos projets concrets et hackathons locaux. Dès que vous créez votre Avatar et votre Carte ID, votre profil devient <em>"Ciblé"</em> et vous recevez immédiatement <strong>2 Dinars (2 DT)</strong> dans votre Tip Jar.
           </p>
 
           <!-- Quick Action Buttons -->
           <div class="flex flex-wrap items-center gap-3 pt-2">
-            <button onclick="window.HubAct.startGuidedTour()" class="btn-tactile px-4 py-2.5 rounded-xl bg-medina-600 hover:bg-medina-500 text-white font-bold text-xs shadow-lg shadow-medina-950 flex items-center gap-2 transition">
+            <button onclick="window.HubAct.startGuidedTour()" class="btn-tactile px-4 py-2.5 rounded-xl bg-medina-600 hover:bg-medina-500 text-white font-bold text-xs shadow-lg shadow-medina-950/20 dark:shadow-medina-950 flex items-center gap-2 transition">
               <svg class="w-3.5 h-3.5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
               <span>Lancer la Visite Guidée</span>
             </button>
-            <button onclick="window.HubAct.openModal('modal-register')" class="btn-tactile px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 text-white font-bold text-xs transition flex items-center gap-1.5">
-              <svg class="w-3.5 h-3.5 text-medina-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="3"></rect><circle cx="9" cy="10" r="2"></circle><line x1="15" y1="8" x2="17" y2="8"></line><line x1="15" y1="12" x2="17" y2="12"></line><line x1="7" y1="16" x2="17" y2="16"></line></svg>
+            <button onclick="window.HubAct.openModal('modal-register')" class="btn-tactile px-4 py-2.5 rounded-xl bg-white hover:bg-slate-50 dark:bg-white/10 dark:hover:bg-white/15 border border-slate-300 dark:border-white/20 text-slate-800 dark:text-white font-bold text-xs transition flex items-center gap-1.5 shadow-sm">
+              <svg class="w-3.5 h-3.5 text-medina-500 dark:text-medina-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="3"></rect><circle cx="9" cy="10" r="2"></circle><line x1="15" y1="8" x2="17" y2="8"></line><line x1="15" y1="12" x2="17" y2="12"></line><line x1="7" y1="16" x2="17" y2="16"></line></svg>
               <span>Créer mon Avatar & Recevoir 2 DT</span>
             </button>
-            <button onclick="window.HubAct.navigateTo('page-events')" class="btn-tactile px-4 py-2.5 rounded-xl bg-terracotta-500/20 hover:bg-terracotta-500/30 text-terracotta-200 font-bold text-xs border border-terracotta-500/40 transition flex items-center gap-1.5">
-              <svg class="w-3.5 h-3.5 text-terracotta-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h20M2 12c0 4.418 4.477 8 10 8s10-3.582 10-8M2 12c0-4.418 4.477-8 10-8s10 3.582 10 8"></path></svg>
+            <button onclick="window.HubAct.navigateTo('page-events')" class="btn-tactile px-4 py-2.5 rounded-xl bg-terracotta-50 hover:bg-terracotta-100 text-terracotta-700 dark:bg-terracotta-500/20 dark:hover:bg-terracotta-500/30 dark:text-terracotta-200 font-bold text-xs border border-terracotta-200 dark:border-terracotta-500/40 transition flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5 text-terracotta-600 dark:text-terracotta-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h20M2 12c0 4.418 4.477 8 10 8s10-3.582 10-8M2 12c0-4.418 4.477-8 10-8s10 3.582 10 8"></path></svg>
               <span>Événements Hammamet (+XP & DT)</span>
             </button>
           </div>
         </div>
 
-        <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-medina-500/15 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-medina-500/10 dark:bg-medina-500/15 rounded-full blur-3xl pointer-events-none"></div>
       </div>
 
       <!-- VISITOR STATUS / CHECK-IN STRIP -->
@@ -665,32 +665,32 @@
         </div>
 
         <!-- AUTOMATED RECOMMENDATION ENGINE -->
-        <div id="cibled-recommendations-section" class="bg-slate-900 dark:bg-[#0b1329] border border-slate-800 dark:border-medina-500/40 rounded-3xl p-5 sm:p-8 space-y-6 shadow-2xl">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/10 pb-4">
+        <div id="cibled-recommendations-section" class="bg-white dark:bg-[#0b1329] border border-slate-200 dark:border-medina-500/40 rounded-3xl p-5 sm:p-8 space-y-6 shadow-sm dark:shadow-2xl">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 dark:border-white/10 pb-4">
             <div>
-              <span class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-medina-500/20 text-medina-300 text-[11px] font-bold mb-1">
+              <span class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-medina-100 dark:bg-medina-500/20 text-medina-700 dark:text-medina-300 text-[11px] font-bold mb-1">
                 🎯 Statut Ciblé Actif
               </span>
-              <h3 class="text-lg sm:text-xl font-black text-white">Suggestions Personnalisées pour Vous</h3>
-              <p class="text-xs text-slate-300">Opportunités générées automatiquement selon votre Avatar : <strong class="text-medina-300" id="rec-avatar-name">Frontend Dev & Tourisme Tech</strong></p>
+              <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white">Suggestions Personnalisées pour Vous</h3>
+              <p class="text-xs text-slate-600 dark:text-slate-300">Opportunités générées automatiquement selon votre Avatar : <strong class="text-medina-600 dark:text-medina-300" id="rec-avatar-name">Frontend Dev & Tourisme Tech</strong></p>
             </div>
             <div class="flex items-center gap-2">
-              <span class="text-[11px] text-medina-400 font-semibold bg-medina-950/60 px-3 py-1 rounded-xl border border-medina-800">✓ Profil visible par 28 entreprises</span>
+              <span class="text-[11px] text-medina-700 dark:text-medina-400 font-semibold bg-medina-50 dark:bg-medina-950/60 px-3 py-1 rounded-xl border border-medina-200 dark:border-medina-800">✓ Profil visible par 28 entreprises</span>
             </div>
           </div>
 
           <!-- TABS FOR SUGGESTIONS -->
-          <div class="flex overflow-x-auto pb-2 sm:overflow-visible sm:flex-wrap gap-2 border-b border-white/10 pb-3 no-scrollbar max-w-full">
+          <div class="flex overflow-x-auto pb-2 sm:overflow-visible sm:flex-wrap gap-2 border-b border-slate-100 dark:border-white/10 pb-3 no-scrollbar max-w-full">
             <button onclick="window.HubAct.switchRecTab('stages')" id="rec-tab-stages" class="btn-tactile px-3.5 py-1.5 rounded-xl text-xs font-bold bg-medina-600 text-white shadow transition shrink-0 inline-flex items-center gap-1.5">
               <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/></svg>
               <span>Stages (PFE & Été)</span>
             </button>
-            <button onclick="window.HubAct.switchRecTab('jobs')" id="rec-tab-jobs" class="btn-tactile px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-[#0b1329] text-slate-300 hover:text-white hover:bg-slate-800 transition shrink-0 inline-flex items-center gap-1.5">
-              <svg class="w-3.5 h-3.5 text-terracotta-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            <button onclick="window.HubAct.switchRecTab('jobs')" id="rec-tab-jobs" class="btn-tactile px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-[#0b1329] text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 transition shrink-0 inline-flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5 text-terracotta-500 dark:text-terracotta-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
               <span>Offres d'Emploi (Jobs)</span>
             </button>
-            <button onclick="window.HubAct.switchRecTab('formations')" id="rec-tab-formations" class="btn-tactile px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-[#0b1329] text-slate-300 hover:text-white hover:bg-slate-800 transition shrink-0 inline-flex items-center gap-1.5">
-              <svg class="w-3.5 h-3.5 text-medina-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            <button onclick="window.HubAct.switchRecTab('formations')" id="rec-tab-formations" class="btn-tactile px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-[#0b1329] text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 transition shrink-0 inline-flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5 text-medina-600 dark:text-medina-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
               <span>Formations Clés (+XP)</span>
             </button>
           </div>
@@ -1004,7 +1004,7 @@
       </div>
 
       <!-- Balance Card -->
-      <div class="p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-slate-900 to-[#080c14] text-white space-y-1">
+      <div class="p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-medina-950 via-[#0b1329] to-[#080c14] border border-medina-500/30 text-white space-y-1 shadow-md">
         <span class="text-xs text-slate-400">Solde Disponible Réel :</span>
         <div class="text-2xl font-black text-terracotta-400">
           <span id="wallet-modal-balance">2.000</span> DT

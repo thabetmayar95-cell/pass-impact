@@ -277,24 +277,24 @@ function renderTargetedSuggestions() {
 
   if (state.activeRecTab === 'stages') {
     container.innerHTML = `
-      <div class="bg-slate-800/80 dark:bg-[#080c14]/80 border border-slate-700 dark:border-slate-800 p-4 sm:p-5 rounded-2xl space-y-3 flex flex-col justify-between">
+      <div class="bg-slate-50 dark:bg-[#080c14]/80 border border-slate-200 dark:border-slate-800 p-4 sm:p-5 rounded-2xl space-y-3 flex flex-col justify-between">
         <div class="space-y-1">
-          <span class="text-[10px] font-black uppercase text-medina-400">PFE Recommandé Spécifique</span>
-          <h4 class="text-sm font-bold text-white">Stage PFE : Plateforme Hôtelière & API Flouci</h4>
-          <p class="text-xs text-slate-400">Hôtel Hasdrubal Thalassa Hammamet • 450 DT / mois</p>
-          <p class="text-[11px] text-slate-300">Concordance à 98% avec vos projets React et API de paiement certifiés sur votre carte.</p>
+          <span class="text-[10px] font-black uppercase text-medina-600 dark:text-medina-400">PFE Recommandé Spécifique</span>
+          <h4 class="text-sm font-bold text-slate-900 dark:text-white">Stage PFE : Plateforme Hôtelière & API Flouci</h4>
+          <p class="text-xs text-slate-500 dark:text-slate-400">Hôtel Hasdrubal Thalassa Hammamet • 450 DT / mois</p>
+          <p class="text-[11px] text-slate-600 dark:text-slate-300">Concordance à 98% avec vos projets React et API de paiement certifiés sur votre carte.</p>
         </div>
         <button onclick="window.HubAct.applyToSuggestion('Stage PFE Hasdrubal')" class="btn-tactile w-full py-2.5 rounded-xl bg-medina-600 hover:bg-medina-500 text-white font-bold text-xs transition">
           Candidater avec mon Pass ID Ciblé ➔
         </button>
       </div>
 
-      <div class="bg-slate-800/80 dark:bg-[#080c14]/80 border border-slate-700 dark:border-slate-800 p-4 sm:p-5 rounded-2xl space-y-3 flex flex-col justify-between">
+      <div class="bg-slate-50 dark:bg-[#080c14]/80 border border-slate-200 dark:border-slate-800 p-4 sm:p-5 rounded-2xl space-y-3 flex flex-col justify-between">
         <div class="space-y-1">
-          <span class="text-[10px] font-black uppercase text-terracotta-400">Stage d'été / Perfectionnement</span>
-          <h4 class="text-sm font-bold text-white">Assistant UI/UX & Numérisation Médina</h4>
-          <p class="text-xs text-slate-400">Startup Yallabiz Travel • Hammamet Centre</p>
-          <p class="text-[11px] text-slate-300">Participation à la création du catalogue interactif des artisans céramistes.</p>
+          <span class="text-[10px] font-black uppercase text-terracotta-600 dark:text-terracotta-400">Stage d'été / Perfectionnement</span>
+          <h4 class="text-sm font-bold text-slate-900 dark:text-white">Assistant UI/UX & Numérisation Médina</h4>
+          <p class="text-xs text-slate-500 dark:text-slate-400">Startup Yallabiz Travel • Hammamet Centre</p>
+          <p class="text-[11px] text-slate-600 dark:text-slate-300">Participation à la création du catalogue interactif des artisans céramistes.</p>
         </div>
         <button onclick="window.HubAct.applyToSuggestion('Stage Été Yallabiz')" class="btn-tactile w-full py-2.5 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 text-white font-bold text-xs transition">
           Candidater avec mon Pass ID Ciblé ➔
@@ -303,24 +303,24 @@ function renderTargetedSuggestions() {
     `;
   } else if (state.activeRecTab === 'jobs') {
     container.innerHTML = `
-      <div class="bg-slate-800/80 dark:bg-[#080c14]/80 border border-slate-700 dark:border-slate-800 p-4 sm:p-5 rounded-2xl space-y-3 flex flex-col justify-between">
+      <div class="bg-slate-50 dark:bg-[#080c14]/80 border border-slate-200 dark:border-slate-800 p-4 sm:p-5 rounded-2xl space-y-3 flex flex-col justify-between">
         <div class="space-y-1">
-          <span class="text-[10px] font-black uppercase text-terracotta-400">Premier Emploi / CDI Junior</span>
-          <h4 class="text-sm font-bold text-white">Développeur Frontend Web Junior (React/Node)</h4>
-          <p class="text-xs text-slate-400">Agence Médina Tech • Hammamet / Télétravail</p>
-          <p class="text-[11px] text-slate-300">Rémunération : 1200 - 1500 DT/mois. Vos points XP vous dispensent du test technique initial !</p>
+          <span class="text-[10px] font-black uppercase text-terracotta-600 dark:text-terracotta-400">Premier Emploi / CDI Junior</span>
+          <h4 class="text-sm font-bold text-slate-900 dark:text-white">Développeur Frontend Web Junior (React/Node)</h4>
+          <p class="text-xs text-slate-500 dark:text-slate-400">Agence Médina Tech • Hammamet / Télétravail</p>
+          <p class="text-[11px] text-slate-600 dark:text-slate-300">Rémunération : 1200 - 1500 DT/mois. Vos points XP vous dispensent du test technique initial !</p>
         </div>
         <button onclick="window.HubAct.applyToSuggestion('Emploi Médina Tech')" class="btn-tactile w-full py-2.5 rounded-xl bg-medina-600 hover:bg-medina-500 text-white font-bold text-xs transition">
           Postuler en 1 Clic ➔
         </button>
       </div>
 
-      <div class="bg-slate-800/80 dark:bg-[#080c14]/80 border border-slate-700 dark:border-slate-800 p-4 sm:p-5 rounded-2xl space-y-3 flex flex-col justify-between">
+      <div class="bg-slate-50 dark:bg-[#080c14]/80 border border-slate-200 dark:border-slate-800 p-4 sm:p-5 rounded-2xl space-y-3 flex flex-col justify-between">
         <div class="space-y-1">
-          <span class="text-[10px] font-black uppercase text-medina-400">Mission Freelance Rémunérée</span>
-          <h4 class="text-sm font-bold text-white">Widget Météo & Cartes Médina Hammamet</h4>
-          <p class="text-xs text-slate-400">Office du Tourisme Nabeul-Hammamet • Durée : 2 semaines</p>
-          <p class="text-[11px] text-slate-300">Budget garanti en séquestre : 600 DT versés directement dans votre Tip Jar.</p>
+          <span class="text-[10px] font-black uppercase text-medina-600 dark:text-medina-400">Mission Freelance Rémunérée</span>
+          <h4 class="text-sm font-bold text-slate-900 dark:text-white">Widget Météo & Cartes Médina Hammamet</h4>
+          <p class="text-xs text-slate-500 dark:text-slate-400">Office du Tourisme Nabeul-Hammamet • Durée : 2 semaines</p>
+          <p class="text-[11px] text-slate-600 dark:text-slate-300">Budget garanti en séquestre : 600 DT versés directement dans votre Tip Jar.</p>
         </div>
         <button onclick="window.HubAct.applyToSuggestion('Mission Freelance Office Tourisme')" class="btn-tactile w-full py-2.5 rounded-xl bg-medina-600 hover:bg-medina-500 text-white font-bold text-xs transition">
           Accepter la Mission Freelance ➔
@@ -329,24 +329,24 @@ function renderTargetedSuggestions() {
     `;
   } else {
     container.innerHTML = `
-      <div class="bg-slate-800/80 dark:bg-[#080c14]/80 border border-slate-700 dark:border-slate-800 p-4 sm:p-5 rounded-2xl space-y-3 flex flex-col justify-between">
+      <div class="bg-slate-50 dark:bg-[#080c14]/80 border border-slate-200 dark:border-slate-800 p-4 sm:p-5 rounded-2xl space-y-3 flex flex-col justify-between">
         <div class="space-y-1">
-          <span class="text-[10px] font-black uppercase text-medina-400">+30 XP & Certification</span>
-          <h4 class="text-sm font-bold text-white">Next.js 15 & E-commerce Touristique</h4>
-          <p class="text-xs text-slate-400">HUBACT Lab Hammamet • 10 heures</p>
-          <p class="text-[11px] text-slate-300">Renforcez votre Avatar pour débloquer les offres de stages supérieures à 50 XP.</p>
+          <span class="text-[10px] font-black uppercase text-medina-600 dark:text-medina-400">+30 XP & Certification</span>
+          <h4 class="text-sm font-bold text-slate-900 dark:text-white">Next.js 15 & E-commerce Touristique</h4>
+          <p class="text-xs text-slate-500 dark:text-slate-400">HUBACT Lab Hammamet • 10 heures</p>
+          <p class="text-[11px] text-slate-600 dark:text-slate-300">Renforcez votre Avatar pour débloquer les offres de stages supérieures à 50 XP.</p>
         </div>
         <button onclick="window.HubAct.participateInEventById('ev-4')" class="btn-tactile w-full py-2.5 rounded-xl bg-medina-600 hover:bg-medina-500 text-white font-bold text-xs transition">
           Démarrer (+30 XP & +4 DT) ➔
         </button>
       </div>
 
-      <div class="bg-slate-800/80 dark:bg-[#080c14]/80 border border-slate-700 dark:border-slate-800 p-4 sm:p-5 rounded-2xl space-y-3 flex flex-col justify-between">
+      <div class="bg-slate-50 dark:bg-[#080c14]/80 border border-slate-200 dark:border-slate-800 p-4 sm:p-5 rounded-2xl space-y-3 flex flex-col justify-between">
         <div class="space-y-1">
-          <span class="text-[10px] font-black uppercase text-terracotta-400">+25 XP Pratique</span>
-          <h4 class="text-sm font-bold text-white">Sécurité des Webhooks Flouci & Konnect</h4>
-          <p class="text-xs text-slate-400">Fintech Tunisia • 6 heures</p>
-          <p class="text-[11px] text-slate-300">Idéal pour certifier vos compétences en intégration bancaire tunisienne.</p>
+          <span class="text-[10px] font-black uppercase text-terracotta-600 dark:text-terracotta-400">+25 XP Pratique</span>
+          <h4 class="text-sm font-bold text-slate-900 dark:text-white">Sécurité des Webhooks Flouci & Konnect</h4>
+          <p class="text-xs text-slate-500 dark:text-slate-400">Fintech Tunisia • 6 heures</p>
+          <p class="text-[11px] text-slate-600 dark:text-slate-300">Idéal pour certifier vos compétences en intégration bancaire tunisienne.</p>
         </div>
         <button onclick="window.HubAct.participateInEventById('ev-2')" class="btn-tactile w-full py-2.5 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 text-white font-bold text-xs transition">
           Démarrer (+25 XP & +5 DT) ➔
@@ -591,7 +591,7 @@ export function switchRecTab(tab) {
       if (t === tab) {
         btn.className = 'btn-tactile px-3.5 py-1.5 rounded-xl text-xs font-bold bg-medina-600 text-white shadow transition shrink-0 inline-flex items-center gap-1.5';
       } else {
-        btn.className = 'btn-tactile px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-[#0b1329] text-slate-300 hover:text-white hover:bg-slate-800 transition shrink-0 inline-flex items-center gap-1.5';
+        btn.className = 'btn-tactile px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-[#0b1329] text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 transition shrink-0 inline-flex items-center gap-1.5';
       }
     }
   });
@@ -892,8 +892,13 @@ export function toggleTheme() {
 }
 
 function initTheme() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const paramTheme = urlParams.get('theme');
+  if (paramTheme === 'light' || paramTheme === 'dark') {
+    localStorage.setItem('pi_theme', paramTheme);
+  }
   const saved = localStorage.getItem('pi_theme');
-  const isDark = saved !== 'light';
+  const isDark = saved === 'light' ? false : true;
   if (isDark) {
     document.documentElement.classList.add('dark');
   } else {
@@ -942,7 +947,7 @@ export function showToast(message) {
   if (!container) return;
 
   const toast = document.createElement('div');
-  toast.className = 'pointer-events-auto bg-slate-950/95 dark:bg-white text-white dark:text-slate-900 px-4 py-2.5 rounded-2xl shadow-2xl text-xs font-semibold flex items-center gap-2 border border-slate-700 dark:border-slate-200 transform transition-all duration-300 translate-y-2 opacity-0 max-w-sm';
+  toast.className = 'pointer-events-auto bg-white dark:bg-[#0b1329] text-slate-900 dark:text-white px-4 py-2.5 rounded-2xl shadow-xl text-xs font-semibold flex items-center gap-2 border border-slate-200 dark:border-slate-800 transform transition-all duration-300 translate-y-2 opacity-0 max-w-sm';
   toast.innerHTML = `<svg class="w-4 h-4 text-medina-400 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zm1 11H9v-2h2v2zm0-4H9V5h2v4z"/></svg><span>${escapeHtml(message)}</span>`;
   container.appendChild(toast);
 
