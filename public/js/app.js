@@ -117,19 +117,58 @@ function renderUI() {
   renderQRCode();
 }
 
+// Lightweight Number Interpolation for Tactile XP / Dinars Micro-Interactions
+function animateValue(element, start, end, duration = 500, decimals = 0) {
+  if (!element) return;
+  const numStart = Number(start) || 0;
+  const numEnd = Number(end) || 0;
+  if (numStart === numEnd) {
+    element.textContent = decimals > 0 ? numEnd.toFixed(decimals) : Math.round(numEnd);
+    return;
+  }
+  const range = numEnd - numStart;
+  let startTime = null;
+
+  function step(timestamp) {
+    if (!startTime) startTime = timestamp;
+    const progress = Math.min((timestamp - startTime) / duration, 1);
+    const easeProgress = 1 - Math.pow(1 - progress, 3);
+    const current = numStart + range * easeProgress;
+    element.textContent = decimals > 0 ? current.toFixed(decimals) : Math.round(current);
+    if (progress < 1) {
+      window.requestAnimationFrame(step);
+    } else {
+      element.textContent = decimals > 0 ? numEnd.toFixed(decimals) : Math.round(numEnd);
+    }
+  }
+  window.requestAnimationFrame(step);
+}
+
 // Header & Pill Bars
 function renderHeaderControls() {
   const dinars = state.user.dinarsJar || 0;
   const xp = state.user.xp || 0;
 
+  const prevDinars = state._prevDinars !== undefined ? state._prevDinars : dinars;
+  const prevXp = state._prevXp !== undefined ? state._prevXp : xp;
+
   const dinarsTopEl = document.getElementById('wallet-dinars-top');
-  if (dinarsTopEl) dinarsTopEl.textContent = dinars.toFixed(3);
+  animateValue(dinarsTopEl, prevDinars, dinars, 500, 3);
 
   const xpTopEl = document.getElementById('wallet-xp-top');
-  if (xpTopEl) xpTopEl.textContent = xp;
+  animateValue(xpTopEl, prevXp, xp, 500, 0);
 
   const walletModalBal = document.getElementById('wallet-modal-balance');
-  if (walletModalBal) walletModalBal.textContent = dinars.toFixed(3);
+  animateValue(walletModalBal, prevDinars, dinars, 500, 3);
+
+  const passDinarsDisplay = document.getElementById('pass-dinars-display');
+  animateValue(passDinarsDisplay, prevDinars, dinars, 500, 3);
+
+  const passXpDisplay = document.getElementById('pass-xp-display');
+  animateValue(passXpDisplay, prevXp, xp, 500, 0);
+
+  state._prevDinars = dinars;
+  state._prevXp = xp;
 
   const badgeIcon = document.getElementById('badge-icon');
   const badgeLabel = document.getElementById('badge-label');
@@ -412,6 +451,54 @@ function renderWalletLedger() {
   }).join('');
 }
 
+// Navigation & Perspective Sync
+function syncPerspectiveButtons(perspective) {
+  const isRecruiter = perspective === 'recruiter';
+  const talentBtns = [
+    document.getElementById('perspective-talent-btn'),
+    document.getElementById('mobile-perspective-talent-btn')
+  ];
+  const recruiterBtns = [
+    document.getElementById('perspective-recruiter-btn'),
+    document.getElementById('mobile-perspective-recruiter-btn')
+  ];
+
+  talentBtns.forEach(btn => {
+    if (!btn) return;
+    btn.className = btn.id.includes('mobile')
+      ? (isRecruiter
+          ? 'flex-1 py-2 px-3 rounded-xl text-center text-slate-500 dark:text-slate-400 hover:text-slate-800 transition flex items-center justify-center gap-1.5'
+          : 'flex-1 py-2 px-3 rounded-xl text-center bg-white dark:bg-slate-700 text-medina-600 dark:text-medina-400 font-bold shadow-sm transition flex items-center justify-center gap-1.5')
+      : (isRecruiter
+          ? 'px-2.5 py-1 rounded-lg transition text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200'
+          : 'px-2.5 py-1 rounded-lg transition bg-white dark:bg-slate-700 text-medina-600 dark:text-medina-400 shadow-sm');
+    btn.setAttribute('aria-checked', isRecruiter ? 'false' : 'true');
+  });
+
+  recruiterBtns.forEach(btn => {
+    if (!btn) return;
+    btn.className = btn.id.includes('mobile')
+      ? (isRecruiter
+          ? 'flex-1 py-2 px-3 rounded-xl text-center bg-white dark:bg-slate-700 text-terracotta-600 dark:text-terracotta-400 font-bold shadow-sm transition flex items-center justify-center gap-1.5'
+          : 'flex-1 py-2 px-3 rounded-xl text-center text-slate-500 dark:text-slate-400 hover:text-slate-800 transition flex items-center justify-center gap-1.5')
+      : (isRecruiter
+          ? 'px-2.5 py-1 rounded-lg transition bg-white dark:bg-slate-700 text-terracotta-600 dark:text-terracotta-400 shadow-sm'
+          : 'px-2.5 py-1 rounded-lg transition text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200');
+    btn.setAttribute('aria-checked', isRecruiter ? 'true' : 'false');
+  });
+}
+
+export function switchPerspective(perspective) {
+  syncPerspectiveButtons(perspective);
+  if (perspective === 'recruiter') {
+    navigateTo('page-company');
+    showToast("🏢 Perspective Recruteur : Recherche des profils certifiés & envoi d'offres.");
+  } else {
+    navigateTo('page-profile-card');
+    showToast("🎓 Perspective Talent : Carte 3D, Quêtes Hackathons et Cagnotte Tip Jar.");
+  }
+}
+
 // Navigation
 export function navigateTo(pageId) {
   document.querySelectorAll('.page-module').forEach(el => el.classList.add('hidden'));
@@ -428,6 +515,12 @@ export function navigateTo(pageId) {
       btn.className = 'nav-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-medina-600 hover:bg-slate-100 dark:hover:bg-slate-800';
     }
   });
+
+  if (pageId === 'page-company') {
+    syncPerspectiveButtons('recruiter');
+  } else if (pageId === 'page-profile-card' || pageId === 'page-intro' || pageId === 'page-events') {
+    syncPerspectiveButtons('talent');
+  }
 
   document.getElementById('mobile-menu')?.classList.add('hidden');
 }
@@ -488,9 +581,9 @@ export function switchRecTab(tab) {
     const btn = document.getElementById(`rec-tab-${t}`);
     if (btn) {
       if (t === tab) {
-        btn.className = 'px-3.5 py-1.5 rounded-xl text-xs font-bold bg-medina-600 text-white shadow transition';
+        btn.className = 'btn-tactile px-3.5 py-1.5 rounded-xl text-xs font-bold bg-medina-600 text-white shadow transition shrink-0 inline-flex items-center gap-1.5';
       } else {
-        btn.className = 'px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700 transition';
+        btn.className = 'btn-tactile px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-[#0b1329] text-slate-300 hover:text-white hover:bg-slate-800 transition shrink-0 inline-flex items-center gap-1.5';
       }
     }
   });
@@ -879,9 +972,11 @@ function renderInbox() {
   if (!state.inbox || state.inbox.length === 0) {
     container.innerHTML = `
       <div class="py-8 text-center space-y-2">
-        <div class="text-3xl">📭</div>
+        <div class="w-12 h-12 mx-auto rounded-2xl bg-slate-100 dark:bg-slate-800 text-slate-400 flex items-center justify-center">
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        </div>
         <p class="text-xs font-bold text-slate-800 dark:text-slate-200">Aucune offre reçue pour le moment</p>
-        <p class="text-[11px] text-slate-500 dark:text-slate-400">Vos participations aux hackathons et votre statut 'Ciblé' incitent les entreprises de Hammamet à vous contacter.</p>
+        <p class="text-[11px] text-slate-500 dark:text-slate-400 max-w-xs mx-auto">Vos participations aux hackathons et votre statut 'Ciblé' incitent les entreprises de Hammamet à vous contacter.</p>
       </div>
     `;
     return;
@@ -1031,7 +1126,8 @@ window.HubAct = {
   showToast,
   triggerConfetti,
   printPass,
-  respondToProposal
+  respondToProposal,
+  switchPerspective
 };
 
 // Auto start on load
