@@ -1,5 +1,33 @@
 import { api } from './api.js';
 
+// Consolidated Navigation Items Configuration
+export const NAVIGATION_ITEMS = {
+  brand: {
+    title: 'Passe-Impact',
+    badge: 'Hammamet',
+    arabic: 'باس أثر الحمامات',
+    target: 'page-intro',
+    logo: '/logo.svg'
+  },
+  primary: [
+    { id: 'nav-hackathons', label: 'Hackathons', target: 'page-events', icon: 'pulse', badge: 'Défis' },
+    { id: 'nav-carte-id', label: 'Carte ID & Avatar', target: 'page-profile-card', icon: 'id-card' },
+    { id: 'nav-entreprises', label: 'Espace Entreprises', target: 'page-company', icon: 'briefcase' }
+  ],
+  explorerDropdown: [
+    { id: 'nav-presentation', label: 'Présentation', desc: 'Comprendre Passe Impact & Vision', target: 'page-intro', icon: 'sparkles' },
+    { id: 'nav-tour', label: 'Visite Guidée', desc: 'Découvrir le fonctionnement pas-à-pas', action: 'startGuidedTour', icon: 'compass' },
+    { id: 'nav-verify', label: 'Vérification SHA-256', desc: 'Attestation publique infalsifiable', href: '/verify/u-default', icon: 'shield' },
+    { id: 'nav-visitor', label: 'Pass Visiteur Invité', desc: 'Gestion de statut et cookies', modal: 'modal-visitor', icon: 'user' }
+  ],
+  userPill: {
+    defaultXp: 355,
+    defaultDinars: 62.000,
+    xpSymbol: '★',
+    dinarsSymbol: '🏺'
+  }
+};
+
 // Application State
 const state = {
   currentUserId: 'u-default',
@@ -14,8 +42,8 @@ const state = {
     avatarIcon: '👨‍💻',
     school: 'ISET Nabeul / INSAT • Résidence Hammamet',
     oldResume: 'Licence appliquée en Technologies du Web. Projets scolaires en JavaScript et participation à un club éco-citoyenneté.',
-    xp: 35,
-    dinarsJar: 2.000,
+    xp: 355,
+    dinarsJar: 62.000,
     isTargeted: 1
   },
   projects: [],
@@ -24,7 +52,7 @@ const state = {
   offers: [],
   candidates: [],
   inbox: [],
-  wallet: { balance: 2.000, xp: 35, transactions: [] },
+  wallet: { balance: 62.000, xp: 355, transactions: [] },
   activeRecTab: 'stages',
   activeTalentFilter: 'all',
   talentSearchTerm: '',
@@ -66,11 +94,16 @@ export async function initApp() {
   initSplashScreen();
 
   // Load cookies preference
-  const cookieSaved = localStorage.getItem('pi_cookies_accepted');
-  if (cookieSaved === 'true') {
-    state.hasAcceptedCookies = true;
-    document.getElementById('cookie-banner')?.classList.add('hidden');
-  }
+  try {
+    const cookieSaved = localStorage.getItem('pi_cookies_accepted');
+    if (cookieSaved === 'true') {
+      state.hasAcceptedCookies = true;
+      document.getElementById('cookie-banner')?.classList.add('hidden');
+    }
+  } catch (e) {}
+
+  // Mount UI elements immediately on boot with baseline metrics
+  renderUI();
 
   // Fetch data from backend
   await refreshAllData();
@@ -702,9 +735,6 @@ function setupEventListeners() {
     document.getElementById('mobile-menu')?.classList.toggle('hidden');
   });
 
-  // Dark mode button
-  document.getElementById('theme-btn')?.addEventListener('click', toggleTheme);
-
   // Outside click closes user popover and explore dropdown
   document.addEventListener('click', (e) => {
     if (!e.target.closest('#user-chip-container') && !e.target.closest('#mobile-bottom-profile-btn') && !e.target.closest('#mobile-header-avatar-btn')) {
@@ -931,29 +961,73 @@ export function acceptMinimalCookies() {
   showToast('✓ Cookies essentiels enregistrés : Pass ID, email et nom uniquement.');
 }
 
-// Theme Switcher
-export function toggleTheme() {
-  const isDark = document.documentElement.classList.toggle('dark');
-  localStorage.setItem('pi_theme', isDark ? 'dark' : 'light');
-  const icon = document.getElementById('theme-icon');
-  if (icon) icon.textContent = isDark ? '☀️' : '🌙';
+// Theme Context & Controller
+export const ThemeContext = {
+  getTheme() {
+    try {
+      const saved = localStorage.getItem('pi_theme');
+      if (saved === 'light' || saved === 'dark') return saved;
+    } catch (e) {}
+    return 'dark'; // Safe fallback default to 'dark'
+  },
+  setTheme(theme) {
+    const isDark = theme === 'dark';
+    if (isDark) {
+      document.documentElement.classList.add('dark');
+      document.documentElement.classList.remove('light');
+    } else {
+      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.add('light');
+    }
+    try {
+      localStorage.setItem('pi_theme', isDark ? 'dark' : 'light');
+    } catch (e) {}
+    this.updateVisualState(isDark);
+    return isDark;
+  },
+  toggle() {
+    const current = this.getTheme();
+    const next = current === 'dark' ? 'light' : 'dark';
+    return this.setTheme(next);
+  },
+  updateVisualState(isDark) {
+    const icon = document.getElementById('theme-icon');
+    if (icon) {
+      icon.textContent = isDark ? '☀️' : '🌙';
+      icon.setAttribute('aria-label', isDark ? 'Activer le mode clair' : 'Activer le mode sombre');
+    }
+    const btn = document.getElementById('theme-btn');
+    if (btn) {
+      btn.setAttribute('title', isDark ? 'Passer en mode clair' : 'Passer en mode sombre');
+      btn.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+    }
+  },
+  init() {
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      const qTheme = urlParams.get('theme');
+      if (qTheme === 'light' || qTheme === 'dark') {
+        this.setTheme(qTheme);
+        return;
+      }
+    } catch (e) {}
+    this.setTheme(this.getTheme());
+  }
+};
+
+let lastThemeToggle = 0;
+export function toggleTheme(e) {
+  if (e && typeof e.stopPropagation === 'function') {
+    e.stopPropagation();
+  }
+  const now = Date.now();
+  if (now - lastThemeToggle < 80) return; // Debounce dual-fire
+  lastThemeToggle = now;
+  return ThemeContext.toggle();
 }
 
 function initTheme() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const paramTheme = urlParams.get('theme');
-  if (paramTheme === 'light' || paramTheme === 'dark') {
-    localStorage.setItem('pi_theme', paramTheme);
-  }
-  const saved = localStorage.getItem('pi_theme');
-  const isDark = saved === 'light' ? false : true;
-  if (isDark) {
-    document.documentElement.classList.add('dark');
-  } else {
-    document.documentElement.classList.remove('dark');
-  }
-  const icon = document.getElementById('theme-icon');
-  if (icon) icon.textContent = isDark ? '☀️' : '🌙';
+  ThemeContext.init();
 }
 
 // Splash Screen
@@ -1197,8 +1271,10 @@ function escapeHtml(str) {
     .replace(/'/g, '&#039;');
 }
 
-// Expose on window for inline HTML onclick handlers
-window.HubAct = {
+// Expose on window for inline HTML onclick handlers and early delegates
+window.HubAct = Object.assign(window.HubAct || {}, {
+  __realToggleTheme: toggleTheme,
+  __realNavigateTo: navigateTo,
   navigateTo,
   closeMobileMenu,
   flipPassCard,
@@ -1224,9 +1300,15 @@ window.HubAct = {
   switchPerspective,
   toggleExploreDropdown,
   toggleUserDropdown,
-  closeAllDropdowns
-};
+  closeAllDropdowns,
+  ThemeContext,
+  NAVIGATION_ITEMS
+});
 
-// Auto start on load
-window.addEventListener('DOMContentLoaded', initApp);
+// Auto start on load (or immediate if DOMContentLoaded already fired)
+if (document.readyState === 'loading') {
+  window.addEventListener('DOMContentLoaded', initApp);
+} else {
+  initApp();
+}
 
