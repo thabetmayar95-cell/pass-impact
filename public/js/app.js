@@ -166,8 +166,17 @@ function renderHeaderControls() {
   const xpTopEl = document.getElementById('wallet-xp-top');
   animateValue(xpTopEl, prevXp, xp, 500, 0);
 
+  const xpMobileEl = document.getElementById('wallet-xp-mobile');
+  animateValue(xpMobileEl, prevXp, xp, 500, 0);
+
   const walletModalBal = document.getElementById('wallet-modal-balance');
   animateValue(walletModalBal, prevDinars, dinars, 500, 3);
+
+  const dinarsDropdownEl = document.getElementById('wallet-dinars-dropdown');
+  animateValue(dinarsDropdownEl, prevDinars, dinars, 500, 3);
+
+  const xpDropdownEl = document.getElementById('wallet-xp-dropdown');
+  animateValue(xpDropdownEl, prevXp, xp, 500, 0);
 
   const passDinarsDisplay = document.getElementById('pass-dinars-display');
   animateValue(passDinarsDisplay, prevDinars, dinars, 500, 3);
@@ -177,6 +186,22 @@ function renderHeaderControls() {
 
   state._prevDinars = dinars;
   state._prevXp = xp;
+
+  // Header and Popover user details
+  const headerAvatarBadge = document.getElementById('header-avatar-badge');
+  if (headerAvatarBadge) headerAvatarBadge.textContent = state.user.avatarIcon || '👨‍💻';
+
+  const popoverAvatar = document.getElementById('popover-avatar-icon');
+  if (popoverAvatar) popoverAvatar.textContent = state.user.avatarIcon || '👨‍💻';
+
+  const popoverName = document.getElementById('popover-name');
+  if (popoverName) popoverName.textContent = state.user.name;
+
+  const popoverAvatarTitle = document.getElementById('popover-avatar-title');
+  if (popoverAvatarTitle) popoverAvatarTitle.textContent = state.user.avatar;
+
+  const popoverSchool = document.getElementById('popover-school');
+  if (popoverSchool) popoverSchool.textContent = state.user.school;
 
   const badgeIcon = document.getElementById('badge-icon');
   const badgeLabel = document.getElementById('badge-label');
@@ -516,11 +541,24 @@ export function navigateTo(pageId) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
+  // Desktop primary nav active styling
   document.querySelectorAll('.nav-btn').forEach(btn => {
     if (btn.getAttribute('data-page') === pageId) {
-      btn.className = 'nav-btn px-3 py-1.5 rounded-lg text-xs font-bold text-medina-600 dark:text-medina-400 bg-medina-50 dark:bg-medina-950/60 border border-medina-200 dark:border-medina-800';
+      btn.className = 'nav-btn px-3 py-1.5 rounded-xl text-xs font-bold text-medina-600 dark:text-medina-400 bg-medina-50 dark:bg-medina-950/60 border border-medina-200 dark:border-medina-800 transition duration-200';
     } else {
-      btn.className = 'nav-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-medina-600 hover:bg-slate-100 dark:hover:bg-slate-800';
+      btn.className = 'nav-btn px-3 py-1.5 rounded-xl text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-medina-600 dark:hover:text-white transition duration-200';
+    }
+  });
+
+  // Mobile bottom bar active styling
+  document.querySelectorAll('.bottom-nav-btn').forEach(btn => {
+    const isTarget = btn.getAttribute('data-page') === pageId;
+    if (isTarget) {
+      btn.classList.add('text-medina-600', 'dark:text-medina-400', 'font-bold');
+      btn.classList.remove('text-slate-500', 'dark:text-slate-400');
+    } else {
+      btn.classList.remove('text-medina-600', 'dark:text-medina-400', 'font-bold');
+      btn.classList.add('text-slate-500', 'dark:text-slate-400');
     }
   });
 
@@ -530,7 +568,7 @@ export function navigateTo(pageId) {
     syncPerspectiveButtons('talent');
   }
 
-  document.getElementById('mobile-menu')?.classList.add('hidden');
+  closeAllDropdowns();
 }
 
 // 3D Card Flip
@@ -667,11 +705,21 @@ function setupEventListeners() {
   // Dark mode button
   document.getElementById('theme-btn')?.addEventListener('click', toggleTheme);
 
-  // Keyboard accessibility: Escape key closes active modals and menu
+  // Outside click closes user popover and explore dropdown
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('#user-chip-container') && !e.target.closest('#mobile-bottom-profile-btn') && !e.target.closest('#mobile-header-avatar-btn')) {
+      document.getElementById('user-popover')?.classList.add('hidden');
+    }
+    if (!e.target.closest('#explore-dropdown-container')) {
+      document.getElementById('explore-dropdown')?.classList.add('hidden');
+    }
+  });
+
+  // Keyboard accessibility: Escape key closes active modals, dropdowns and menu
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       document.querySelectorAll('[id^="modal-"]').forEach(m => m.classList.add('hidden'));
-      closeMobileMenu();
+      closeAllDropdowns();
     }
   });
 
@@ -926,8 +974,24 @@ export function dismissSplash() {
   }, 700);
 }
 
-// Mobile Menu Helper
+// Mobile & Dropdown Navigation Helpers
 export function closeMobileMenu() {
+  document.getElementById('mobile-menu')?.classList.add('hidden');
+}
+
+export function toggleExploreDropdown() {
+  document.getElementById('user-popover')?.classList.add('hidden');
+  document.getElementById('explore-dropdown')?.classList.toggle('hidden');
+}
+
+export function toggleUserDropdown() {
+  document.getElementById('explore-dropdown')?.classList.add('hidden');
+  document.getElementById('user-popover')?.classList.toggle('hidden');
+}
+
+export function closeAllDropdowns() {
+  document.getElementById('explore-dropdown')?.classList.add('hidden');
+  document.getElementById('user-popover')?.classList.add('hidden');
   document.getElementById('mobile-menu')?.classList.add('hidden');
 }
 
@@ -1157,7 +1221,10 @@ window.HubAct = {
   triggerConfetti,
   printPass,
   respondToProposal,
-  switchPerspective
+  switchPerspective,
+  toggleExploreDropdown,
+  toggleUserDropdown,
+  closeAllDropdowns
 };
 
 // Auto start on load

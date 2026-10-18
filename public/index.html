@@ -106,185 +106,257 @@
   </div>
 
   <!-- ==================================================== -->
-  <!-- 2. HEADER & WALLET BAR                               -->
+  <!-- 2. REFACTORED DESKTOP & MOBILE NAVIGATION            -->
   <!-- ==================================================== -->
-  <header class="sticky top-0 z-40 glass-nav border-b border-slate-200 dark:border-slate-800/80 transition-colors">
-    <div class="max-w-7xl mx-auto px-2.5 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-1.5 sm:gap-2">
+  <header class="sticky top-0 z-40 bg-white/90 dark:bg-[#0B1120]/90 backdrop-blur-md border-b border-slate-200 dark:border-white/10 transition-colors">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-3">
       
-      <!-- Brand Logo -->
-      <div class="flex items-center gap-1.5 sm:gap-3 shrink-0">
+      <!-- Left Zone: Brand Logo & City Tag -->
+      <div class="flex items-center gap-2 sm:gap-3 shrink-0">
         <button onclick="window.HubAct.navigateTo('page-intro')" class="flex items-center gap-2 sm:gap-2.5 text-left group">
           <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl overflow-hidden shadow-sm group-hover:scale-105 transition-transform shrink-0 flex items-center justify-center bg-white dark:bg-[#0b1329] border border-slate-200 dark:border-medina-500/30 p-0.5 sm:p-1">
-            <img src="/logo.svg" alt="Passe Impact Hammamet" class="w-full h-full object-contain">
+            <img src="/logo.svg" alt="Passe-Impact Hammamet" class="w-full h-full object-contain">
           </div>
           <div>
             <div class="flex items-center gap-1 sm:gap-1.5">
-              <span class="text-sm sm:text-base font-black tracking-tight text-slate-900 dark:text-white whitespace-nowrap">Passe Impact</span>
-              <span class="text-[9px] sm:text-[10px] font-bold px-1 sm:px-1.5 py-0.5 rounded bg-terracotta-100 text-terracotta-700 dark:bg-terracotta-950 dark:text-terracotta-300 hidden sm:inline-block">Hammamet</span>
+              <span class="text-sm sm:text-base font-black tracking-tight text-slate-900 dark:text-white whitespace-nowrap">Passe-Impact</span>
+              <span class="text-[9px] sm:text-[10px] font-bold px-1 sm:px-1.5 py-0.5 rounded bg-medina-100 text-medina-700 dark:bg-medina-950 dark:text-medina-300">Hammamet</span>
             </div>
             <span class="text-[10px] text-slate-500 dark:text-slate-400 font-medium hidden sm:block -mt-1 font-arabic">باس أثر الحمامات</span>
           </div>
         </button>
       </div>
 
-      <!-- Desktop Nav Navigation -->
-      <nav class="hidden lg:flex items-center gap-1">
-        <button onclick="window.HubAct.navigateTo('page-intro')" class="nav-btn px-3 py-1.5 rounded-lg text-xs font-bold text-medina-600 dark:text-medina-400 bg-medina-50 dark:bg-medina-950/60 border border-medina-200 dark:border-medina-800" data-page="page-intro">
-          Présentation
-        </button>
-        <button onclick="window.HubAct.startGuidedTour()" class="nav-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-medina-600 hover:bg-slate-100 dark:hover:bg-slate-800" data-page="tour">
-          <span class="inline-flex items-center gap-1">
-            <svg class="w-3.5 h-3.5 text-terracotta-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
-            Visite Guidée
-          </span>
-        </button>
-        <button onclick="window.HubAct.navigateTo('page-profile-card')" class="nav-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-medina-600 hover:bg-slate-100 dark:hover:bg-slate-800" data-page="page-profile-card">
-          <span class="inline-flex items-center gap-1">
-            <svg class="w-3.5 h-3.5 text-medina-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="3"></rect><circle cx="9" cy="10" r="2"></circle><line x1="15" y1="8" x2="17" y2="8"></line><line x1="15" y1="12" x2="17" y2="12"></line><line x1="7" y1="16" x2="17" y2="16"></line></svg>
-            Carte ID & Avatar
-          </span>
-        </button>
-        <button onclick="window.HubAct.navigateTo('page-events')" class="nav-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-medina-600 hover:bg-slate-100 dark:hover:bg-slate-800" data-page="page-events">
-          <span class="inline-flex items-center gap-1">
-            <svg class="w-3.5 h-3.5 text-medina-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h20M2 12c0 4.418 4.477 8 10 8s10-3.582 10-8M2 12c0-4.418 4.477-8 10-8s10 3.582 10 8"></path></svg>
-            Hackathons Hammamet
-          </span>
-        </button>
-        <button onclick="window.HubAct.openModal('modal-wallet')" class="nav-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-medina-600 hover:bg-slate-100 dark:hover:bg-slate-800" data-page="page-wallet">
-          <span class="inline-flex items-center gap-1">
-            <svg class="w-3.5 h-3.5 text-terracotta-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
-            Cagnotte & Paiements
-          </span>
-        </button>
-        <button onclick="window.HubAct.navigateTo('page-company')" class="nav-btn px-3 py-1.5 rounded-lg text-xs font-bold text-terracotta-600 dark:text-terracotta-400 hover:bg-terracotta-50 dark:hover:bg-terracotta-950/40" data-page="page-company">
-          <span class="inline-flex items-center gap-1">
-            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><line x1="9" y1="22" x2="9" y2="22.01"></line><line x1="15" y1="22" x2="15" y2="22.01"></line><line x1="9" y1="6" x2="9" y2="6.01"></line><line x1="15" y1="6" x2="15" y2="6.01"></line><line x1="9" y1="10" x2="9" y2="10.01"></line><line x1="15" y1="10" x2="15" y2="10.01"></line><line x1="9" y1="14" x2="9" y2="14.01"></line><line x1="15" y1="14" x2="15" y2="14.01"></line><line x1="9" y1="18" x2="9" y2="18.01"></line><line x1="15" y1="18" x2="15" y2="18.01"></line></svg>
-            Espace Entreprises
-          </span>
-        </button>
-      </nav>
-
-      <!-- Right Controls: Perspective Switcher / Tip Jar / Points / Inbox / Theme / Burger -->
-      <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+      <!-- Center Zone: Primary Desktop Navigation (Max 4 Core Links + Explorer Dropdown) -->
+      <nav class="hidden lg:flex items-center gap-1 xl:gap-2" aria-label="Navigation principale">
         
-        <!-- Hackathon Pitch Perspective Switcher (Segmented Pill) -->
-        <div class="hidden md:flex items-center bg-slate-100 dark:bg-slate-800 p-0.5 rounded-xl border border-slate-200 dark:border-slate-700/80 text-xs font-bold" id="perspective-switcher" role="radiogroup" aria-label="Perspective de Démo">
-          <button id="perspective-talent-btn" onclick="window.HubAct.switchPerspective('talent')" class="px-2.5 py-1 rounded-lg transition bg-white dark:bg-slate-700 text-medina-600 dark:text-medina-400 shadow-sm" aria-checked="true">
-            <span class="inline-flex items-center gap-1.5">
-              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/></svg>
-              <span>Talent</span>
-            </span>
+        <!-- 1. Hackathons (Featured/Accented item with glow badge) -->
+        <button onclick="window.HubAct.navigateTo('page-events')" class="nav-btn px-3 py-1.5 rounded-xl text-xs font-bold text-slate-700 dark:text-slate-200 hover:text-medina-600 dark:hover:text-white transition duration-200 flex items-center gap-1.5" data-page="page-events">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-medina-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-medina-500"></span>
+          </span>
+          <span>Hackathons</span>
+          <span class="text-[10px] px-1.5 py-0.2 rounded-md bg-medina-500/10 text-medina-600 dark:text-medina-300 font-semibold border border-medina-500/20">Défis</span>
+        </button>
+
+        <!-- 2. Missions & Skills -->
+        <button onclick="window.HubAct.navigateTo('page-company')" class="nav-btn px-3 py-1.5 rounded-xl text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-medina-600 dark:hover:text-white transition duration-200 flex items-center gap-1.5" data-page="page-company">
+          <svg class="w-3.5 h-3.5 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <span>Missions & Skills</span>
+        </button>
+
+        <!-- 3. Carte ID & Avatar -->
+        <button onclick="window.HubAct.navigateTo('page-profile-card')" class="nav-btn px-3 py-1.5 rounded-xl text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-medina-600 dark:hover:text-white transition duration-200 flex items-center gap-1.5" data-page="page-profile-card">
+          <svg class="w-3.5 h-3.5 text-medina-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="3"></rect><circle cx="9" cy="10" r="2"></circle><line x1="15" y1="8" x2="17" y2="8"></line><line x1="15" y1="12" x2="17" y2="12"></line><line x1="7" y1="16" x2="17" y2="16"></line></svg>
+          <span>Carte ID & Avatar</span>
+        </button>
+
+        <!-- 4. Entreprises -->
+        <button onclick="window.HubAct.navigateTo('page-company')" class="nav-btn px-3 py-1.5 rounded-xl text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-terracotta-600 dark:hover:text-white transition duration-200 flex items-center gap-1.5" data-page="page-company">
+          <svg class="w-3.5 h-3.5 text-terracotta-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><line x1="9" y1="22" x2="9" y2="22.01"></line><line x1="15" y1="22" x2="15" y2="22.01"></line><line x1="9" y1="6" x2="9" y2="6.01"></line><line x1="15" y1="6" x2="15" y2="6.01"></line></svg>
+          <span>Entreprises</span>
+        </button>
+
+        <!-- Explorer Dropdown ("À propos ▾") -->
+        <div class="relative" id="explore-dropdown-container">
+          <button onclick="window.HubAct.toggleExploreDropdown()" class="px-2.5 py-1.5 rounded-xl text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition duration-200 flex items-center gap-1" id="btn-explore-dropdown" aria-haspopup="true" aria-expanded="false">
+            <span>Explorer</span>
+            <svg class="w-3.5 h-3.5 text-slate-400" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
           </button>
-          <button id="perspective-recruiter-btn" onclick="window.HubAct.switchPerspective('recruiter')" class="px-2.5 py-1 rounded-lg transition text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200" aria-checked="false">
-            <span class="inline-flex items-center gap-1.5">
-              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-              <span>Recruteur</span>
-            </span>
-          </button>
+
+          <!-- Dropdown menu content -->
+          <div id="explore-dropdown" class="hidden absolute left-0 mt-2 w-64 rounded-2xl bg-white dark:bg-[#0B1120] border border-slate-200 dark:border-white/10 shadow-2xl p-2 space-y-1 z-50 text-xs font-medium">
+            <button onclick="window.HubAct.navigateTo('page-intro'); window.HubAct.closeAllDropdowns()" class="w-full text-left p-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/80 flex items-start gap-2.5 transition">
+              <span class="text-medina-500 mt-0.5">ℹ️</span>
+              <div>
+                <span class="font-bold text-slate-900 dark:text-white block">Présentation Générale</span>
+                <span class="text-[10px] text-slate-500 dark:text-slate-400 block">Mission locale & opportunités ciblées</span>
+              </div>
+            </button>
+            <button onclick="window.HubAct.startGuidedTour(); window.HubAct.closeAllDropdowns()" class="w-full text-left p-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/80 flex items-start gap-2.5 transition">
+              <span class="text-terracotta-500 mt-0.5">🧭</span>
+              <div>
+                <span class="font-bold text-slate-900 dark:text-white block">Visite Guidée Interactive</span>
+                <span class="text-[10px] text-slate-500 dark:text-slate-400 block">Découvrir le fonctionnement pas-à-pas</span>
+              </div>
+            </button>
+            <a href="/verify/u-default" target="_blank" onclick="window.HubAct.closeAllDropdowns()" class="w-full text-left p-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/80 flex items-start gap-2.5 transition">
+              <span class="text-medina-400 mt-0.5">🛡️</span>
+              <div>
+                <span class="font-bold text-slate-900 dark:text-white block">Vérification Officielle SHA-256 ↗</span>
+                <span class="text-[10px] text-slate-500 dark:text-slate-400 block">Attestation publique infalsifiable</span>
+              </div>
+            </a>
+            <button onclick="window.HubAct.openModal('modal-visitor'); window.HubAct.closeAllDropdowns()" class="w-full text-left p-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/80 flex items-start gap-2.5 transition">
+              <span class="text-slate-400 mt-0.5">👤</span>
+              <div>
+                <span class="font-bold text-slate-900 dark:text-white block">Pass Visiteur Invité</span>
+                <span class="text-[10px] text-slate-500 dark:text-slate-400 block">Gestion de statut et cookies</span>
+              </div>
+            </button>
+          </div>
         </div>
 
-        <!-- Tip Jar Balance Pill (Copper / Terracotta Accent) -->
-        <button onclick="window.HubAct.openModal('modal-wallet')" class="flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1 rounded-full bg-terracotta-50 dark:bg-terracotta-950/60 border border-terracotta-200 dark:border-terracotta-800 text-terracotta-800 dark:text-terracotta-200 text-xs font-bold shadow-sm hover:scale-105 transition" title="Votre Cagnotte Tip Jar en Dinars">
-          <svg class="w-3.5 h-3.5 text-terracotta-500 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-          <span id="wallet-dinars-top">2.000</span> <span class="text-[10px] text-terracotta-600 dark:text-terracotta-400 font-semibold">DT</span>
-        </button>
+      </nav>
 
-        <!-- Points XP Pill -->
-        <button onclick="window.HubAct.navigateTo('page-profile-card')" class="hidden sm:flex items-center gap-1 px-2.5 py-1 rounded-full bg-medina-50 dark:bg-medina-950/60 border border-medina-200 dark:border-medina-800 text-medina-700 dark:text-medina-300 text-xs font-bold" title="Points XP validés">
-          <svg class="w-3 h-3 text-medina-500 fill-current" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-          <span id="wallet-xp-top">35</span> <span class="text-[10px] text-slate-400 font-normal">XP</span>
-        </button>
+      <!-- Right Zone: Consolidated User Hub & Controls -->
+      <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+        
+        <!-- Mobile Compact XP Badge (shown on <sm screens) -->
+        <div class="flex sm:hidden items-center gap-1 px-2 py-1 rounded-full bg-medina-50 dark:bg-medina-950/80 border border-medina-200 dark:border-medina-800 text-medina-700 dark:text-medina-300 font-bold text-[11px]">
+          <span class="text-medina-500">⚡</span>
+          <span id="wallet-xp-mobile">35</span>
+        </div>
 
-        <!-- Recruiter Proposals Inbox Bell -->
-        <button id="btn-inbox" onclick="window.HubAct.openModal('modal-inbox')" class="relative p-1.5 sm:p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition" aria-label="Boîte de réception des offres" title="Offres reçues des recruteurs">
-          <svg class="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-          </svg>
-          <span id="inbox-unread-count" class="absolute -top-0.5 -right-0.5 w-4 h-4 rounded-full bg-terracotta-500 text-white text-[10px] font-black flex items-center justify-center">1</span>
-        </button>
+        <!-- UNIFIED USER STATUS CHIP (Avatar + XP + Wallet Pill) -->
+        <div class="relative" id="user-chip-container">
+          <button onclick="window.HubAct.toggleUserDropdown()" class="flex items-center gap-1.5 sm:gap-2 p-1 sm:pr-2.5 rounded-full bg-slate-100 hover:bg-slate-200/80 dark:bg-slate-800/80 dark:hover:bg-slate-800 border border-slate-200 dark:border-white/10 shadow-sm transition duration-200 text-xs" aria-label="Menu utilisateur & Cagnotte" id="user-chip-btn">
+            
+            <!-- User Avatar Pip -->
+            <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-medina-600 text-white flex items-center justify-center text-sm shadow-sm font-bold shrink-0" id="header-avatar-badge">
+              👨‍💻
+            </div>
 
-        <!-- Dark Mode Toggle -->
-        <button id="theme-btn" class="hidden sm:flex p-1.5 sm:p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition" aria-label="Basculer le mode sombre">
+            <!-- XP Badge (Desktop) -->
+            <div class="hidden sm:flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-medina-50 dark:bg-medina-950/80 border border-medina-200 dark:border-medina-800 text-medina-700 dark:text-medina-300 font-bold text-[11px]">
+              <span class="text-medina-500">⚡</span>
+              <span id="wallet-xp-top">35</span>
+              <span class="text-[9px] text-slate-400 font-normal">XP</span>
+            </div>
+
+            <!-- Wallet Pill (Desktop) -->
+            <div class="hidden sm:flex items-center gap-1 px-2 py-0.5 rounded-full bg-terracotta-50 dark:bg-terracotta-950/80 border border-terracotta-200 dark:border-terracotta-800 text-terracotta-800 dark:text-terracotta-200 font-bold text-[11px]">
+              <span class="text-terracotta-500">🏺</span>
+              <span id="wallet-dinars-top">2.000</span>
+              <span class="text-[9px] text-terracotta-600 dark:text-terracotta-400 font-normal">DT</span>
+              <svg class="w-3 h-3 text-slate-400 ml-0.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+            </div>
+          </button>
+
+          <!-- Account Popover / Dropdown Menu -->
+          <div id="user-popover" class="hidden absolute right-0 mt-2 w-72 rounded-2xl bg-white dark:bg-[#0B1120] border border-slate-200 dark:border-white/10 shadow-2xl p-4 space-y-3 z-50 text-xs">
+            
+            <!-- User Header -->
+            <div class="flex items-center gap-3 pb-3 border-b border-slate-100 dark:border-slate-800">
+              <div class="w-10 h-10 rounded-2xl bg-medina-600 text-white flex items-center justify-center text-xl shrink-0 shadow-md" id="popover-avatar-icon">
+                👨‍💻
+              </div>
+              <div class="min-w-0 flex-1">
+                <div class="flex items-center justify-between">
+                  <h4 class="font-extrabold text-slate-900 dark:text-white truncate" id="popover-name">Youssef Mansour</h4>
+                  <span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-medina-100 text-medina-700 dark:bg-medina-950 dark:text-medina-300" id="badge-label">Membre Ciblé</span>
+                </div>
+                <p class="text-[11px] text-slate-500 dark:text-slate-400 truncate" id="popover-avatar-title">Frontend Dev & Tourisme Tech</p>
+                <p class="text-[10px] text-slate-400 truncate font-mono" id="popover-school">ISET Nabeul • Hammamet</p>
+              </div>
+            </div>
+
+            <!-- Cagnotte Quick Stats Card -->
+            <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-100 dark:border-slate-800 space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-slate-500 dark:text-slate-400 text-[11px]">Cagnotte Tip Jar</span>
+                <span class="font-black text-terracotta-500 text-sm"><span id="wallet-dinars-dropdown">2.000</span> DT</span>
+              </div>
+              <div class="flex items-center justify-between text-[11px]">
+                <span class="text-slate-500 dark:text-slate-400">Total XP Validé</span>
+                <span class="font-bold text-medina-500"><span id="wallet-xp-dropdown">35</span> XP</span>
+              </div>
+              <button onclick="window.HubAct.openModal('modal-wallet'); window.HubAct.closeAllDropdowns()" class="btn-tactile w-full py-1.5 rounded-lg bg-terracotta-500 hover:bg-terracotta-600 text-white font-bold text-[11px] shadow-sm flex items-center justify-center gap-1">
+                <span>+ Recharger / Retirer</span>
+              </button>
+            </div>
+
+            <!-- Links & Actions -->
+            <div class="space-y-1">
+              <button onclick="window.HubAct.openModal('modal-inbox'); window.HubAct.closeAllDropdowns()" class="w-full text-left py-2 px-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 flex items-center justify-between text-slate-700 dark:text-slate-300 transition">
+                <span class="flex items-center gap-2">
+                  <svg class="w-4 h-4 text-terracotta-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                  <span>Boîte de Réception Offres</span>
+                </span>
+                <span id="inbox-unread-count" class="px-1.5 py-0.2 rounded-full bg-terracotta-500 text-white text-[10px] font-bold">1</span>
+              </button>
+
+              <button onclick="window.HubAct.navigateTo('page-profile-card'); window.HubAct.closeAllDropdowns()" class="w-full text-left py-2 px-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 flex items-center gap-2 text-slate-700 dark:text-slate-300 transition">
+                <svg class="w-4 h-4 text-medina-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="3"></rect><circle cx="9" cy="10" r="2"></circle><line x1="15" y1="8" x2="17" y2="8"></line><line x1="15" y1="12" x2="17" y2="12"></line><line x1="7" y1="16" x2="17" y2="16"></line></svg>
+                <span>Ma Carte ID & Avatar</span>
+              </button>
+
+              <button onclick="window.HubAct.printPass(); window.HubAct.closeAllDropdowns()" class="w-full text-left py-2 px-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 flex items-center gap-2 text-slate-700 dark:text-slate-300 transition">
+                <svg class="w-4 h-4 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                <span>Imprimer mon Pass (PDF)</span>
+              </button>
+            </div>
+
+            <!-- Perspective Switcher Inside Popover -->
+            <div class="pt-2 border-t border-slate-100 dark:border-slate-800">
+              <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1.5">Perspective de Démo</span>
+              <div class="flex items-center bg-slate-100 dark:bg-slate-800 p-0.5 rounded-xl text-xs font-bold" id="perspective-switcher" role="radiogroup" aria-label="Perspective de Démo">
+                <button id="perspective-talent-btn" onclick="window.HubAct.switchPerspective('talent'); window.HubAct.closeAllDropdowns()" class="flex-1 py-1 rounded-lg transition bg-white dark:bg-slate-700 text-medina-600 dark:text-medina-400 shadow-sm text-center" aria-checked="true">
+                  Talent
+                </button>
+                <button id="perspective-recruiter-btn" onclick="window.HubAct.switchPerspective('recruiter'); window.HubAct.closeAllDropdowns()" class="flex-1 py-1 rounded-lg transition text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200 text-center" aria-checked="false">
+                  Recruteur
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Theme Toggle button -->
+        <button id="theme-btn" onclick="window.HubAct.toggleTheme()" class="p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-white/10 transition duration-200" aria-label="Basculer le thème">
           <span id="theme-icon">🌙</span>
         </button>
 
-        <!-- Mobile Burger -->
-        <button id="mobile-menu-btn" class="lg:hidden p-1.5 sm:p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" aria-label="Menu Mobile">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-        </button>
       </div>
 
-    </div>
-
-    <!-- Mobile Menu Dropdown -->
-    <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-200 dark:border-slate-800/80 bg-white/95 dark:bg-[#080c14]/95 backdrop-blur-md px-3 sm:px-4 py-3 space-y-1.5 text-xs font-semibold shadow-xl max-h-[calc(100vh-4rem)] overflow-y-auto">
-      
-      <!-- Mobile Perspective Switcher -->
-      <div class="p-1 mb-2 bg-slate-100 dark:bg-slate-800/90 rounded-2xl flex items-center gap-1 text-xs font-bold">
-        <button id="mobile-perspective-talent-btn" onclick="window.HubAct.switchPerspective('talent'); window.HubAct.closeMobileMenu()" class="flex-1 py-2 px-3 rounded-xl text-center bg-white dark:bg-slate-700 text-medina-600 dark:text-medina-400 shadow-sm transition flex items-center justify-center gap-1.5">
-          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/></svg>
-          <span>Talent</span>
-        </button>
-        <button id="mobile-perspective-recruiter-btn" onclick="window.HubAct.switchPerspective('recruiter'); window.HubAct.closeMobileMenu()" class="flex-1 py-2 px-3 rounded-xl text-center text-slate-500 dark:text-slate-400 hover:text-slate-800 transition flex items-center justify-center gap-1.5">
-          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-          <span>Recruteur</span>
-        </button>
-      </div>
-
-      <button onclick="window.HubAct.navigateTo('page-intro'); window.HubAct.closeMobileMenu()" class="w-full text-left py-2.5 px-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/80 flex items-center gap-2.5 transition active:bg-slate-200 dark:active:bg-slate-700 min-h-[44px]">
-        <svg class="w-4 h-4 text-medina-500 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="12 6 12 12 16 14"/></svg>
-        <span>Présentation Générale</span>
-      </button>
-      <button onclick="window.HubAct.startGuidedTour(); window.HubAct.closeMobileMenu()" class="w-full text-left py-2.5 px-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/80 flex items-center gap-2.5 transition active:bg-slate-200 dark:active:bg-slate-700 min-h-[44px]">
-        <svg class="w-4 h-4 text-terracotta-500 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
-        <span>Lancer la Visite Guidée</span>
-      </button>
-      <button onclick="window.HubAct.navigateTo('page-profile-card'); window.HubAct.closeMobileMenu()" class="w-full text-left py-2.5 px-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/80 flex items-center gap-2.5 transition active:bg-slate-200 dark:active:bg-slate-700 min-h-[44px]">
-        <svg class="w-4 h-4 text-medina-500 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="3"></rect><circle cx="9" cy="10" r="2"></circle><line x1="15" y1="8" x2="17" y2="8"></line><line x1="15" y1="12" x2="17" y2="12"></line><line x1="7" y1="16" x2="17" y2="16"></line></svg>
-        <span>Ma Carte ID, Avatar & CV Ancien</span>
-      </button>
-      <button onclick="window.HubAct.openModal('modal-inbox'); window.HubAct.closeMobileMenu()" class="w-full text-left py-2.5 px-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/80 flex items-center justify-between transition active:bg-slate-200 dark:active:bg-slate-700 min-h-[44px]">
-        <span class="flex items-center gap-2.5">
-          <svg class="w-4 h-4 text-terracotta-500 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-          <span>Boîte de Réception Offres</span>
-        </span>
-        <span id="inbox-mobile-count" class="px-2 py-0.5 rounded-full bg-terracotta-500 text-white text-[10px] font-bold">1</span>
-      </button>
-      <button onclick="window.HubAct.navigateTo('page-events'); window.HubAct.closeMobileMenu()" class="w-full text-left py-2.5 px-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/80 flex items-center gap-2.5 transition active:bg-slate-200 dark:active:bg-slate-700 min-h-[44px]">
-        <svg class="w-4 h-4 text-medina-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h20M2 12c0 4.418 4.477 8 10 8s10-3.582 10-8M2 12c0-4.418 4.477-8 10-8s10 3.582 10 8"></path></svg>
-        <span>Hackathons Hammamet (+XP & Dinars)</span>
-      </button>
-      <button onclick="window.HubAct.openModal('modal-wallet'); window.HubAct.closeMobileMenu()" class="w-full text-left py-2.5 px-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/80 flex items-center gap-2.5 transition active:bg-slate-200 dark:active:bg-slate-700 min-h-[44px]">
-        <svg class="w-4 h-4 text-terracotta-500 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
-        <span>Ma Cagnotte (Tip Jar) & Flouci/D17</span>
-      </button>
-      <button onclick="window.HubAct.navigateTo('page-company'); window.HubAct.closeMobileMenu()" class="w-full text-left py-2.5 px-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/80 flex items-center gap-2.5 transition active:bg-slate-200 dark:active:bg-slate-700 min-h-[44px] text-terracotta-600 dark:text-terracotta-400 font-bold">
-        <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><line x1="9" y1="22" x2="9" y2="22.01"></line><line x1="15" y1="22" x2="15" y2="22.01"></line><line x1="9" y1="6" x2="9" y2="6.01"></line><line x1="15" y1="6" x2="15" y2="6.01"></line><line x1="9" y1="10" x2="9" y2="10.01"></line><line x1="15" y1="10" x2="15" y2="10.01"></line><line x1="9" y1="14" x2="9" y2="14.01"></line><line x1="15" y1="14" x2="15" y2="14.01"></line><line x1="9" y1="18" x2="9" y2="18.01"></line><line x1="15" y1="18" x2="15" y2="18.01"></line></svg>
-        <span>Espace Entreprises & Recruteurs</span>
-      </button>
-
-      <div class="pt-2 border-t border-slate-100 dark:border-slate-800 space-y-1">
-        <button onclick="window.HubAct.toggleTheme()" class="w-full text-left py-2.5 px-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/80 flex items-center justify-between transition min-h-[44px]">
-          <span class="flex items-center gap-2.5">
-            <svg class="w-4 h-4 text-slate-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-            <span>Thème Sombre / Clair</span>
-          </span>
-          <span class="text-xs text-slate-400">Basculer</span>
-        </button>
-        <button onclick="window.HubAct.openModal('modal-visitor'); window.HubAct.closeMobileMenu()" class="w-full text-left py-2.5 px-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/80 flex items-center justify-between transition min-h-[44px]">
-          <span class="flex items-center gap-2.5">
-            <svg class="w-4 h-4 text-medina-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            <span>Statut du Compte (Visiteur / Étudiant)</span>
-          </span>
-        </button>
-      </div>
     </div>
   </header>
 
   <!-- ==================================================== -->
-  <!-- 3. COOKIE CONSENT BANNER (STRICT DISCLOSURE)         -->
+  <!-- 3. MOBILE APP-LIKE BOTTOM NAVIGATION BAR (FIXED)      -->
   <!-- ==================================================== -->
-  <div id="cookie-banner" class="fixed bottom-4 left-4 right-4 sm:left-auto sm:right-4 sm:max-w-md z-40 bg-white dark:bg-slate-800 border-2 border-medina-500 rounded-3xl p-4 sm:p-5 shadow-2xl space-y-3 transition transform duration-300">
+  <nav class="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-[#0B1120]/95 backdrop-blur-md border-t border-slate-200 dark:border-white/10 px-2 py-1.5 shadow-2xl" aria-label="Navigation mobile">
+    <div class="max-w-md mx-auto grid grid-cols-4 items-center">
+      
+      <!-- 1. Accueil / Explorer -->
+      <button onclick="window.HubAct.navigateTo('page-intro')" class="bottom-nav-btn py-1 px-2 flex flex-col items-center justify-center gap-0.5 text-medina-600 dark:text-medina-400 font-bold transition text-[11px]" data-page="page-intro">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+        <span>Accueil</span>
+      </button>
+
+      <!-- 2. Hackathons (Accented center tab) -->
+      <button onclick="window.HubAct.navigateTo('page-events')" class="bottom-nav-btn py-1 px-2 flex flex-col items-center justify-center gap-0.5 text-slate-500 dark:text-slate-400 hover:text-medina-600 transition text-[11px]" data-page="page-events">
+        <div class="relative">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
+          <span class="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-medina-500"></span>
+        </div>
+        <span>Hackathons</span>
+      </button>
+
+      <!-- 3. Mon Avatar / ID -->
+      <button onclick="window.HubAct.navigateTo('page-profile-card')" class="bottom-nav-btn py-1 px-2 flex flex-col items-center justify-center gap-0.5 text-slate-500 dark:text-slate-400 hover:text-medina-600 transition text-[11px]" data-page="page-profile-card">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="3"></rect><circle cx="9" cy="10" r="2"></circle><line x1="15" y1="8" x2="17" y2="8"></line><line x1="15" y1="12" x2="17" y2="12"></line><line x1="7" y1="16" x2="17" y2="16"></line></svg>
+        <span>Carte ID</span>
+      </button>
+
+      <!-- 4. Profil / Cagnotte -->
+      <button onclick="window.HubAct.toggleUserDropdown()" class="bottom-nav-btn py-1 px-2 flex flex-col items-center justify-center gap-0.5 text-slate-500 dark:text-slate-400 hover:text-terracotta-500 transition text-[11px]" id="mobile-bottom-profile-btn">
+        <div class="relative">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span id="inbox-mobile-count" class="hidden absolute -top-1 -right-1 w-2 h-2 rounded-full bg-terracotta-500"></span>
+        </div>
+        <span>Profil & DT</span>
+      </button>
+
+    </div>
+  </nav>
+
+  <!-- ==================================================== -->
+  <!-- 4. COOKIE CONSENT BANNER (STRICT DISCLOSURE)         -->
+  <!-- ==================================================== -->
+  <div id="cookie-banner" class="fixed bottom-20 sm:bottom-4 left-4 right-4 sm:left-auto sm:right-4 sm:max-w-md z-40 bg-white dark:bg-slate-800 border-2 border-medina-500 rounded-3xl p-4 sm:p-5 shadow-2xl space-y-3 transition transform duration-300">
     <div class="flex items-start gap-3">
       <div class="w-8 h-8 rounded-xl bg-medina-100 dark:bg-medina-950 text-medina-600 flex items-center justify-center shrink-0">
         <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4"></path><path d="M12 16h.01"></path></svg>
@@ -304,9 +376,9 @@
   </div>
 
   <!-- ==================================================== -->
-  <!-- 4. MAIN APP CONTENT CONTAINER                        -->
+  <!-- 5. MAIN APP CONTENT CONTAINER                        -->
   <!-- ==================================================== -->
-  <main class="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-6 space-y-8 min-w-0 overflow-x-hidden">
+  <main class="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-6 pb-24 lg:pb-8 space-y-8 min-w-0 overflow-x-hidden">
 
     <!-- -------------------------------------------------- -->
     <!-- VIEW 1: INTRO & VALUE PRESENTATION                 -->
