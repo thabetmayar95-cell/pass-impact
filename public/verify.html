@@ -28,22 +28,24 @@
             terracotta: {
               50: '#fff7ed',
               100: '#ffedd5',
+              200: '#fed7aa',
               400: '#ea580c',
               500: '#c2410c',
               600: '#9a3412',
               700: '#7c2d12',
+              950: '#431407',
             },
             jasmine: {
-              50: '#fffbeb',
-              100: '#fef3c7',
-              400: '#f59e0b',
-              500: '#d97706',
+              50: '#fff7ed',
+              100: '#ffedd5',
+              400: '#ea580c',
+              500: '#c2410c',
             },
             emeraldtech: {
-              50: '#ecfdf5',
-              500: '#059669',
-              600: '#047857',
-              950: '#022c22'
+              50: '#eff6ff',
+              500: '#1d4ed8',
+              600: '#1e40af',
+              950: '#080c14'
             }
           }
         }
@@ -58,7 +60,7 @@
 
   <!-- Header -->
   <header class="sticky top-0 z-40 border-b border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-[#080c14]/95 backdrop-blur-md">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+    <div class="max-w-5xl mx-auto px-3 sm:px-6 h-16 flex items-center justify-between">
       <div class="flex items-center gap-3">
         <a href="/" class="flex items-center gap-2.5 group">
           <div class="w-9 h-9 rounded-xl bg-medina-600 flex items-center justify-center text-white font-black text-lg shadow-md group-hover:scale-105 transition-transform">
@@ -90,16 +92,16 @@
   </header>
 
   <!-- Main Content -->
-  <main class="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-10">
+  <main class="flex-1 max-w-5xl w-full mx-auto px-3 sm:px-6 py-6 sm:py-10 min-w-0 overflow-x-hidden">
     
     <!-- Official Trust Seal Banner -->
-    <header class="mb-6 p-4 sm:p-5 rounded-2xl bg-emeraldtech-50 dark:bg-emeraldtech-950/30 border border-emeraldtech-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-sm">
+    <header class="mb-6 p-4 sm:p-5 rounded-2xl bg-medina-50 dark:bg-medina-950/40 border border-medina-200 dark:border-medina-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-sm">
       <div class="flex items-start sm:items-center gap-3">
-        <div class="w-10 h-10 rounded-xl bg-emeraldtech-500 text-white flex items-center justify-center shrink-0 text-xl font-bold">
+        <div class="w-10 h-10 rounded-xl bg-medina-600 text-white flex items-center justify-center shrink-0 text-xl font-bold">
           ✓
         </div>
         <div>
-          <div class="text-xs sm:text-sm font-extrabold text-emerald-800 dark:text-emerald-400 tracking-wide uppercase">
+          <div class="text-xs sm:text-sm font-extrabold text-medina-900 dark:text-medina-200 tracking-wide uppercase">
             Passe Impact Officiellement Certifié • République Tunisienne
           </div>
           <p class="text-xs text-slate-600 dark:text-slate-400 font-mono mt-0.5">
@@ -137,8 +139,8 @@
               ISET Nabeul / INSAT • Résidence Hammamet
             </p>
 
-            <span class="mt-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-400">
-              <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+            <span class="mt-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold bg-medina-50 dark:bg-medina-950/50 text-medina-700 dark:text-medina-400">
+              <span class="w-2 h-2 rounded-full bg-medina-500"></span>
               <span>Identité Validée par Réseau Local</span>
             </span>
           </div>
@@ -153,7 +155,7 @@
             </div>
             <div class="px-2">
               <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 block">Tip Jar Déposé</span>
-              <span id="verify-dinars" class="text-xl font-black text-jasmine-600 dark:text-jasmine-400 mt-1 block font-mono">
+              <span id="verify-dinars" class="text-xl font-black text-terracotta-600 dark:text-terracotta-400 mt-1 block font-mono">
                 137.000 DT
               </span>
             </div>
@@ -171,7 +173,7 @@
             </div>
             <div class="flex items-center justify-between">
               <span class="text-slate-500 dark:text-slate-400">Signature Locale</span>
-              <span class="text-emerald-600 dark:text-emerald-400 font-bold">SHA-256 Validée</span>
+              <span class="text-medina-600 dark:text-medina-400 font-bold">SHA-256 Validée</span>
             </div>
           </div>
 
@@ -188,7 +190,7 @@
         <!-- Security Proof Box: Flat layout with hairline divider, zero nested cards -->
         <section class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0f172a] p-4 text-xs shadow-sm">
           <h2 class="text-[11px] font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2 flex items-center gap-1.5 font-mono">
-            <svg class="w-3.5 h-3.5 text-emeraldtech-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 1.944A11.954 11.954 0 012.166 5C2.056 5.649 2 6.319 2 7c0 5.225 3.34 9.67 8 11.317C14.66 16.67 18 12.225 18 7c0-.682-.057-1.35-.166-2.001A11.954 11.954 0 0110 1.944zM11 14a1 1 0 11-2 0 1 1 0 012 0zm0-7a1 1 0 10-2 0v3a1 1 0 102 0V7z" clip-rule="evenodd"/></svg>
+            <svg class="w-3.5 h-3.5 text-medina-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 1.944A11.954 11.954 0 012.166 5C2.056 5.649 2 6.319 2 7c0 5.225 3.34 9.67 8 11.317C14.66 16.67 18 12.225 18 7c0-.682-.057-1.35-.166-2.001A11.954 11.954 0 0110 1.944zM11 14a1 1 0 11-2 0 1 1 0 012 0zm0-7a1 1 0 10-2 0v3a1 1 0 102 0V7z" clip-rule="evenodd"/></svg>
             <span>Empreinte Cryptographique</span>
           </h2>
           <div id="verify-hash" class="py-2 px-1 text-slate-700 dark:text-slate-300 font-mono text-[10px] break-all border-y border-slate-100 dark:border-slate-800 select-all">
@@ -221,7 +223,7 @@
             <div class="py-4 first:pt-4 last:pb-0">
               <div class="flex items-center justify-between">
                 <span class="font-bold text-sm text-slate-900 dark:text-white">Guide Artisans Médina Hammamet</span>
-                <span class="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-semibold">+15 XP</span>
+                <span class="text-xs font-mono text-medina-600 dark:text-medina-400 font-semibold">+15 XP</span>
               </div>
               <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">
                 PWA mobile de mise en valeur des potiers et tisseurs avec navigation GPS hors-ligne.
@@ -243,7 +245,7 @@
             <div>
               <h2 class="text-base font-extrabold text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
                 <span>Recommandations & Évaluations des Pairs</span>
-                <span id="verify-reviews-count" class="px-2 py-0.5 rounded-full text-xs font-bold bg-jasmine-100 dark:bg-jasmine-950 text-jasmine-700 dark:text-jasmine-300">2</span>
+                <span id="verify-reviews-count" class="px-2 py-0.5 rounded-full text-xs font-bold bg-medina-100 dark:bg-medina-950 text-medina-700 dark:text-medina-300">2</span>
               </h2>
               <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
                 Mentors de hackathons et pairs ayant collaboré en conditions réelles
@@ -258,7 +260,7 @@
                   <span class="font-bold text-sm text-slate-900 dark:text-white">Leila Ben Amor</span>
                   <span class="text-xs text-slate-500 dark:text-slate-400 ml-1.5">• Mentor Hackathon Civic</span>
                 </div>
-                <div class="text-jasmine-500 text-xs tracking-wider">★★★★★</div>
+                <div class="text-medina-500 text-xs tracking-wider">★★★★★</div>
               </div>
               <p class="text-xs text-slate-600 dark:text-slate-300 mt-1.5 italic">
                 « Travail exemplaire sur l'API des artisans d'Hammamet. Code propre, grand sens de l'autonomie et esprit d'équipe remarquable. »
@@ -398,7 +400,7 @@
             <div class="py-4 first:pt-4 last:pb-0">
               <div class="flex items-center justify-between">
                 <span class="font-bold text-sm text-slate-900 dark:text-white">${escape(p.title)}</span>
-                <span class="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-semibold">+15 XP</span>
+                <span class="text-xs font-mono text-medina-600 dark:text-medina-400 font-semibold">+15 XP</span>
               </div>
               <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">${escape(p.desc)}</p>
               <div class="mt-2.5 flex items-center gap-2 text-xs">
@@ -427,7 +429,7 @@
                   <span class="font-bold text-sm text-slate-900 dark:text-white">${escape(r.author)}</span>
                   <span class="text-xs text-slate-500 dark:text-slate-400 ml-1.5">• ${escape(r.role || 'Pair')}</span>
                 </div>
-                <div class="text-jasmine-500 text-xs tracking-wider">${'★'.repeat(Math.min(5, Math.max(1, r.rating || 5)))}</div>
+                <div class="text-medina-500 text-xs tracking-wider">${'★'.repeat(Math.min(5, Math.max(1, r.rating || 5)))}</div>
               </div>
               <p class="text-xs text-slate-600 dark:text-slate-300 mt-1.5 italic">
                 « ${escape(r.comment)} »

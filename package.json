@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node src/server/index.js",
     "dev": "node --watch src/server/index.js",
-    "test": "node src/test/self-check.js && node src/test/check-handlers.js && node src/test/verify-check.js"
+    "test": "node src/test/self-check.js && node src/test/check-handlers.js && node src/test/verify-check.js && node src/test/e2e-functional.js"
   },
   "keywords": [
     "hammamet",

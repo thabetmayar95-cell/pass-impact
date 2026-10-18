@@ -602,6 +602,9 @@ export const repository = {
     `).run(appId, "direct-target", `${offerType} proposé`, companyName, candidate.id, candidate.name, candidate.avatar, "offered_by_company");
 
     return {
+      success: true,
+      proposalId: appId,
+      proposal: { id: appId, status: 'offered_by_company' },
       message: `Proposition transmise avec succès à ${candidate.name}`,
       candidate
     };

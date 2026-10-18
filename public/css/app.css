@@ -4,11 +4,28 @@
 :root {
   --font-main: 'Lexend', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   --font-arabic: 'Noto Sans Arabic', system-ui, sans-serif;
-  --color-medina: #1d4ed8;     /* Executive Cobalt */
-  --color-terracotta: #c2410c; /* Tuscan Sienna */
-  --color-jasmine: #d97706;    /* Warm Brass */
-  --color-emerald: #059669;    /* Forest Emerald */
+  --color-medina: #1d4ed8;     /* Primary: Mediterranean Executive Cobalt */
+  --color-terracotta: #c2410c; /* Accent: Tuscan Terracotta / Copper */
   --color-surface-dark: #080c14;
+}
+
+/* Strict mobile viewport overflow containment: zero horizontal whitespace */
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden !important;
+  position: relative;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+main, section, header, nav, footer, article {
+  max-width: 100%;
 }
 
 body {
@@ -17,7 +34,6 @@ body {
   line-height: 1.55;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Typographic Scale with strong 1.25x+ steps */

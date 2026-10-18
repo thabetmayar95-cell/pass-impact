@@ -212,7 +212,7 @@ function renderReviews() {
           <h5 class="text-sm font-bold text-slate-900 dark:text-white">${escapeHtml(r.author)}</h5>
           <p class="text-[11px] text-slate-500 dark:text-slate-400 font-medium">${escapeHtml(r.role)}</p>
         </div>
-        <div class="text-jasmine-500 text-sm tracking-wider flex items-center">
+        <div class="text-medina-500 text-sm tracking-wider flex items-center">
           ${'★'.repeat(r.rating || 5)}
         </div>
       </div>
@@ -232,7 +232,7 @@ function renderTargetedSuggestions() {
     container.innerHTML = `
       <div class="bg-slate-800/80 dark:bg-[#080c14]/80 border border-slate-700 dark:border-slate-800 p-4 sm:p-5 rounded-2xl space-y-3 flex flex-col justify-between">
         <div class="space-y-1">
-          <span class="text-[10px] font-black uppercase text-emerald-400">PFE Recommandé Spécifique</span>
+          <span class="text-[10px] font-black uppercase text-medina-400">PFE Recommandé Spécifique</span>
           <h4 class="text-sm font-bold text-white">Stage PFE : Plateforme Hôtelière & API Flouci</h4>
           <p class="text-xs text-slate-400">Hôtel Hasdrubal Thalassa Hammamet • 450 DT / mois</p>
           <p class="text-[11px] text-slate-300">Concordance à 98% avec vos projets React et API de paiement certifiés sur votre carte.</p>
@@ -244,7 +244,7 @@ function renderTargetedSuggestions() {
 
       <div class="bg-slate-800/80 dark:bg-[#080c14]/80 border border-slate-700 dark:border-slate-800 p-4 sm:p-5 rounded-2xl space-y-3 flex flex-col justify-between">
         <div class="space-y-1">
-          <span class="text-[10px] font-black uppercase text-jasmine-400">Stage d'été / Perfectionnement</span>
+          <span class="text-[10px] font-black uppercase text-terracotta-400">Stage d'été / Perfectionnement</span>
           <h4 class="text-sm font-bold text-white">Assistant UI/UX & Numérisation Médina</h4>
           <p class="text-xs text-slate-400">Startup Yallabiz Travel • Hammamet Centre</p>
           <p class="text-[11px] text-slate-300">Participation à la création du catalogue interactif des artisans céramistes.</p>
@@ -258,12 +258,12 @@ function renderTargetedSuggestions() {
     container.innerHTML = `
       <div class="bg-slate-800/80 dark:bg-[#080c14]/80 border border-slate-700 dark:border-slate-800 p-4 sm:p-5 rounded-2xl space-y-3 flex flex-col justify-between">
         <div class="space-y-1">
-          <span class="text-[10px] font-black uppercase text-jasmine-400">Premier Emploi / CDI Junior</span>
+          <span class="text-[10px] font-black uppercase text-terracotta-400">Premier Emploi / CDI Junior</span>
           <h4 class="text-sm font-bold text-white">Développeur Frontend Web Junior (React/Node)</h4>
           <p class="text-xs text-slate-400">Agence Médina Tech • Hammamet / Télétravail</p>
           <p class="text-[11px] text-slate-300">Rémunération : 1200 - 1500 DT/mois. Vos points XP vous dispensent du test technique initial !</p>
         </div>
-        <button onclick="window.HubAct.applyToSuggestion('Emploi Médina Tech')" class="btn-tactile w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition">
+        <button onclick="window.HubAct.applyToSuggestion('Emploi Médina Tech')" class="btn-tactile w-full py-2.5 rounded-xl bg-medina-600 hover:bg-medina-500 text-white font-bold text-xs transition">
           Postuler en 1 Clic ➔
         </button>
       </div>
@@ -284,7 +284,7 @@ function renderTargetedSuggestions() {
     container.innerHTML = `
       <div class="bg-slate-800/80 dark:bg-[#080c14]/80 border border-slate-700 dark:border-slate-800 p-4 sm:p-5 rounded-2xl space-y-3 flex flex-col justify-between">
         <div class="space-y-1">
-          <span class="text-[10px] font-black uppercase text-jasmine-400">+30 XP & Certification</span>
+          <span class="text-[10px] font-black uppercase text-medina-400">+30 XP & Certification</span>
           <h4 class="text-sm font-bold text-white">Next.js 15 & E-commerce Touristique</h4>
           <p class="text-xs text-slate-400">HUBACT Lab Hammamet • 10 heures</p>
           <p class="text-[11px] text-slate-300">Renforcez votre Avatar pour débloquer les offres de stages supérieures à 50 XP.</p>
@@ -296,7 +296,7 @@ function renderTargetedSuggestions() {
 
       <div class="bg-slate-800/80 dark:bg-[#080c14]/80 border border-slate-700 dark:border-slate-800 p-4 sm:p-5 rounded-2xl space-y-3 flex flex-col justify-between">
         <div class="space-y-1">
-          <span class="text-[10px] font-black uppercase text-emerald-400">+25 XP Pratique</span>
+          <span class="text-[10px] font-black uppercase text-terracotta-400">+25 XP Pratique</span>
           <h4 class="text-sm font-bold text-white">Sécurité des Webhooks Flouci & Konnect</h4>
           <p class="text-xs text-slate-400">Fintech Tunisia • 6 heures</p>
           <p class="text-[11px] text-slate-300">Idéal pour certifier vos compétences en intégration bancaire tunisienne.</p>
@@ -319,7 +319,7 @@ function renderEvents() {
       <div class="space-y-3">
         <div class="flex items-center justify-between">
           <span class="text-[10px] font-bold uppercase px-2.5 py-0.5 rounded-full bg-medina-100 text-medina-700 dark:bg-medina-950 dark:text-medina-300">${escapeHtml(ev.category)}</span>
-          <span class="text-xs font-black text-jasmine-400 flex items-center gap-1">
+          <span class="text-xs font-black text-medina-400 flex items-center gap-1">
             <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
             +${ev.xpReward} XP
           </span>
@@ -332,7 +332,7 @@ function renderEvents() {
             <span><strong>Lieu :</strong> ${escapeHtml(ev.location)}</span>
           </div>
           <div class="flex items-start gap-1.5">
-            <span class="text-emerald-500 font-bold">💰</span>
+            <span class="text-terracotta-500 font-bold">🏺</span>
             <span><strong>Compensation :</strong> ${ev.dinarsReward.toFixed(3)} DT versés dans votre Tip Jar</span>
           </div>
         </div>
@@ -365,7 +365,7 @@ function renderRecruiterCandidates() {
       <div class="space-y-1.5">
         <div class="flex items-center justify-between">
           <span class="text-xs font-black text-slate-900 dark:text-white">${escapeHtml(c.name)}</span>
-          <span class="text-xs font-black text-jasmine-400">⭐ ${c.xp} XP</span>
+          <span class="text-xs font-black text-medina-400">⭐ ${c.xp} XP</span>
         </div>
         <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-medina-100 dark:bg-medina-950 text-medina-700 dark:text-medina-300 inline-block">
           ${c.role === 'student' ? '🎓 Étudiant PFE' : c.role === 'worker' ? '💼 Travailleur Junior' : '🌍 Freelancer Qualifié'}
@@ -404,7 +404,7 @@ function renderWalletLedger() {
           <span class="font-bold text-slate-800 dark:text-slate-200 block">${escapeHtml(t.note || t.type)}</span>
           <span class="text-[10px] text-slate-400 font-mono">${t.gateway} • ${t.createdAt ? t.createdAt.split('T')[0] : 'Récent'}</span>
         </div>
-        <span class="font-black ${isCredit ? 'text-emerald-500' : 'text-rose-500'}">
+        <span class="font-black ${isCredit ? 'text-terracotta-500' : 'text-slate-400'}">
           ${isCredit ? '+' : '-'}${Number(t.amount).toFixed(3)} DT
         </span>
       </div>
@@ -825,7 +825,7 @@ export function showToast(message) {
 
   const toast = document.createElement('div');
   toast.className = 'pointer-events-auto bg-slate-950/95 dark:bg-white text-white dark:text-slate-900 px-4 py-2.5 rounded-2xl shadow-2xl text-xs font-semibold flex items-center gap-2 border border-slate-700 dark:border-slate-200 transform transition-all duration-300 translate-y-2 opacity-0 max-w-sm';
-  toast.innerHTML = `<svg class="w-4 h-4 text-jasmine-400 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zm1 11H9v-2h2v2zm0-4H9V5h2v4z"/></svg><span>${escapeHtml(message)}</span>`;
+  toast.innerHTML = `<svg class="w-4 h-4 text-medina-400 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zm1 11H9v-2h2v2zm0-4H9V5h2v4z"/></svg><span>${escapeHtml(message)}</span>`;
   container.appendChild(toast);
 
   setTimeout(() => toast.classList.remove('translate-y-2', 'opacity-0'), 10);
@@ -907,7 +907,7 @@ function renderInbox() {
         <div class="flex items-center justify-between pt-1">
           ${isPending ? `
             <div class="flex items-center gap-2">
-              <button onclick="window.HubAct.respondToProposal('${escapeHtml(item.id)}', 'accepted')" class="btn-tactile px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-sm flex items-center gap-1">
+              <button onclick="window.HubAct.respondToProposal('${escapeHtml(item.id)}', 'accepted')" class="btn-tactile px-3 py-1.5 rounded-xl bg-medina-600 hover:bg-medina-500 text-white font-bold text-xs shadow-sm flex items-center gap-1">
                 <span>✓</span> Accepter (+20 XP)
               </button>
               <button onclick="window.HubAct.respondToProposal('${escapeHtml(item.id)}', 'declined')" class="btn-tactile px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 text-xs font-semibold">
@@ -915,7 +915,7 @@ function renderInbox() {
               </button>
             </div>
           ` : isAccepted ? `
-            <span class="px-2.5 py-1 rounded-lg text-xs font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 flex items-center gap-1">
+            <span class="px-2.5 py-1 rounded-lg text-xs font-bold text-medina-700 dark:text-medina-400 bg-medina-50 dark:bg-medina-950/60 border border-medina-200 dark:border-medina-800 flex items-center gap-1">
               <span>✓</span> Proposition acceptée (+20 XP)
             </span>
           ` : `
