@@ -1,4 +1,4 @@
-# Passe Impact Hammamet | باس أثر الحمامات
+# Passe Impact Hammamet
 
 Plateforme fullstack d'employabilité ciblée et d'engagement civique pour la jeunesse et les entreprises de la région côtière de Hammamet & Nabeul (Tunisie).
 
@@ -28,7 +28,7 @@ Conçue avec la philosophie **Ponytail** (minimalisme senior pragmatique, standa
 ## 🛠️ Architecture & Stack Technique
 
 - **Backend :** Node.js 24 avec base de données SQLite native (`node:sqlite` via `DatabaseSync`), serveur Express RESTful.
-- **Frontend :** HTML5 / CSS3 / JavaScript ES6+ moderne, Tailwind CSS, typographie Lexend & Noto Sans Arabic, animations et micro-interactions 3D fluides.
+- **Frontend :** HTML5 / CSS3 / JavaScript ES6+ moderne, Tailwind CSS, typographie Lexend, animations et micro-interactions 3D fluides.
 - **Tests :** Suite d'assertions automatisée Ponytail vérifiant 100% des cas d'usage et le câblage de tous les formulaires.
 
 ---

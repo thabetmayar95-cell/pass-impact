@@ -1,9 +1,8 @@
 /* Passe Impact Hammamet - Executive Craft Stylesheet */
-@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&family=Noto+Sans+Arabic:wght@400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&display=swap');
 
 :root {
   --font-main: 'Lexend', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-arabic: 'Noto Sans Arabic', system-ui, sans-serif;
   --color-medina: #1d4ed8;     /* Primary: Mediterranean Executive Cobalt */
   --color-terracotta: #c2410c; /* Accent: Tuscan Terracotta / Copper */
   --color-surface-dark: #080c14;
@@ -68,10 +67,6 @@ h1 { font-size: 2.5rem; font-weight: 800; line-height: 1.15; letter-spacing: -0.
 h2 { font-size: 1.85rem; font-weight: 800; line-height: 1.2; letter-spacing: -0.02em; }
 h3 { font-size: 1.35rem; font-weight: 700; line-height: 1.3; letter-spacing: -0.015em; }
 h4 { font-size: 1.125rem; font-weight: 600; line-height: 1.35; }
-
-.font-arabic {
-  font-family: var(--font-arabic);
-}
 
 /* 3D Flip Card Architecture */
 .perspective-1000 {

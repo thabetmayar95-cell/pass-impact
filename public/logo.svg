@@ -24,7 +24,7 @@
   <!-- Inner Decorative Border -->
   <rect x="7" y="7" width="86" height="86" rx="19" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1.5"/>
 
-  <!-- The Architectural Medina Arch (قوس الحمامات) -->
+  <!-- The Architectural Medina Arch (Hammamet Arch) -->
   <path d="M 28 70 V 46 C 28 26, 72 26, 72 46 V 70" 
         fill="none" 
         stroke="#ffffff" 
@@ -35,7 +35,7 @@
   <!-- Arch Keystones / Header Notch -->
   <path d="M 50 18 V 24" stroke="url(#pi-terracotta)" stroke-width="3.5" stroke-linecap="round"/>
 
-  <!-- The Central Impact Spark / Diamond (رمز الأثر) -->
+  <!-- The Central Impact Spark / Diamond -->
   <polygon points="50,30 55,44 69,49 55,54 50,68 45,54 31,49 45,44" 
            fill="url(#pi-terracotta)" 
            stroke="#ffffff" 

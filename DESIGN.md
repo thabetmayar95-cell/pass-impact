@@ -1,7 +1,7 @@
 # Design System & Visual Guidelines | Passe Impact Hammamet
 
 ## Visual World & Identity
-- **Name:** Passe Impact Hammamet (باس أثر الحمامات)
+- **Name:** Passe Impact Hammamet
 - **Tone:** Executive, authoritative, polished Mediterranean civic-tech. Combines maritime cobalt authority with warm architectural terracotta and refined brass accents. Avoids cartoonish or toy-like saturation in favor of a sleek, premium product aesthetic (inspired by modern digital credential cards and tier-1 fintech interfaces).
 
 ## Executive Color Palette
@@ -22,7 +22,6 @@
 
 ## Typography
 - **Primary Display & Body:** `Lexend`, sans-serif (Weights: 400, 500, 600, 700, 800)
-- **Arabic Inscriptions:** `Noto Sans Arabic`, sans-serif (Weights: 600, 700)
 - **Monospace Credentials & Numbers:** `ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace`
 
 ## Craft Floor Standards (Zero Anti-Pattern Directives)

@@ -1,4 +1,4 @@
-# Passe Impact Hammamet | باس أثر الحمامات
+# Passe Impact Hammamet
 
 ## Purpose & Positioning
 Passe Impact Hammamet is a targeted employability and civic-engagement platform for students, young graduates, and companies in the coastal region of Hammamet and Nabeul, Tunisia.

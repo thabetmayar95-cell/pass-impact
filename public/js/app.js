@@ -5,7 +5,6 @@ export const NAVIGATION_ITEMS = {
   brand: {
     title: 'Passe-Impact',
     badge: 'Hammamet',
-    arabic: 'باس أثر الحمامات',
     target: 'page-intro',
     logo: '/logo.svg'
   },
