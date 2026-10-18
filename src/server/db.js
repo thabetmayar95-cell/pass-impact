@@ -2,6 +2,7 @@ import { DatabaseSync } from 'node:sqlite';
 import { existsSync, mkdirSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import crypto from 'node:crypto';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -370,6 +371,23 @@ function seedDefaultData() {
       `).run(off.id, off.company, off.type, off.skill, off.desc, off.location, off.stipend);
     }
   }
+
+  const appCount = db.prepare("SELECT count(*) as count FROM applications").get().count;
+  if (appCount === 0) {
+    db.prepare(`
+      INSERT INTO applications (id, offerId, offerTitle, company, userId, candidateName, candidateAvatar, status)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    `).run(
+      "prop-seed-1",
+      "direct-target",
+      "Stage PFE : Intégration Flouci & Dashboard Hôtelier",
+      "Radisson Blu Resort Hammamet",
+      "u-default",
+      "Youssef Mansour",
+      "Frontend Dev & Tourisme Tech",
+      "offered_by_company"
+    );
+  }
 }
 
 // Data Access Repository
@@ -596,5 +614,69 @@ export const repository = {
       VALUES (?, ?, ?)
     `).run(id, userId, sessionRef);
     return { id, success: true };
+  },
+
+  getVerification(candidateId = "u-default") {
+    const candidate = this.getUser(candidateId);
+    if (!candidate) return null;
+    const projects = this.getProjects(candidateId);
+    const reviews = this.getReviews(candidateId);
+    const wallet = this.getWallet(candidateId);
+    const payload = `PASSE-IMPACT:${candidate.id}:${candidate.email}:${candidate.xp}:${candidate.dinarsJar}`;
+    const hash = crypto.createHash('sha256').update(payload).digest('hex');
+    const timestamp = new Date().toISOString();
+    return {
+      verified: true,
+      seal: '✓ PASSE IMPACT OFFICIELLEMENT CERTIFIÉ • RÉPUBLIQUE TUNISIENNE',
+      candidate,
+      user: candidate,
+      projects,
+      reviews,
+      wallet,
+      hash,
+      verificationHash: hash,
+      issuedAt: timestamp,
+      timestamp
+    };
+  },
+
+  getInbox(userId = "u-default") {
+    return db.prepare("SELECT * FROM applications WHERE userId = ? ORDER BY createdAt DESC").all(userId);
+  },
+
+  respondToProposal(proposalId, status = 'accepted') {
+    const prop = db.prepare("SELECT * FROM applications WHERE id = ?").get(proposalId);
+    if (!prop) throw new Error("Proposition introuvable");
+    db.prepare("UPDATE applications SET status = ? WHERE id = ?").run(status, proposalId);
+    if (status === 'accepted') {
+      db.prepare("UPDATE users SET xp = xp + 20 WHERE id = ?").run(prop.userId);
+    }
+    return {
+      success: true,
+      proposal: db.prepare("SELECT * FROM applications WHERE id = ?").get(proposalId),
+      user: this.getUser(prop.userId)
+    };
+  },
+
+  createEvent({ title, category, badge, xpReward, dinarsReward, location, desc, date }) {
+    const id = `ev-${Date.now()}`;
+    const numXp = parseInt(xpReward, 10) || 30;
+    const numDinars = parseFloat(dinarsReward) || 5.0;
+    db.prepare(`
+      INSERT INTO events (id, title, category, badge, xpReward, dinarsReward, location, desc, date, participantsCount)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 0)
+    `).run(
+      id,
+      title,
+      category || 'Hackathon Hammamet',
+      badge || 'Partenaire',
+      numXp,
+      numDinars,
+      location || 'Hammamet',
+      desc || 'Défi d\'innovation ouvert.',
+      date || 'Session à venir'
+    );
+    return db.prepare("SELECT * FROM events WHERE id = ?").get(id);
   }
 };
+

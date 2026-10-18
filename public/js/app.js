@@ -23,6 +23,7 @@ const state = {
   events: [],
   offers: [],
   candidates: [],
+  inbox: [],
   wallet: { balance: 2.000, xp: 35, transactions: [] },
   activeRecTab: 'stages',
   activeTalentFilter: 'all',
@@ -73,6 +74,13 @@ export async function initApp() {
 
   // Fetch data from backend
   await refreshAllData();
+
+  // Support direct routing via URL hash or ?page=
+  const urlParams = new URLSearchParams(window.location.search);
+  const targetPage = urlParams.get('page') || (window.location.hash ? window.location.hash.replace('#', '') : null);
+  if (targetPage && document.getElementById(targetPage)) {
+    navigateTo(targetPage);
+  }
 }
 
 // Refresh Data from Backend
@@ -87,6 +95,7 @@ async function refreshAllData() {
     state.events = await api.getEvents();
     state.offers = await api.getOffers();
     state.candidates = await api.getCandidates(state.activeTalentFilter, state.talentSearchTerm);
+    state.inbox = await api.getInbox(state.currentUserId);
   } catch (err) {
     console.warn('Mode hors-ligne ou fallback local activé:', err);
   } finally {
@@ -104,6 +113,8 @@ function renderUI() {
   renderEvents();
   renderRecruiterCandidates();
   renderWalletLedger();
+  renderInbox();
+  renderQRCode();
 }
 
 // Header & Pill Bars
@@ -154,7 +165,7 @@ function renderProjects() {
 
   if (state.projects.length === 0) {
     container.innerHTML = `
-      <div class="col-span-2 p-6 rounded-2xl bg-slate-900/50 border border-slate-800 text-center text-slate-400 text-xs">
+      <div class="col-span-1 sm:col-span-2 p-6 rounded-2xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 text-center text-slate-500 dark:text-slate-400 text-xs">
         Aucun projet enregistré pour l'instant. Cliquez sur "+ Ajouter un projet" pour booster votre score (+15 XP).
       </div>
     `;
@@ -162,18 +173,18 @@ function renderProjects() {
   }
 
   container.innerHTML = state.projects.map(p => `
-    <article class="bg-[#0b1329] border border-slate-800 rounded-2xl p-5 space-y-3 flex flex-col justify-between hover:border-slate-700 transition">
+    <article class="bg-white dark:bg-[#0b1329] border border-slate-200 dark:border-slate-800 rounded-2xl p-4 sm:p-5 space-y-3 flex flex-col justify-between hover:border-slate-300 dark:hover:border-slate-700 transition">
       <div class="space-y-1.5">
         <div class="flex items-start justify-between gap-2">
-          <h4 class="text-sm font-bold text-white leading-snug">${escapeHtml(p.title)}</h4>
-          <a href="${escapeHtml(p.url)}" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-medina-400 hover:text-medina-300 flex items-center gap-1 shrink-0">
+          <h4 class="text-sm font-bold text-slate-900 dark:text-white leading-snug">${escapeHtml(p.title)}</h4>
+          <a href="${escapeHtml(p.url)}" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-medina-600 dark:text-medina-400 hover:underline flex items-center gap-1 shrink-0">
             <span>Démo</span>
             <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
           </a>
         </div>
-        <p class="text-xs text-slate-400 leading-relaxed">${escapeHtml(p.desc)}</p>
+        <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">${escapeHtml(p.desc)}</p>
       </div>
-      <div class="p-2 rounded-xl bg-[#0f172a] text-[11px] font-mono text-slate-300 truncate">
+      <div class="p-2 rounded-xl bg-slate-50 dark:bg-[#080c14] border border-slate-100 dark:border-slate-800 text-[11px] font-mono text-slate-700 dark:text-slate-300 truncate">
         ${escapeHtml(p.tags)}
       </div>
     </article>
@@ -187,7 +198,7 @@ function renderReviews() {
 
   if (state.reviews.length === 0) {
     container.innerHTML = `
-      <div class="p-6 rounded-2xl bg-[#0b1329] border border-slate-800 text-center text-slate-400 text-xs">
+      <div class="p-6 rounded-2xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 text-center text-slate-500 dark:text-slate-400 text-xs">
         Aucune recommandation pour l'instant. Invitez un mentor ou collègue à vous laisser un avis (+10 XP).
       </div>
     `;
@@ -195,17 +206,17 @@ function renderReviews() {
   }
 
   container.innerHTML = state.reviews.map(r => `
-    <article class="bg-[#0b1329] border border-slate-800 rounded-2xl p-5 space-y-2 hover:border-slate-700 transition">
+    <article class="bg-white dark:bg-[#0b1329] border border-slate-200 dark:border-slate-800 rounded-2xl p-4 sm:p-5 space-y-2 hover:border-slate-300 dark:hover:border-slate-700 transition">
       <div class="flex items-center justify-between">
         <div>
-          <h5 class="text-sm font-bold text-white">${escapeHtml(r.author)}</h5>
-          <p class="text-[11px] text-slate-400 font-medium">${escapeHtml(r.role)}</p>
+          <h5 class="text-sm font-bold text-slate-900 dark:text-white">${escapeHtml(r.author)}</h5>
+          <p class="text-[11px] text-slate-500 dark:text-slate-400 font-medium">${escapeHtml(r.role)}</p>
         </div>
-        <div class="text-jasmine-400 text-sm tracking-wider flex items-center">
+        <div class="text-jasmine-500 text-sm tracking-wider flex items-center">
           ${'★'.repeat(r.rating || 5)}
         </div>
       </div>
-      <p class="text-xs text-slate-300 italic leading-relaxed pt-1">
+      <p class="text-xs text-slate-700 dark:text-slate-300 italic leading-relaxed pt-1">
         "${escapeHtml(r.comment)}"
       </p>
     </article>
@@ -219,78 +230,78 @@ function renderTargetedSuggestions() {
 
   if (state.activeRecTab === 'stages') {
     container.innerHTML = `
-      <div class="bg-[#0b1329] border border-slate-800 p-5 rounded-2xl space-y-3 flex flex-col justify-between">
+      <div class="bg-slate-800/80 dark:bg-[#080c14]/80 border border-slate-700 dark:border-slate-800 p-4 sm:p-5 rounded-2xl space-y-3 flex flex-col justify-between">
         <div class="space-y-1">
           <span class="text-[10px] font-black uppercase text-emerald-400">PFE Recommandé Spécifique</span>
           <h4 class="text-sm font-bold text-white">Stage PFE : Plateforme Hôtelière & API Flouci</h4>
           <p class="text-xs text-slate-400">Hôtel Hasdrubal Thalassa Hammamet • 450 DT / mois</p>
           <p class="text-[11px] text-slate-300">Concordance à 98% avec vos projets React et API de paiement certifiés sur votre carte.</p>
         </div>
-        <button onclick="window.HubAct.applyToSuggestion('Stage PFE Hasdrubal')" class="btn-tactile w-full py-2 rounded-xl bg-medina-600 hover:bg-medina-500 text-white font-bold text-xs transition">
+        <button onclick="window.HubAct.applyToSuggestion('Stage PFE Hasdrubal')" class="btn-tactile w-full py-2.5 rounded-xl bg-medina-600 hover:bg-medina-500 text-white font-bold text-xs transition">
           Candidater avec mon Pass ID Ciblé ➔
         </button>
       </div>
 
-      <div class="bg-[#0b1329] border border-slate-800 p-5 rounded-2xl space-y-3 flex flex-col justify-between">
+      <div class="bg-slate-800/80 dark:bg-[#080c14]/80 border border-slate-700 dark:border-slate-800 p-4 sm:p-5 rounded-2xl space-y-3 flex flex-col justify-between">
         <div class="space-y-1">
           <span class="text-[10px] font-black uppercase text-jasmine-400">Stage d'été / Perfectionnement</span>
           <h4 class="text-sm font-bold text-white">Assistant UI/UX & Numérisation Médina</h4>
           <p class="text-xs text-slate-400">Startup Yallabiz Travel • Hammamet Centre</p>
           <p class="text-[11px] text-slate-300">Participation à la création du catalogue interactif des artisans céramistes.</p>
         </div>
-        <button onclick="window.HubAct.applyToSuggestion('Stage Été Yallabiz')" class="btn-tactile w-full py-2 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 text-white font-bold text-xs transition">
+        <button onclick="window.HubAct.applyToSuggestion('Stage Été Yallabiz')" class="btn-tactile w-full py-2.5 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 text-white font-bold text-xs transition">
           Candidater avec mon Pass ID Ciblé ➔
         </button>
       </div>
     `;
   } else if (state.activeRecTab === 'jobs') {
     container.innerHTML = `
-      <div class="bg-[#0b1329] border border-slate-800 p-5 rounded-2xl space-y-3 flex flex-col justify-between">
+      <div class="bg-slate-800/80 dark:bg-[#080c14]/80 border border-slate-700 dark:border-slate-800 p-4 sm:p-5 rounded-2xl space-y-3 flex flex-col justify-between">
         <div class="space-y-1">
           <span class="text-[10px] font-black uppercase text-jasmine-400">Premier Emploi / CDI Junior</span>
           <h4 class="text-sm font-bold text-white">Développeur Frontend Web Junior (React/Node)</h4>
           <p class="text-xs text-slate-400">Agence Médina Tech • Hammamet / Télétravail</p>
           <p class="text-[11px] text-slate-300">Rémunération : 1200 - 1500 DT/mois. Vos points XP vous dispensent du test technique initial !</p>
         </div>
-        <button onclick="window.HubAct.applyToSuggestion('Emploi Médina Tech')" class="btn-tactile w-full py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition">
+        <button onclick="window.HubAct.applyToSuggestion('Emploi Médina Tech')" class="btn-tactile w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition">
           Postuler en 1 Clic ➔
         </button>
       </div>
 
-      <div class="bg-[#0b1329] border border-slate-800 p-5 rounded-2xl space-y-3 flex flex-col justify-between">
+      <div class="bg-slate-800/80 dark:bg-[#080c14]/80 border border-slate-700 dark:border-slate-800 p-4 sm:p-5 rounded-2xl space-y-3 flex flex-col justify-between">
         <div class="space-y-1">
           <span class="text-[10px] font-black uppercase text-medina-400">Mission Freelance Rémunérée</span>
           <h4 class="text-sm font-bold text-white">Widget Météo & Cartes Médina Hammamet</h4>
           <p class="text-xs text-slate-400">Office du Tourisme Nabeul-Hammamet • Durée : 2 semaines</p>
           <p class="text-[11px] text-slate-300">Budget garanti en séquestre : 600 DT versés directement dans votre Tip Jar.</p>
         </div>
-        <button onclick="window.HubAct.applyToSuggestion('Mission Freelance Office Tourisme')" class="btn-tactile w-full py-2 rounded-xl bg-medina-600 hover:bg-medina-500 text-white font-bold text-xs transition">
+        <button onclick="window.HubAct.applyToSuggestion('Mission Freelance Office Tourisme')" class="btn-tactile w-full py-2.5 rounded-xl bg-medina-600 hover:bg-medina-500 text-white font-bold text-xs transition">
           Accepter la Mission Freelance ➔
         </button>
       </div>
     `;
   } else {
     container.innerHTML = `
-      <div class="bg-[#0b1329] border border-slate-800 p-5 rounded-2xl space-y-3 flex flex-col justify-between">
+      <div class="bg-slate-800/80 dark:bg-[#080c14]/80 border border-slate-700 dark:border-slate-800 p-4 sm:p-5 rounded-2xl space-y-3 flex flex-col justify-between">
         <div class="space-y-1">
           <span class="text-[10px] font-black uppercase text-jasmine-400">+30 XP & Certification</span>
           <h4 class="text-sm font-bold text-white">Next.js 15 & E-commerce Touristique</h4>
           <p class="text-xs text-slate-400">HUBACT Lab Hammamet • 10 heures</p>
           <p class="text-[11px] text-slate-300">Renforcez votre Avatar pour débloquer les offres de stages supérieures à 50 XP.</p>
         </div>
-        <button onclick="window.HubAct.participateInEventById('ev-4')" class="btn-tactile w-full py-2 rounded-xl bg-medina-600 hover:bg-medina-500 text-white font-bold text-xs transition">
+        <button onclick="window.HubAct.participateInEventById('ev-4')" class="btn-tactile w-full py-2.5 rounded-xl bg-medina-600 hover:bg-medina-500 text-white font-bold text-xs transition">
           Démarrer (+30 XP & +4 DT) ➔
         </button>
       </div>
 
-      <div class="bg-[#0b1329] border border-slate-800 p-5 rounded-2xl space-y-3 flex flex-col justify-between">
+      <div class="bg-slate-800/80 dark:bg-[#080c14]/80 border border-slate-700 dark:border-slate-800 p-4 sm:p-5 rounded-2xl space-y-3 flex flex-col justify-between">
         <div class="space-y-1">
           <span class="text-[10px] font-black uppercase text-emerald-400">+25 XP Pratique</span>
           <h4 class="text-sm font-bold text-white">Sécurité des Webhooks Flouci & Konnect</h4>
           <p class="text-xs text-slate-400">Fintech Tunisia • 6 heures</p>
           <p class="text-[11px] text-slate-300">Idéal pour certifier vos compétences en intégration bancaire tunisienne.</p>
         </div>
-        <button onclick="window.HubAct.participateInEventById('ev-2')" class="btn-tactile w-full py-2 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 text-white font-bold text-xs transition">
+        <button onclick="window.HubAct.participateInEventById('ev-2')" class="btn-tactile w-full py-2.5 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 text-white font-bold text-xs transition">
           Démarrer (+25 XP & +5 DT) ➔
         </button>
       </div>
@@ -694,6 +705,30 @@ function setupEventListeners() {
   document.getElementById('candidate-search-input')?.addEventListener('input', (e) => {
     handleCandidateSearch(e.target.value);
   });
+
+  // Partner Hackathon Creator Form
+  document.getElementById('form-add-event')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const title = document.getElementById('event-title').value;
+    const category = document.getElementById('event-category').value;
+    const badge = document.getElementById('event-badge')?.value || 'Défi Partenaire';
+    const dinarsReward = document.getElementById('event-dinars').value;
+    const xpReward = document.getElementById('event-xp').value;
+    const location = document.getElementById('event-location').value;
+    const desc = document.getElementById('event-desc').value;
+    const date = document.getElementById('event-date')?.value || '14 Novembre 2026';
+
+    try {
+      const res = await api.createEvent({ title, category, badge, dinarsReward, xpReward, location, desc, date });
+      closeModal('modal-add-event');
+      triggerConfetti();
+      showToast(res.message || `Hackathon '${title}' publié avec succès !`);
+      e.target.reset();
+      await refreshAllData();
+    } catch (err) {
+      showToast(`⚠️ ${err.message}`);
+    }
+  });
 }
 
 // Wallet Action (Recharge / Retrait)
@@ -768,8 +803,14 @@ export function dismissSplash() {
   }, 700);
 }
 
+// Mobile Menu Helper
+export function closeMobileMenu() {
+  document.getElementById('mobile-menu')?.classList.add('hidden');
+}
+
 // Modals Helper
 export function openModal(id) {
+  closeMobileMenu();
   document.getElementById(id)?.classList.remove('hidden');
 }
 
@@ -806,6 +847,151 @@ export function triggerConfetti() {
   }
 }
 
+// Render Inbox Proposals
+function renderInbox() {
+  const container = document.getElementById('inbox-list');
+  const countBadge = document.getElementById('inbox-unread-count');
+  const mobileCountBadge = document.getElementById('inbox-mobile-count');
+
+  const pending = (state.inbox || []).filter(item => !item.status || item.status === 'pending');
+  const count = pending.length;
+
+  if (countBadge) {
+    countBadge.textContent = count;
+    if (count === 0) {
+      countBadge.classList.add('hidden');
+    } else {
+      countBadge.classList.remove('hidden');
+    }
+  }
+
+  if (mobileCountBadge) {
+    mobileCountBadge.textContent = count;
+    if (count === 0) {
+      mobileCountBadge.classList.add('hidden');
+    } else {
+      mobileCountBadge.classList.remove('hidden');
+    }
+  }
+
+  if (!container) return;
+
+  if (!state.inbox || state.inbox.length === 0) {
+    container.innerHTML = `
+      <div class="py-8 text-center space-y-2">
+        <div class="text-3xl">📭</div>
+        <p class="text-xs font-bold text-slate-800 dark:text-slate-200">Aucune offre reçue pour le moment</p>
+        <p class="text-[11px] text-slate-500 dark:text-slate-400">Vos participations aux hackathons et votre statut 'Ciblé' incitent les entreprises de Hammamet à vous contacter.</p>
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = state.inbox.map(item => {
+    const isPending = !item.status || item.status === 'pending' || item.status === 'offered_by_company' || item.status === 'submitted';
+    const isAccepted = item.status === 'accepted';
+    const company = item.companyName || item.company || 'Entreprise Partenaire';
+    const offerType = item.offerType || item.offerTitle || 'Mission';
+    const d = item.createdAt ? new Date(item.createdAt) : new Date();
+
+    return `
+      <div class="py-3.5 first:pt-1 last:pb-1 space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <div>
+            <span class="font-extrabold text-sm text-slate-900 dark:text-white">${escapeHtml(company)}</span>
+            <span class="ml-1.5 px-2 py-0.5 rounded-full text-[10px] font-bold bg-terracotta-100 text-terracotta-700 dark:bg-terracotta-950 dark:text-terracotta-300">${escapeHtml(offerType)}</span>
+          </div>
+          <span class="text-[10px] font-mono text-slate-400 shrink-0">${d.toLocaleDateString('fr-FR')}</span>
+        </div>
+        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">${escapeHtml(item.message || 'Nous avons consulté votre carte Passe Impact et souhaitons échanger avec vous.')}</p>
+        <div class="flex items-center justify-between pt-1">
+          ${isPending ? `
+            <div class="flex items-center gap-2">
+              <button onclick="window.HubAct.respondToProposal('${escapeHtml(item.id)}', 'accepted')" class="btn-tactile px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-sm flex items-center gap-1">
+                <span>✓</span> Accepter (+20 XP)
+              </button>
+              <button onclick="window.HubAct.respondToProposal('${escapeHtml(item.id)}', 'declined')" class="btn-tactile px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 text-xs font-semibold">
+                Décliner
+              </button>
+            </div>
+          ` : isAccepted ? `
+            <span class="px-2.5 py-1 rounded-lg text-xs font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 flex items-center gap-1">
+              <span>✓</span> Proposition acceptée (+20 XP)
+            </span>
+          ` : `
+            <span class="px-2.5 py-1 rounded-lg text-xs font-semibold text-slate-500 bg-slate-100 dark:bg-slate-800">
+              Proposition déclinée
+            </span>
+          `}
+          <span class="text-[10px] text-slate-400 font-mono">ID: ${escapeHtml(item.id)}</span>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+// Respond to Recruiter Proposal (Accept / Decline)
+export async function respondToProposal(proposalId, status) {
+  try {
+    const res = await api.respondToProposal(proposalId, status);
+    if (status === 'accepted') {
+      triggerConfetti();
+      showToast(res.message || 'Proposition acceptée (+20 XP) ! Félicitations.');
+    } else {
+      showToast('Proposition déclinée.');
+    }
+    await refreshAllData();
+  } catch (err) {
+    showToast(`⚠️ ${err.message}`);
+  }
+}
+
+// Render Native SVG QR Code for Biometric Pass
+function renderQRCode() {
+  const container = document.getElementById('pass-qr-container');
+  if (!container) return;
+
+  container.innerHTML = `
+    <svg viewBox="0 0 29 29" class="w-full h-full text-slate-900" fill="currentColor" shape-rendering="crispEdges">
+      <!-- Finder Top-Left -->
+      <rect x="2" y="2" width="7" height="7"/>
+      <rect x="3" y="3" width="5" height="5" fill="white"/>
+      <rect x="4" y="4" width="3" height="3"/>
+      
+      <!-- Finder Top-Right -->
+      <rect x="20" y="2" width="7" height="7"/>
+      <rect x="21" y="3" width="5" height="5" fill="white"/>
+      <rect x="22" y="4" width="3" height="3"/>
+
+      <!-- Finder Bottom-Left -->
+      <rect x="2" y="20" width="7" height="7"/>
+      <rect x="3" y="21" width="5" height="5" fill="white"/>
+      <rect x="4" y="22" width="3" height="3"/>
+
+      <!-- Alignment Pattern -->
+      <rect x="18" y="18" width="5" height="5"/>
+      <rect x="19" y="19" width="3" height="3" fill="white"/>
+      <rect x="20" y="20" width="1" height="1"/>
+
+      <!-- Timing & Payload -->
+      <rect x="10" y="4" width="1" height="1"/><rect x="12" y="4" width="1" height="1"/><rect x="14" y="4" width="1" height="1"/><rect x="16" y="4" width="1" height="1"/>
+      <rect x="4" y="10" width="1" height="1"/><rect x="4" y="12" width="1" height="1"/><rect x="4" y="14" width="1" height="1"/><rect x="4" y="16" width="1" height="1"/>
+      <rect x="10" y="10" width="2" height="1"/><rect x="13" y="10" width="1" height="2"/><rect x="15" y="10" width="2" height="1"/>
+      <rect x="10" y="12" width="1" height="2"/><rect x="12" y="13" width="2" height="1"/><rect x="16" y="12" width="1" height="2"/>
+      <rect x="10" y="15" width="2" height="2"/><rect x="13" y="14" width="1" height="1"/><rect x="15" y="15" width="2" height="1"/>
+      <rect x="10" y="18" width="1" height="2"/><rect x="13" y="17" width="2" height="1"/><rect x="10" y="22" width="2" height="1"/>
+      <rect x="13" y="21" width="1" height="2"/><rect x="15" y="22" width="2" height="1"/><rect x="13" y="24" width="2" height="1"/>
+      <rect x="20" y="10" width="2" height="1"/><rect x="23" y="11" width="1" height="2"/><rect x="25" y="10" width="2" height="1"/>
+      <rect x="21" y="13" width="1" height="2"/><rect x="24" y="14" width="2" height="1"/><rect x="24" y="24" width="3" height="2"/>
+    </svg>
+  `;
+}
+
+// Print / PDF Export
+export function printPass() {
+  window.print();
+}
+
 // Helper utilities
 function setText(id, value) {
   const el = document.getElementById(id);
@@ -825,6 +1011,7 @@ function escapeHtml(str) {
 // Expose on window for inline HTML onclick handlers
 window.HubAct = {
   navigateTo,
+  closeMobileMenu,
   flipPassCard,
   startGuidedTour,
   nextTourStep,
@@ -842,8 +1029,11 @@ window.HubAct = {
   openModal,
   closeModal,
   showToast,
-  triggerConfetti
+  triggerConfetti,
+  printPass,
+  respondToProposal
 };
 
 // Auto start on load
 window.addEventListener('DOMContentLoaded', initApp);
+

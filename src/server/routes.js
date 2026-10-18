@@ -36,6 +36,29 @@ apiRouter.get('/profile', (req, res) => {
   }
 });
 
+apiRouter.get('/profile/:id', (req, res) => {
+  try {
+    const userId = req.params.id || 'u-default';
+    const user = repository.getUser(userId);
+    if (!user) {
+      return res.status(404).json({ error: 'Profil introuvable' });
+    }
+    const projects = repository.getProjects(userId);
+    const reviews = repository.getReviews(userId);
+    const wallet = repository.getWallet(userId);
+
+    res.json({
+      user,
+      candidate: user,
+      projects,
+      reviews,
+      wallet
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // Update Avatar Preset
 apiRouter.post('/profile/avatar', (req, res) => {
   try {
@@ -313,3 +336,60 @@ apiRouter.post('/cookies/consent', (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
+// Verification Endpoint (Public Credential Proof)
+apiRouter.get('/verify/:id', (req, res) => {
+  try {
+    const data = repository.getVerification(req.params.id);
+    if (!data) {
+      return res.status(404).json({ error: 'Passe introuvable ou non certifié' });
+    }
+    res.json(data);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Candidate Inbox & Direct Recruiter Messages
+apiRouter.get('/inbox', (req, res) => {
+  try {
+    const userId = req.query.userId || 'u-default';
+    const inbox = repository.getInbox(userId);
+    res.json(inbox);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+apiRouter.post('/inbox/:id/respond', (req, res) => {
+  try {
+    const { status = 'accepted' } = req.body;
+    const result = repository.respondToProposal(req.params.id, status);
+    res.json({
+      success: true,
+      ...result,
+      message: status === 'accepted' ? 'Proposition acceptée (+20 XP) ! Félicitations.' : 'Proposition déclinée.'
+    });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+// Partner Event Creation (Hackathons & Bounties)
+apiRouter.post('/events', (req, res) => {
+  try {
+    const { title, category, badge, xpReward, dinarsReward, location, desc, date } = req.body;
+    if (!title || !location) {
+      return res.status(400).json({ error: 'Titre et lieu requis' });
+    }
+    const event = repository.createEvent({ title, category, badge, xpReward, dinarsReward, location, desc, date });
+    res.status(201).json({
+      success: true,
+      event,
+      message: `Hackathon '${title}' créé avec succès !`
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+

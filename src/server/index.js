@@ -25,6 +25,11 @@ app.use(express.static(publicDir));
 // Mount REST API
 app.use('/api', apiRouter);
 
+// Verification route redirect
+app.get('/verify/:id', (req, res) => {
+  res.redirect(`/verify.html?id=${encodeURIComponent(req.params.id)}`);
+});
+
 // Fallback to index.html for SPA routes
 app.get('*', (req, res) => {
   if (req.path.startsWith('/api')) {

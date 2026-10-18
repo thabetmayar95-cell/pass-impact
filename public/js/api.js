@@ -151,5 +151,38 @@ export const api = {
       body: JSON.stringify({ userId, sessionRef: `browser-${Date.now()}` })
     });
     return res.json();
+  },
+
+  async getVerification(candidateId = 'u-default') {
+    const res = await fetch(`${API_BASE}/verify/${encodeURIComponent(candidateId)}`);
+    if (!res.ok) throw new Error((await res.json()).error || 'Erreur vérification passe');
+    return res.json();
+  },
+
+  async getInbox(userId = 'u-default') {
+    const res = await fetch(`${API_BASE}/inbox?userId=${encodeURIComponent(userId)}`);
+    if (!res.ok) throw new Error((await res.json()).error || 'Erreur chargement messages');
+    return res.json();
+  },
+
+  async respondToProposal(proposalId, status = 'accepted') {
+    const res = await fetch(`${API_BASE}/inbox/${encodeURIComponent(proposalId)}/respond`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ status })
+    });
+    if (!res.ok) throw new Error((await res.json()).error || 'Erreur réponse proposition');
+    return res.json();
+  },
+
+  async createEvent(eventData) {
+    const res = await fetch(`${API_BASE}/events`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(eventData)
+    });
+    if (!res.ok) throw new Error((await res.json()).error || 'Erreur création hackathon');
+    return res.json();
   }
 };
+

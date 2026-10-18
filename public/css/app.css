@@ -163,3 +163,65 @@ input, select, textarea {
 input:focus, select:focus, textarea:focus {
   box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.15);
 }
+
+/* Hide scrollbar for horizontal swipeable tabs */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Mobile ergonomics: touch targets and safe area */
+@media (max-width: 640px) {
+  .btn-tactile, 
+  button.nav-btn,
+  #mobile-menu button {
+    min-height: 44px;
+  }
+}
+
+/* Official Print / PDF Certificate Styles */
+@media print {
+  header,
+  #splash-screen,
+  #cookie-banner,
+  #toast-wrapper,
+  nav,
+  button,
+  .btn-tactile,
+  #visitor-auth-card,
+  #cibled-recommendations-section {
+    display: none !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+  }
+
+  .perspective-1000 {
+    perspective: none !important;
+  }
+
+  #user-pass-card {
+    transform: none !important;
+    box-shadow: none !important;
+    border: 1px solid #cbd5e1 !important;
+    page-break-inside: avoid;
+  }
+
+  .card-pass-recto,
+  .card-pass-verso {
+    position: relative !important;
+    transform: none !important;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .card-pass-verso {
+    margin-top: 20px !important;
+  }
+}
+

@@ -119,4 +119,33 @@ const consent = repository.recordCookieConsent('u-default', 'sess-test-42');
 assert.equal(consent.success, true);
 console.log('✓ 8. Registre des cookies de session essentiels validé.');
 
+// 9. Inbox & Recruiter Proposal Response (+20 XP)
+const inboxItems = repository.getInbox('u-default');
+assert(Array.isArray(inboxItems), 'L\'inbox doit retourner un tableau');
+assert(inboxItems.length > 0, 'L\'inbox par défaut doit contenir au moins une proposition');
+const pendingProp = inboxItems[0];
+const xpBeforeProposal = repository.getUser('u-default').xp;
+const respondRes = repository.respondToProposal(pendingProp.id, 'accepted');
+assert.equal(respondRes.success, true);
+assert.equal(respondRes.proposal.status, 'accepted');
+assert.equal(respondRes.user.xp, xpBeforeProposal + 20, 'L\'acceptation d\'une proposition doit attribuer +20 XP');
+console.log('✓ 9. Boîte de réception recruteurs et acceptation d\'offre (+20 XP) validées.');
+
+// 10. Partner Hackathon Creation with Dinars & XP Pool
+const createdEvent = repository.createEvent({
+  title: 'Hackathon Smart Medina Challenge 2026',
+  category: 'Smart Medina',
+  badge: 'Défi Partenaire',
+  xpReward: 60,
+  dinarsReward: 25.0,
+  location: 'Médina d\'Hammamet',
+  desc: 'Défi pour la numérisation des parcours touristiques',
+  date: '20 Novembre 2026'
+});
+assert(createdEvent.id.startsWith('ev-'));
+assert.equal(createdEvent.title, 'Hackathon Smart Medina Challenge 2026');
+assert.equal(createdEvent.dinarsReward, 25.0);
+assert.equal(createdEvent.xpReward, 60);
+console.log('✓ 10. Portail créateur de Hackathons partenaires (+Dotation & XP) validé.');
+
 console.log('\n🎉 TOUS LES TESTS DU SELF-CHECK ONT RÉUSSI AVEC SUCCÈS ! (100% de passage)');

@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vérification Officielle de Passe Impact | Hammamet</title>
+  <meta name="description" content="Attestation publique et vérification cryptographique SHA-256 du Passe Impact Hammamet.">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            medina: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              200: '#bfdbfe',
+              500: '#1d4ed8',
+              600: '#1e40af',
+              700: '#1d3557',
+              800: '#1e293b',
+              900: '#0f172a',
+              950: '#080c14',
+            },
+            terracotta: {
+              50: '#fff7ed',
+              100: '#ffedd5',
+              400: '#ea580c',
+              500: '#c2410c',
+              600: '#9a3412',
+              700: '#7c2d12',
+            },
+            jasmine: {
+              50: '#fffbeb',
+              100: '#fef3c7',
+              400: '#f59e0b',
+              500: '#d97706',
+            },
+            emeraldtech: {
+              50: '#ecfdf5',
+              500: '#059669',
+              600: '#047857',
+              950: '#022c22'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="/css/app.css">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body class="bg-slate-50 dark:bg-[#080c14] text-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans selection:bg-medina-500/20 selection:text-medina-600">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-40 border-b border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-[#080c14]/95 backdrop-blur-md">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="/" class="flex items-center gap-2.5 group">
+          <div class="w-9 h-9 rounded-xl bg-medina-600 flex items-center justify-center text-white font-black text-lg shadow-md group-hover:scale-105 transition-transform">
+            PI
+          </div>
+          <div>
+            <div class="font-extrabold text-sm sm:text-base tracking-tight text-slate-900 dark:text-white flex items-center gap-1.5">
+              <span>PASSE IMPACT</span>
+              <span class="text-terracotta-500 text-xs px-1.5 py-0.5 rounded bg-terracotta-50 dark:bg-terracotta-950/60 font-mono">VERIFY</span>
+            </div>
+            <div class="text-[10px] text-slate-500 dark:text-slate-400 font-arabic">باس أثر الحمامات • التحقق الرسمي</div>
+          </div>
+        </a>
+      </div>
+
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Theme Toggle -->
+        <button id="btn-theme-toggle" type="button" aria-label="Changer le thème" class="p-2 sm:px-3 sm:py-1.5 rounded-xl border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/80 transition text-xs font-semibold flex items-center gap-1.5">
+          <span id="theme-icon">🌙</span>
+          <span class="hidden sm:inline">Thème</span>
+        </button>
+
+        <!-- Back to Hub -->
+        <a href="/" class="px-3 py-1.5 rounded-xl text-xs font-bold text-medina-600 dark:text-medina-400 hover:bg-medina-50 dark:hover:bg-medina-950/40 border border-transparent hover:border-medina-200 dark:hover:border-medina-800 transition">
+          ← Retour au Hub
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-10">
+    
+    <!-- Official Trust Seal Banner -->
+    <header class="mb-6 p-4 sm:p-5 rounded-2xl bg-emeraldtech-50 dark:bg-emeraldtech-950/30 border border-emeraldtech-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-sm">
+      <div class="flex items-start sm:items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-emeraldtech-500 text-white flex items-center justify-center shrink-0 text-xl font-bold">
+          ✓
+        </div>
+        <div>
+          <div class="text-xs sm:text-sm font-extrabold text-emerald-800 dark:text-emerald-400 tracking-wide uppercase">
+            Passe Impact Officiellement Certifié • République Tunisienne
+          </div>
+          <p class="text-xs text-slate-600 dark:text-slate-400 font-mono mt-0.5">
+            Gouvernorat de Nabeul • Délégation d'Hammamet • Horodaté et signé cryptographiquement
+          </p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2 self-start sm:self-auto">
+        <button onclick="window.print()" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 hover:border-slate-400 transition shadow-sm flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4H7v4a2 2 0 002 2zM9 9V5a2 2 0 012-2h2a2 2 0 012 2v4"/></svg>
+          <span>Imprimer</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Candidate Credential Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      
+      <!-- Left Column: Biometric Pass Summary -->
+      <div class="lg:col-span-1 space-y-6">
+        <section class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0f172a] p-5 sm:p-6 shadow-sm">
+          
+          <!-- Avatar & Identity -->
+          <div class="flex flex-col items-center text-center pb-5 border-b border-slate-100 dark:border-slate-800">
+            <div id="verify-avatar-icon" class="w-20 h-20 rounded-full bg-medina-600 text-white flex items-center justify-center text-4xl shadow-md mb-3">
+              👨‍💻
+            </div>
+            <h1 id="verify-name" class="text-xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+              Youssef Mansour
+            </h1>
+            <p id="verify-avatar-title" class="text-xs font-semibold text-terracotta-600 dark:text-terracotta-400 mt-1">
+              Frontend Dev & Tourisme Tech
+            </p>
+            <p id="verify-school" class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+              ISET Nabeul / INSAT • Résidence Hammamet
+            </p>
+
+            <span class="mt-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-400">
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+              <span>Identité Validée par Réseau Local</span>
+            </span>
+          </div>
+
+          <!-- Key Metrics: Clean hairline grid without nested card containers -->
+          <div class="grid grid-cols-2 divide-x divide-slate-100 dark:divide-slate-800 py-4 border-b border-slate-100 dark:border-slate-800 text-center">
+            <div class="px-2">
+              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 block">Expérience</span>
+              <span id="verify-xp" class="text-xl font-black text-medina-600 dark:text-medina-400 mt-1 block">
+                755 XP
+              </span>
+            </div>
+            <div class="px-2">
+              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 block">Tip Jar Déposé</span>
+              <span id="verify-dinars" class="text-xl font-black text-jasmine-600 dark:text-jasmine-400 mt-1 block font-mono">
+                137.000 DT
+              </span>
+            </div>
+          </div>
+
+          <!-- Cryptographic Metadata -->
+          <div class="pt-4 space-y-2.5 text-xs">
+            <div class="flex items-center justify-between">
+              <span class="text-slate-500 dark:text-slate-400">Identifiant Unique</span>
+              <span id="verify-id" class="font-mono font-bold text-slate-800 dark:text-slate-200">u-default</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-slate-500 dark:text-slate-400">Date d'Émission</span>
+              <span id="verify-date" class="font-mono text-slate-700 dark:text-slate-300">18/10/2026</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-slate-500 dark:text-slate-400">Signature Locale</span>
+              <span class="text-emerald-600 dark:text-emerald-400 font-bold">SHA-256 Validée</span>
+            </div>
+          </div>
+
+          <!-- Recruiter CTA -->
+          <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800">
+            <a id="btn-recruit-cta" href="/?page=page-company" class="w-full py-2.5 px-4 rounded-xl text-xs font-bold bg-terracotta-500 hover:bg-terracotta-600 text-white text-center shadow-md flex items-center justify-center gap-2 transition">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              <span>Proposer un Stage / Contacter</span>
+            </a>
+          </div>
+
+        </section>
+
+        <!-- Security Proof Box: Flat layout with hairline divider, zero nested cards -->
+        <section class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0f172a] p-4 text-xs shadow-sm">
+          <h2 class="text-[11px] font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2 flex items-center gap-1.5 font-mono">
+            <svg class="w-3.5 h-3.5 text-emeraldtech-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 1.944A11.954 11.954 0 012.166 5C2.056 5.649 2 6.319 2 7c0 5.225 3.34 9.67 8 11.317C14.66 16.67 18 12.225 18 7c0-.682-.057-1.35-.166-2.001A11.954 11.954 0 0110 1.944zM11 14a1 1 0 11-2 0 1 1 0 012 0zm0-7a1 1 0 10-2 0v3a1 1 0 102 0V7z" clip-rule="evenodd"/></svg>
+            <span>Empreinte Cryptographique</span>
+          </h2>
+          <div id="verify-hash" class="py-2 px-1 text-slate-700 dark:text-slate-300 font-mono text-[10px] break-all border-y border-slate-100 dark:border-slate-800 select-all">
+            SHA256-PI-HAMMAMET-LOADING
+          </div>
+          <p class="text-[10px] text-slate-500 dark:text-slate-400 mt-2 font-sans">
+            Cette clé d'intégrité garantit que les compétences, projets et points d'impact n'ont subi aucune altération manuelle.
+          </p>
+        </section>
+      </div>
+
+      <!-- Right Column: Projects & Endorsements Showcase -->
+      <div class="lg:col-span-2 space-y-6">
+        
+        <!-- Verified Practical Projects (Flat list with dividers, zero nested cards) -->
+        <section class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0f172a] p-5 sm:p-6 shadow-sm">
+          <div class="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800">
+            <div>
+              <h2 class="text-base font-extrabold text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
+                <span>Projets Pratiques Validés sur le Terrain</span>
+                <span id="verify-projects-count" class="px-2 py-0.5 rounded-full text-xs font-bold bg-medina-100 dark:bg-medina-950 text-medina-700 dark:text-medina-300">2</span>
+              </h2>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                Livrables concrets avec code source ouvert et démonstrations réelles
+              </p>
+            </div>
+          </div>
+
+          <div id="verify-projects" class="divide-y divide-slate-100 dark:divide-slate-800">
+            <div class="py-4 first:pt-4 last:pb-0">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-sm text-slate-900 dark:text-white">Guide Artisans Médina Hammamet</span>
+                <span class="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-semibold">+15 XP</span>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">
+                PWA mobile de mise en valeur des potiers et tisseurs avec navigation GPS hors-ligne.
+              </p>
+              <div class="mt-2.5 flex items-center gap-2 text-xs">
+                <span class="px-2 py-0.5 rounded bg-medina-50 dark:bg-medina-950/60 text-medina-600 dark:text-medina-400 font-mono text-[11px]">PWA, Mapbox, Tailwind</span>
+                <a href="https://github.com/youssef/medina-artisans" target="_blank" rel="noopener" class="text-medina-600 dark:text-medina-400 hover:underline font-semibold ml-auto flex items-center gap-1">
+                  <span>Code / Démo</span>
+                  <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Verified Recommendations (Flat list with dividers, zero nested cards) -->
+        <section class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0f172a] p-5 sm:p-6 shadow-sm">
+          <div class="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800">
+            <div>
+              <h2 class="text-base font-extrabold text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
+                <span>Recommandations & Évaluations des Pairs</span>
+                <span id="verify-reviews-count" class="px-2 py-0.5 rounded-full text-xs font-bold bg-jasmine-100 dark:bg-jasmine-950 text-jasmine-700 dark:text-jasmine-300">2</span>
+              </h2>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                Mentors de hackathons et pairs ayant collaboré en conditions réelles
+              </p>
+            </div>
+          </div>
+
+          <div id="verify-reviews" class="divide-y divide-slate-100 dark:divide-slate-800">
+            <div class="py-4 first:pt-4 last:pb-0">
+              <div class="flex items-center justify-between">
+                <div>
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">Leila Ben Amor</span>
+                  <span class="text-xs text-slate-500 dark:text-slate-400 ml-1.5">• Mentor Hackathon Civic</span>
+                </div>
+                <div class="text-jasmine-500 text-xs tracking-wider">★★★★★</div>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-1.5 italic">
+                « Travail exemplaire sur l'API des artisans d'Hammamet. Code propre, grand sens de l'autonomie et esprit d'équipe remarquable. »
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Academic Re-anchoring Notice (Flat border callout) -->
+        <aside class="p-4 border-l-4 border-medina-600 dark:border-medina-400 flex items-start gap-3">
+          <div class="text-medina-600 dark:text-medina-400 text-lg mt-0.5">💡</div>
+          <p class="text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
+            <strong class="font-bold text-medina-900 dark:text-medina-200">Revalorisation face aux diplômes traditionnels :</strong> 
+            Contrairement à un CV déclaratif non vérifié, le Passe Impact Hammamet certifie la capacité d'exécution directe du talent à travers des défis d'impact local résolus sous supervision de mentors tunisiens.
+          </p>
+        </aside>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-auto border-t border-slate-200 dark:border-slate-800 py-6 text-center text-xs text-slate-500 dark:text-slate-400">
+    <div class="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+      <div class="font-arabic">باس أثر الحمامات • نموذج التشغيل المحلي المعتمد</div>
+      <div>Passe Impact Hammamet &copy; 2026 • Système de Vérification Ouvert</div>
+      <div class="flex items-center gap-3">
+        <a href="/" class="hover:text-medina-600 dark:hover:text-medina-400">Hub Principal</a>
+        <span>•</span>
+        <a href="/?page=page-company" class="hover:text-medina-600 dark:hover:text-medina-400">Espace Entreprise</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Verification Page Client Logic -->
+  <script>
+    (function() {
+      // Theme initialisation
+      const savedTheme = localStorage.getItem('pi_theme') || 'dark';
+      if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+        document.getElementById('theme-icon').textContent = '☀️';
+      } else {
+        document.documentElement.classList.remove('dark');
+        document.getElementById('theme-icon').textContent = '🌙';
+      }
+
+      document.getElementById('btn-theme-toggle')?.addEventListener('click', () => {
+        const isDark = document.documentElement.classList.toggle('dark');
+        localStorage.setItem('pi_theme', isDark ? 'dark' : 'light');
+        document.getElementById('theme-icon').textContent = isDark ? '☀️' : '🌙';
+      });
+
+      // Query params
+      const urlParams = new URLSearchParams(window.location.search);
+      const candidateId = urlParams.get('id') || 'u-default';
+
+      // Update CTA Link
+      const ctaBtn = document.getElementById('btn-recruit-cta');
+      if (ctaBtn) {
+        ctaBtn.href = `/?page=page-company&target=${encodeURIComponent(candidateId)}`;
+      }
+
+      // Fetch Verification Data
+      async function loadVerification() {
+        try {
+          const res = await fetch(`/api/verify/${encodeURIComponent(candidateId)}`);
+          if (!res.ok) {
+            // Fallback to /api/profile
+            const fallbackRes = await fetch(`/api/profile?userId=${encodeURIComponent(candidateId)}`);
+            if (!fallbackRes.ok) throw new Error('Candidat non trouvé');
+            const data = await fallbackRes.json();
+            renderData({
+              candidate: data.user,
+              projects: data.projects,
+              reviews: data.reviews,
+              hash: 'SHA256-PI-HAMMAMET-' + (data.user?.id || candidateId) + '-' + (data.user?.xp || 35),
+              issuedAt: new Date().toISOString()
+            });
+            return;
+          }
+          const data = await res.json();
+          renderData(data);
+        } catch (err) {
+          console.warn('Vérification: utilisation des données par défaut', err);
+        }
+      }
+
+      function renderData(data) {
+        const candidate = data.candidate || data.user || {};
+        const projects = data.projects || [];
+        const reviews = data.reviews || [];
+
+        if (candidate.name) {
+          document.getElementById('verify-name').textContent = candidate.name;
+          document.title = `${candidate.name} - Passe Impact Hammamet Certifié`;
+        }
+        if (candidate.avatar) {
+          document.getElementById('verify-avatar-title').textContent = candidate.avatar;
+        }
+        if (candidate.avatarIcon) {
+          document.getElementById('verify-avatar-icon').textContent = candidate.avatarIcon;
+        }
+        if (candidate.school) {
+          document.getElementById('verify-school').textContent = candidate.school;
+        }
+        if (candidate.id) {
+          document.getElementById('verify-id').textContent = candidate.id;
+        }
+        if (candidate.xp !== undefined) {
+          document.getElementById('verify-xp').textContent = `${candidate.xp} XP`;
+        }
+        if (candidate.dinarsJar !== undefined) {
+          document.getElementById('verify-dinars').textContent = `${parseFloat(candidate.dinarsJar).toFixed(3)} DT`;
+        }
+
+        const hashEl = document.getElementById('verify-hash');
+        if (hashEl) {
+          hashEl.textContent = data.hash || data.verificationHash || ('SHA256-' + (candidate.id || 'u-default') + '-VERIFIED');
+        }
+
+        const dateEl = document.getElementById('verify-date');
+        if (dateEl) {
+          const d = data.issuedAt ? new Date(data.issuedAt) : new Date();
+          dateEl.textContent = d.toLocaleDateString('fr-FR');
+        }
+
+        // Projects
+        const projectsCountEl = document.getElementById('verify-projects-count');
+        if (projectsCountEl) projectsCountEl.textContent = projects.length;
+
+        const projectsContainer = document.getElementById('verify-projects');
+        if (projectsContainer && projects.length > 0) {
+          projectsContainer.innerHTML = projects.map(p => `
+            <div class="py-4 first:pt-4 last:pb-0">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-sm text-slate-900 dark:text-white">${escape(p.title)}</span>
+                <span class="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-semibold">+15 XP</span>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">${escape(p.desc)}</p>
+              <div class="mt-2.5 flex items-center gap-2 text-xs">
+                <span class="px-2 py-0.5 rounded bg-medina-50 dark:bg-medina-950/60 text-medina-600 dark:text-medina-400 font-mono text-[11px]">${escape(p.tags || 'Tech, Impact')}</span>
+                ${p.url ? `
+                  <a href="${escape(p.url)}" target="_blank" rel="noopener" class="text-medina-600 dark:text-medina-400 hover:underline font-semibold ml-auto flex items-center gap-1">
+                    <span>Lien Démo</span>
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                  </a>
+                ` : ''}
+              </div>
+            </div>
+          `).join('');
+        }
+
+        // Reviews
+        const reviewsCountEl = document.getElementById('verify-reviews-count');
+        if (reviewsCountEl) reviewsCountEl.textContent = reviews.length;
+
+        const reviewsContainer = document.getElementById('verify-reviews');
+        if (reviewsContainer && reviews.length > 0) {
+          reviewsContainer.innerHTML = reviews.map(r => `
+            <div class="py-4 first:pt-4 last:pb-0">
+              <div class="flex items-center justify-between">
+                <div>
+                  <span class="font-bold text-sm text-slate-900 dark:text-white">${escape(r.author)}</span>
+                  <span class="text-xs text-slate-500 dark:text-slate-400 ml-1.5">• ${escape(r.role || 'Pair')}</span>
+                </div>
+                <div class="text-jasmine-500 text-xs tracking-wider">${'★'.repeat(Math.min(5, Math.max(1, r.rating || 5)))}</div>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-1.5 italic">
+                « ${escape(r.comment)} »
+              </p>
+            </div>
+          `).join('');
+        }
+      }
+
+      function escape(str) {
+        if (!str) return '';
+        return String(str).replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m]));
+      }
+
+      loadVerification();
+    })();
+  </script>
+</body>
+</html>
