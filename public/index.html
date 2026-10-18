@@ -57,8 +57,22 @@
         try { localStorage.setItem('pi_auth', 'false'); } catch (err) {}
       },
       dismissSplash: function() {
+        if (window.HubAct.__realDismissSplash) return window.HubAct.__realDismissSplash();
         var s = document.getElementById('splash-screen');
-        if (s) s.style.display = 'none';
+        if (s) {
+          s.style.opacity = '0';
+          setTimeout(function() { s.style.display = 'none'; }, 700);
+        }
+      },
+      showSplash: function() {
+        if (window.HubAct.__realShowSplash) return window.HubAct.__realShowSplash();
+        var s = document.getElementById('splash-screen');
+        if (s) {
+          s.style.display = 'flex';
+          s.style.opacity = '1';
+          var b = document.getElementById('splash-progress');
+          if (b) { b.style.width = '0%'; setTimeout(function() { b.style.width = '100%'; }, 150); }
+        }
       },
       navigateTo: function(p) {
         if (window.HubAct.__realNavigateTo) window.HubAct.__realNavigateTo(p);
@@ -140,25 +154,27 @@
   <div id="splash-screen" class="fixed inset-0 z-50 bg-gradient-to-br from-[#080c14] via-[#0b1329] to-[#070e1f] flex flex-col items-center justify-center p-6 text-white transition-opacity duration-700">
     <div class="max-w-md w-full text-center space-y-6">
       
-      <!-- Emblem Logo -->
-      <div class="mx-auto w-24 h-24 rounded-3xl overflow-hidden shadow-2xl shadow-medina-950 p-2 bg-[#0b1329] border border-medina-500/40 flex items-center justify-center">
-        <img src="/logo.svg" alt="Passe Impact Hammamet Logo" class="w-full h-full object-contain">
+      <!-- Emblem Logo with glowing animated ring -->
+      <div class="relative mx-auto w-24 h-24 rounded-3xl bg-gradient-to-tr from-medina-500 via-terracotta-500 to-terracotta-400 p-1 shadow-2xl shadow-medina-950/80 animate-pulse">
+        <div class="w-full h-full bg-[#0b1329] rounded-[22px] flex items-center justify-center p-2.5">
+          <img src="/logo.svg" alt="Passe Impact Hammamet Logo" class="w-full h-full object-contain">
+        </div>
       </div>
 
       <!-- Titles & Subtitle -->
       <div class="space-y-1">
         <h1 class="text-3xl font-black tracking-tight">Passe Impact Hammamet</h1>
-        <p class="text-xs text-slate-400">Tremplin direct pour la jeunesse, les étudiants et les entreprises à Hammamet</p>
+        <p class="text-xs text-slate-300">Tremplin direct pour la jeunesse, les étudiants et les entreprises à Hammamet</p>
       </div>
 
       <!-- Loading Bar -->
-      <div class="w-full bg-slate-900/80 rounded-full h-2 overflow-hidden border border-white/10">
-        <div id="splash-progress" class="bg-gradient-to-r from-medina-600 to-terracotta-500 h-full w-0 transition-all duration-700"></div>
+      <div class="w-full bg-slate-900/80 rounded-full h-2.5 overflow-hidden border border-white/10 shadow-inner">
+        <div id="splash-progress" class="bg-gradient-to-r from-medina-500 via-terracotta-500 to-medina-400 h-full w-0 transition-all duration-1000 ease-out"></div>
       </div>
 
       <!-- Enter CTA -->
       <div class="pt-2">
-        <button id="splash-enter-btn" onclick="window.HubAct.dismissSplash()" class="btn-tactile w-full py-3.5 px-6 rounded-2xl bg-medina-600 hover:bg-medina-500 text-white font-bold text-sm shadow-xl shadow-medina-900/40 transition">
+        <button id="splash-enter-btn" onclick="window.HubAct.dismissSplash()" class="btn-tactile w-full py-3.5 px-6 rounded-2xl bg-gradient-to-r from-terracotta-500 to-medina-600 hover:from-terracotta-400 hover:to-medina-500 text-white font-bold text-sm shadow-xl shadow-medina-950/60 transition transform hover:-translate-y-0.5 active:translate-y-0">
           Entrer sur la plateforme ➔
         </button>
         <p class="text-[11px] text-slate-400 mt-2 font-medium">🇹🇳 Résoudre le système fragmenté • Les opportunités vous ciblent</p>
@@ -248,6 +264,13 @@
               <div>
                 <span class="font-bold text-slate-900 dark:text-white block">Pass Visiteur Invité</span>
                 <span class="text-[10px] text-slate-500 dark:text-slate-400 block">Gestion de statut et cookies</span>
+              </div>
+            </button>
+            <button onclick="window.HubAct.showSplash(); window.HubAct.closeAllDropdowns()" class="w-full text-left p-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/80 flex items-start gap-2.5 transition border-t border-slate-100 dark:border-white/5 pt-2">
+              <span class="text-terracotta-500 mt-0.5">✨</span>
+              <div>
+                <span class="font-bold text-slate-900 dark:text-white block">Écran de bienvenue (Splash)</span>
+                <span class="text-[10px] text-slate-500 dark:text-slate-400 block">Revoir l'introduction & emblème</span>
               </div>
             </button>
           </div>

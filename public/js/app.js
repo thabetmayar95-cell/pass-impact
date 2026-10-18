@@ -125,8 +125,6 @@ export async function initApp() {
 
   const targetPage = urlParams.get('page') || (window.location.hash ? window.location.hash.replace('#', '') : null);
   if (targetPage && document.getElementById(targetPage)) {
-    const splash = document.getElementById('splash-screen');
-    if (splash) splash.style.display = 'none';
     navigateTo(targetPage);
   }
 }
@@ -1082,9 +1080,21 @@ export function login() {
 }
 
 // Splash Screen
-function initSplashScreen() {
+export function initSplashScreen() {
+  const splash = document.getElementById('splash-screen');
+  if (splash) {
+    splash.style.display = 'flex';
+    splash.style.opacity = '1';
+  }
   const bar = document.getElementById('splash-progress');
-  if (bar) setTimeout(() => { bar.style.width = '100%'; }, 200);
+  if (bar) {
+    bar.style.width = '0%';
+    setTimeout(() => { bar.style.width = '100%'; }, 120);
+  }
+}
+
+export function showSplash() {
+  initSplashScreen();
 }
 
 export function dismissSplash() {
@@ -1342,6 +1352,8 @@ window.HubAct = Object.assign(window.HubAct || {}, {
   acceptMinimalCookies,
   toggleTheme,
   dismissSplash,
+  showSplash,
+  initSplashScreen,
   openModal,
   closeModal,
   showToast,
