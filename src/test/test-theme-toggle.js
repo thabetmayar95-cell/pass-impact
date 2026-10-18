@@ -81,6 +81,7 @@ try {
     expression: `({
       isDark: document.documentElement.classList.contains('dark'),
       isLight: document.documentElement.classList.contains('light'),
+      isBodyLight: document.body.classList.contains('light'),
       icon: document.getElementById('theme-icon')?.textContent,
       themeSaved: localStorage.getItem('pi_theme')
     })`,
@@ -90,7 +91,8 @@ try {
   const res2 = check2.result?.value;
   console.log('   Résultat après premier clic :', res2);
   if (res2.isDark) throw new Error('Le mode sombre devrait être désactivé après le clic');
-  if (!res2.isLight) throw new Error('Le mode clair (.light) doit être actif');
+  if (!res2.isLight) throw new Error('Le mode clair (.light) sur <html> doit être actif');
+  if (!res2.isBodyLight) throw new Error('Le mode clair (.light) sur <body> doit être actif');
   if (res2.themeSaved !== 'light') throw new Error(`localStorage pi_theme doit être 'light', reçu: ${res2.themeSaved}`);
   if (res2.icon !== '🌙') throw new Error(`L'icône devrait être 🌙 en mode clair, reçu: ${res2.icon}`);
 
@@ -106,6 +108,7 @@ try {
     expression: `({
       isDark: document.documentElement.classList.contains('dark'),
       isLight: document.documentElement.classList.contains('light'),
+      isBodyDark: document.body.classList.contains('dark'),
       icon: document.getElementById('theme-icon')?.textContent,
       themeSaved: localStorage.getItem('pi_theme')
     })`,
@@ -114,10 +117,42 @@ try {
 
   const res3 = check3.result?.value;
   console.log('   Résultat après deuxième clic :', res3);
-  if (!res3.isDark) throw new Error('Le mode sombre (.dark) doit être réactivé');
+  if (!res3.isDark) throw new Error('Le mode sombre (.dark) sur <html> doit être réactivé');
+  if (!res3.isBodyDark) throw new Error('Le mode sombre (.dark) sur <body> doit être réactivé');
   if (res3.isLight) throw new Error('Le mode clair (.light) doit être retiré');
   if (res3.themeSaved !== 'dark') throw new Error(`localStorage pi_theme doit être 'dark', reçu: ${res3.themeSaved}`);
   if (res3.icon !== '☀️') throw new Error(`L'icône devrait être ☀️ en mode sombre, reçu: ${res3.icon}`);
+
+  // 4. Test Authentication & Session UI toggle (Issue 3)
+  console.log('4. Test de déconnexion et restauration session (Auth State Handler)...');
+  await send('Runtime.evaluate', { expression: `window.HubAct.logout();` });
+  await new Promise(r => setTimeout(r, 100));
+
+  const guestCheck = await send('Runtime.evaluate', {
+    expression: `({
+      isGuestBtnsVisible: !document.getElementById('auth-guest-buttons')?.classList.contains('hidden'),
+      isUserChipHidden: document.getElementById('user-chip-container')?.classList.contains('hidden')
+    })`,
+    returnByValue: true
+  });
+  console.log('   État déconnecté (mode invité) :', guestCheck.result?.value);
+  if (!guestCheck.result?.value.isGuestBtnsVisible) throw new Error('Les boutons Connexion/S\'inscrire doivent être visibles en mode invité');
+  if (!guestCheck.result?.value.isUserChipHidden) throw new Error('Le profil utilisateur doit être masqué en mode invité');
+
+  // Re-login
+  await send('Runtime.evaluate', { expression: `window.HubAct.login();` });
+  await new Promise(r => setTimeout(r, 100));
+
+  const authCheck = await send('Runtime.evaluate', {
+    expression: `({
+      isGuestBtnsHidden: document.getElementById('auth-guest-buttons')?.classList.contains('hidden'),
+      isUserChipVisible: !document.getElementById('user-chip-container')?.classList.contains('hidden')
+    })`,
+    returnByValue: true
+  });
+  console.log('   État connecté (session restaurée) :', authCheck.result?.value);
+  if (!authCheck.result?.value.isGuestBtnsHidden) throw new Error('Les boutons invités doivent être masqués après connexion');
+  if (!authCheck.result?.value.isUserChipVisible) throw new Error('Le profil utilisateur doit être visible après connexion');
 
   // 4. Verify no console errors occurred
   console.log('4. Vérification des erreurs de console sur le cycle d\'initialisation...');

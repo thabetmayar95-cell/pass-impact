@@ -31,6 +31,7 @@ export const NAVIGATION_ITEMS = {
 // Application State
 const state = {
   currentUserId: 'u-default',
+  isAuthenticated: true,
   isVisitor: false,
   hasAcceptedCookies: false,
   user: {
@@ -100,6 +101,13 @@ export async function initApp() {
       state.hasAcceptedCookies = true;
       document.getElementById('cookie-banner')?.classList.add('hidden');
     }
+  } catch (e) {}
+
+  // Load authentication session state from localStorage
+  try {
+    const authSaved = localStorage.getItem('pi_auth');
+    state.isAuthenticated = authSaved === 'false' ? false : true;
+    if (!state.isAuthenticated) state.isVisitor = true;
   } catch (e) {}
 
   // Mount UI elements immediately on boot with baseline metrics
@@ -244,6 +252,21 @@ function renderHeaderControls() {
   } else {
     if (badgeIcon) badgeIcon.textContent = '🎓';
     if (badgeLabel) badgeLabel.textContent = 'Membre Ciblé';
+  }
+
+  // Authentication & Session Visibility: Profile Pill vs Guest Buttons
+  const userChip = document.getElementById('user-chip-container');
+  const guestBtns = document.getElementById('auth-guest-buttons');
+  const mobileXp = document.getElementById('wallet-xp-mobile');
+
+  if (state.isAuthenticated && !state.isVisitor) {
+    if (userChip) userChip.classList.remove('hidden');
+    if (guestBtns) guestBtns.classList.add('hidden');
+    if (mobileXp) mobileXp.parentElement?.classList.remove('hidden');
+  } else {
+    if (userChip) userChip.classList.add('hidden');
+    if (guestBtns) guestBtns.classList.remove('hidden');
+    if (mobileXp) mobileXp.parentElement?.classList.add('hidden');
   }
 }
 
@@ -975,9 +998,17 @@ export const ThemeContext = {
     if (isDark) {
       document.documentElement.classList.add('dark');
       document.documentElement.classList.remove('light');
+      if (document.body) {
+        document.body.classList.remove('light');
+        document.body.classList.add('dark');
+      }
     } else {
       document.documentElement.classList.remove('dark');
       document.documentElement.classList.add('light');
+      if (document.body) {
+        document.body.classList.remove('dark');
+        document.body.classList.add('light');
+      }
     }
     try {
       localStorage.setItem('pi_theme', isDark ? 'dark' : 'light');
@@ -1028,6 +1059,27 @@ export function toggleTheme(e) {
 
 function initTheme() {
   ThemeContext.init();
+}
+
+// Authentication & Session Management
+export function logout() {
+  state.isAuthenticated = false;
+  state.isVisitor = true;
+  try {
+    localStorage.setItem('pi_auth', 'false');
+  } catch (e) {}
+  renderHeaderControls();
+  showToast('Session déconnectée. Vous naviguez en mode visiteur.');
+}
+
+export function login() {
+  state.isAuthenticated = true;
+  state.isVisitor = false;
+  try {
+    localStorage.setItem('pi_auth', 'true');
+  } catch (e) {}
+  renderHeaderControls();
+  showToast('Connexion réussie. Session active : Youssef Mansour.');
 }
 
 // Splash Screen
@@ -1301,6 +1353,8 @@ window.HubAct = Object.assign(window.HubAct || {}, {
   toggleExploreDropdown,
   toggleUserDropdown,
   closeAllDropdowns,
+  login,
+  logout,
   ThemeContext,
   NAVIGATION_ITEMS
 });

@@ -7,6 +7,25 @@
   --color-medina: #1d4ed8;     /* Primary: Mediterranean Executive Cobalt */
   --color-terracotta: #c2410c; /* Accent: Tuscan Terracotta / Copper */
   --color-surface-dark: #080c14;
+
+  /* Global Theme CSS Variables */
+  --bg-page: #0b1120;
+  --text-page: #f8fafc;
+  --bg-card: rgba(15, 23, 42, 0.8);
+  --bg-card-solid: #0f172a;
+  --border-card: rgba(255, 255, 255, 0.08);
+  --bg-nav: rgba(11, 17, 32, 0.85);
+  --text-muted: #94a3b8;
+}
+
+html.light, body.light {
+  --bg-page: #f8fafc;
+  --text-page: #0f172a;
+  --bg-card: rgba(255, 255, 255, 0.95);
+  --bg-card-solid: #ffffff;
+  --border-card: rgba(226, 232, 240, 0.9);
+  --bg-nav: rgba(255, 255, 255, 0.9);
+  --text-muted: #64748b;
 }
 
 /* Strict mobile viewport overflow containment: zero horizontal whitespace */
@@ -29,11 +48,19 @@ main, section, header, nav, footer, article {
 }
 
 body {
+  background-color: #0b1120;
+  color: #f8fafc;
+  transition: background-color 0.2s, color 0.2s;
   font-family: var(--font-main);
   font-size: 0.95rem;
   line-height: 1.55;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+}
+
+body.light {
+  background-color: #f8fafc;
+  color: #0f172a;
 }
 
 /* Typographic Scale with strong 1.25x+ steps */
