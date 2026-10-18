@@ -75,10 +75,18 @@ export async function initApp() {
   // Fetch data from backend
   await refreshAllData();
 
-  // Support direct routing via URL hash or ?page=
+  // Support direct routing via URL hash or ?page= / ?nosplash=
   const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.has('nosplash') || urlParams.has('demo')) {
+    const splash = document.getElementById('splash-screen');
+    if (splash) splash.style.display = 'none';
+    document.getElementById('cookie-banner')?.classList.add('hidden');
+  }
+
   const targetPage = urlParams.get('page') || (window.location.hash ? window.location.hash.replace('#', '') : null);
   if (targetPage && document.getElementById(targetPage)) {
+    const splash = document.getElementById('splash-screen');
+    if (splash) splash.style.display = 'none';
     navigateTo(targetPage);
   }
 }
@@ -659,6 +667,23 @@ function setupEventListeners() {
   // Dark mode button
   document.getElementById('theme-btn')?.addEventListener('click', toggleTheme);
 
+  // Keyboard accessibility: Escape key closes active modals and menu
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('[id^="modal-"]').forEach(m => m.classList.add('hidden'));
+      closeMobileMenu();
+    }
+  });
+
+  // Modal backdrop click closes modal
+  document.querySelectorAll('[id^="modal-"]').forEach(modal => {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.add('hidden');
+      }
+    });
+  });
+
   // Add Project Form
   document.getElementById('form-add-project')?.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -868,7 +893,7 @@ export function toggleTheme() {
 
 function initTheme() {
   const saved = localStorage.getItem('pi_theme');
-  const isDark = saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  const isDark = saved !== 'light';
   if (isDark) {
     document.documentElement.classList.add('dark');
   } else {
